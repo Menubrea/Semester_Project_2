@@ -14,7 +14,7 @@
     "test-e2e": "cypress open",
     "test-e2e-cli": "cypress run",
     "prepare": "husky install",
-    "format": "prettier -w **/*"
+    "format": "prettier -w *"
   },
   "repository": {
     "type": "git",
