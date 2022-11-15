@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --clr-dark: #363636;
+}
+
+button {
+  border: 3px solid var(--clr-dark);
+  border-radius: 5px;
+  height: min-content;
+  box-shadow: 3px 3px 0 0 var(--clr-dark);
+}
