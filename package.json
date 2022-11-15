@@ -24,7 +24,9 @@
     "url": "https://github.com/Menubrea/Semester_Project_2/issues"
   },
   "homepage": "https://github.com/Menubrea/Semester_Project_2#readme",
-  "dependencies": {
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
     "eslint": "^8.27.0",
     "prettier": "^2.7.1"
   }
