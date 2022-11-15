@@ -1,0 +1,27 @@
+{
+  "name": "semester-project-2",
+  "version": "0.0.1",
+  "description": "Semestr Project at Noroff for Truls Haakenstad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Menubrea/Semester_Project_2.git"
+  },
+  "keywords": [
+    "Project",
+    "Semester",
+    "Noroff",
+    "Javascript",
+    "CRUD",
+    "Auction"
+  ],
+  "author": "Truls Haakenstad <truls.haakenstad@outlook.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Menubrea/Semester_Project_2/issues"
+  },
+  "homepage": "https://github.com/Menubrea/Semester_Project_2#readme"
+}
