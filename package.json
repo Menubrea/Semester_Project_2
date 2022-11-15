@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Menubrea/Semester_Project_2#readme",
   "dependencies": {
+    "eslint": "^8.27.0",
     "prettier": "^2.7.1"
   }
 }
