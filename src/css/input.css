@@ -4,6 +4,7 @@
 
 :root {
   --clr-dark: #363636;
+  --clr-primary: #943a0a;
 }
 
 button {
@@ -11,4 +12,19 @@ button {
   border-radius: 5px;
   height: min-content;
   box-shadow: 3px 3px 0 0 var(--clr-dark);
+}
+
+button.pills {
+  border: none;
+}
+
+button:hover {
+  box-shadow: 3px 3px 0 0 var(--clr-primary);
+  border: 3px solid var(--clr-primary);
+  transition: all 50ms ease-in-out;
+  color: var(--clr-primary);
+}
+
+.background-shadow {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
