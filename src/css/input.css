@@ -7,11 +7,17 @@
   --clr-primary: #943a0a;
 }
 
-button {
+button,
+.search {
   border: 3px solid var(--clr-dark);
   border-radius: 5px;
   height: min-content;
   box-shadow: 3px 3px 0 0 var(--clr-dark);
+}
+
+.search {
+  border: 3px solid var(--clr-primary);
+  box-shadow: 3px 3px 0 0 var(--clr-primary);
 }
 
 button.pills {
