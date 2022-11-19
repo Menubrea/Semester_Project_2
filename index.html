@@ -10,6 +10,7 @@
       src="https://kit.fontawesome.com/6b9295215b.js"
       crossorigin="anonymous"
     ></script>
+    <script src="./src/js/index.js" type="module"></script>
     <title>Vender | Home</title>
   </head>
   <body class="max-w-xl3 container background-shadow">
@@ -45,22 +46,33 @@
           <img src="./media/images/package.jpg" alt="package" />
         </div>
       </section>
-      <nav class="flex justify-between mx-10 my-10">
+      <nav
+        class="md:flex justify-between mt-10 mb-5 mx-auto container max-w-7xl"
+      >
         <div>
-          <input class="bg-primary block" type="text" name="search" />
+          <input
+            class="border p-1 px-3 rounded search bg-lightGrey w-96"
+            placeholder="Search.."
+            type="text"
+            name="search"
+          />
         </div>
-        <div class="button group">
-          <button class="px-5 py-1 pills text-primary font-bold">
+        <div class="button group mr-2">
+          <button class="px-5 py-1 pills text-primary font-bold mr-3">
             <i class="fa-solid fa-icons pr-2"></i>All
           </button>
-          <button class="px-5 py-1 pills text-primary font-bold">
+          <button class="px-5 py-1 pills text-primary font-bold mr-3">
             <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
           </button>
-          <button class="px-5 py-1 pills text-primary font-bold">
+          <button class="px-5 py-1 pills text-primary font-bold mr-3">
             <i class="fa-regular fa-clock pr-2"></i>Expiring
           </button>
         </div>
       </nav>
+      <div
+        class="md:grid grid-cols-3 gap-10 mx-auto container max-w-7xl"
+        id="listingsContainer"
+      ></div>
     </main>
     <footer></footer>
   </body>
