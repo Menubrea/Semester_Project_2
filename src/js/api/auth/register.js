@@ -16,11 +16,11 @@ export async function register(profile) {
 
   try {
     const response = await fetch(registerURL, options);
-    const result = await response.json();
+    const profile = await response.json();
 
     switch (response.status) {
       case 201:
-        return result;
+        return profile;
     }
   } catch (err) {
     console.log(err);

@@ -23,6 +23,7 @@ export async function login(profile) {
       case 200:
         storage.save('token', accessToken);
         storage.save('profile', profile);
+        location.replace('./../../../../');
     }
   } catch (err) {
     console.log(err);
