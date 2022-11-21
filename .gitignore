@@ -2,3 +2,4 @@
 dist
 .env
 .mp4
+.DS_Store
