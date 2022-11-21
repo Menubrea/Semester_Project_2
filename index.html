@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="background">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,67 +13,100 @@
     <script src="./src/js/index.js" type="module"></script>
     <title>Vender | Home</title>
   </head>
-  <body class="max-w-xl3 container background-shadow">
-    <header class="bg-white">
-      <nav class="flex items-center">
-        <div
-          class="logo font-lust bg-white text-4xl text-primary py-3 pt-5 max-w-xl3 container mx-5"
+  <body class="max-w-7xl container background-shadow bg-white">
+    <header class="bg-white flex items-center">
+      <a
+        href="./"
+        class="logo font-lust text-xl text-primary py-3 pt-5 max-w-xl3 container mx-5"
+      >
+        Vender
+      </a>
+      <nav id="topNav" class="flex gap-2 mr-2">
+        <a
+          id="home"
+          href="./"
+          class="flex items-center py-2 font-ofelia text-primary text-md"
+          href="#"
+          ><i class="fa-solid fa-house mr-2"></i>Home</a
         >
-          Vender
-        </div>
-        <button class="py-2 px-10 mx-5 font-ofelia font-bold text-dark">
-          Login
-        </button>
       </nav>
     </header>
-    <main>
+    <main class="min-h-screen">
+      <div
+        class="md:sticky top-0 backdrop-blur-2xl bg-white/70 z-50"
+        id="profileData"
+      ></div>
       <section
-        class="hero md:grid grid-cols-12 gap-5 items-center bg-lightGrey"
+        class="hero grid lg:grid-cols-12 gap-5 items-center bg-lightGrey py-10 lg:py-0"
       >
         <div class="col-start-1 col-span-7 px-16">
           <h1 class="font-lust text-primary text-4xl">
             Vender partners up with Quick
           </h1>
-          <p class="mt-2">
+          <p class="mt-2 px-10">
             For a limited time only, receive free delivery through Quick on your
             first purchase as well as a thousand credits to your account.
           </p>
-          <button class="px-10 py-2 text-lg font-ofelia font-bold mt-5">
+          <a
+            href="./auth/register"
+            class="btn px-8 py-1 text-lg font-ofelia font-bold mt-5 float-right text-primary"
+          >
             Sign Up!
-          </button>
+          </a>
         </div>
-        <div class="col-span-5">
+        <div class="col-span-5 hidden lg:block">
           <img src="./media/images/package.jpg" alt="package" />
         </div>
       </section>
       <nav
-        class="md:flex justify-between mt-10 mb-5 mx-auto container max-w-7xl"
+        class="lg:flex justify-between mx-auto px-4 sticky py-3 border-b border-t border-dark/30 md:top-10 top-0 backdrop-blur-2xl bg-white/70 z-40"
       >
-        <div>
+        <div class="flex items-center">
+          <h2 class="font-lust text-primary text-2xl items-center mr-3 mt-1">
+            Browse
+          </h2>
           <input
-            class="border p-1 px-3 rounded search bg-lightGrey w-96"
+            id="searchBar"
+            class="border p-1 px-3 rounded search bg-lightGrey w-full text-sm"
             placeholder="Search.."
             type="text"
             name="search"
           />
         </div>
-        <div class="button group mr-2">
-          <button class="px-5 py-1 pills text-primary font-bold mr-3">
+        <div class="button-group flex justify-between lg:mt-0 mt-3">
+          <button
+            id="allButton"
+            class="active-button px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          >
             <i class="fa-solid fa-icons pr-2"></i>All
           </button>
-          <button class="px-5 py-1 pills text-primary font-bold mr-3">
+          <button
+            id="trendingButton"
+            class="ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          >
             <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
           </button>
-          <button class="px-5 py-1 pills text-primary font-bold mr-3">
+          <button
+            id="expiringButton"
+            class="ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          >
             <i class="fa-regular fa-clock pr-2"></i>Expiring
           </button>
         </div>
       </nav>
+      <!-- Listings -->
       <div
-        class="md:grid grid-cols-3 gap-10 mx-auto container max-w-7xl"
+        class="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mx-auto container max-w-6xl px-4 z-10 mt-16"
         id="listingsContainer"
       ></div>
     </main>
-    <footer></footer>
+    <footer class="bg-white items-end flex justify-between px-5">
+      <a href="./../../" class="logo font-lust text-xl text-primary py-3 px-3">
+        Vender
+      </a>
+      <a href="#" class="logo font-lust text-xl text-primary py-3 px-3">
+        Back to Top
+      </a>
+    </footer>
   </body>
 </html>
