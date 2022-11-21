@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="background">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../../dist/output.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/jgd2lxh.css" />
+    <script
+      src="https://kit.fontawesome.com/6b9295215b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./../../src/js/index.js" type="module"></script>
+    <title>Vender | Register</title>
+  </head>
+  <body
+    class="max-w-7xl container background-shadow bg-white h-screen grid items-start background-auth"
+  >
+    <header class="bg-white flex">
+      <a
+        href="./../../"
+        class="logo font-lust text-3xl text-primary py-3 pt-5 max-w-xl3 container mx-5"
+      >
+        Vender
+      </a>
+      <nav class="flex gap-2">
+        <a
+          id="home"
+          href="./../../"
+          class="flex items-center py-2 font-ofelia text-primary text-md"
+          href="#"
+          ><i class="fa-solid fa-house mr-2"></i>Home</a
+        >
+        <a
+          id="login"
+          href="./"
+          class="flex items-center py-2 mx-5 font-ofelia text-primary text-md"
+          ><i class="fa-solid fa-user mr-2"></i>
+          Login
+        </a>
+      </nav>
+    </header>
+    <main class="items-center">
+      <form
+        id="registerForm"
+        class="max-w-xl mx-auto p-10 relative rounded-lg h-max m-4 backdrop-blur-3xl shadow-lg bg-white/20"
+      >
+        <h1
+          class="font-lust text-primary text-3xl mx-auto bg-white inset-x-1/2 -translate-x-1/2 p-3 px-5 rounded-lg absolute -top-8 w-max shadow-md"
+        >
+          Sign up to Vender
+        </h1>
+        <div class="py-2 mt-5">
+          <input
+            class="p-2 w-full rounded-lg border border-dark"
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            maxlength="20"
+            pattern="^[\w]+$"
+            title="Can only contain underscore _ and max length of 20"
+          />
+        </div>
+        <div class="py-2">
+          <input
+            class="p-2 w-full rounded-lg border border-dark"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            pattern="^[\w\-.]+@(stud.)?noroff.no$"
+            title="Must be a valid @stud.noroff or @noroff email"
+          />
+        </div>
+        <div class="py-2">
+          <input
+            class="p-2 w-full rounded-lg border border-dark"
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            minlength="8"
+            title="Password must be minimum 8 characters long"
+          />
+        </div>
+        <div class="py-2">
+          <input
+            class="p-2 w-full rounded-lg border border-dark"
+            type="url"
+            placeholder="Avatar"
+            name="avatar"
+            title="Add a avatar for your profile, if none selected default will be provided. You can change this later"
+          />
+        </div>
+        <button
+          id="registerButton"
+          type="submit"
+          class="absolute inset-x-1/2 -translate-x-1/2 -bottom-6 font-ofelia font-bold px-4 py-1 text-primary text-2xl bg-white w-max"
+        >
+          Sign Up
+        </button>
+      </form>
+    </main>
+    <footer
+      class="bg-white absolute bottom-0 items-end flex justify-between w-screen max-w-7xl container"
+    >
+      <a href="./../../" class="logo font-lust text-xl text-primary py-3 px-3">
+        Vender
+      </a>
+      <a href="#" class="logo font-lust text-xl text-primary py-3 px-3">
+        Back to Top
+      </a>
+    </footer>
+  </body>
+</html>
