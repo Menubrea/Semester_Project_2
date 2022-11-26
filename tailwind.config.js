@@ -13,6 +13,7 @@ module.exports = {
       lightGrey: '#FAFAFA',
       darkGrey: '#EBEBEB',
       secondary: '#004745',
+      accent: '#debeb2',
     },
     fontFamily: {
       lust: ['Lust Script', 'sans-serif'],
