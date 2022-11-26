@@ -14,6 +14,10 @@ export async function register(profile) {
     },
   };
 
+  if (!profile.avatar) {
+    delete profile.avatar;
+  }
+
   try {
     const response = await fetch(registerURL, options);
     const profile = await response.json();
