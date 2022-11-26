@@ -12,7 +12,6 @@ export async function getListing() {
 
   if (response.ok) {
     const listing = await response.json();
-    console.log(listing);
     return listing;
   } else {
     throw new Error();
