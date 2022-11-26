@@ -16,34 +16,34 @@
   <body
     class="max-w-7xl container background-shadow bg-white h-screen grid items-start background-auth"
   >
-    <header class="bg-white flex">
+    <header class="bg-white flex items-center px-5 py-2 justify-between">
       <a
         href="./../../"
-        class="logo font-lust text-3xl text-primary py-3 pt-5 max-w-xl3 container mx-5"
+        class="logo font-lust text-xl text-primary items-center"
       >
         Vender
       </a>
-      <nav class="flex gap-2">
+      <nav class="flex gap-5">
         <a
           id="home"
           href="./../../"
-          class="flex items-center py-2 font-ofelia text-primary text-md"
+          class="flex items-center font-ofelia text-primary text-md"
           href="#"
           ><i class="fa-solid fa-house mr-2"></i>Home</a
         >
         <a
-          id="login"
-          href="./"
-          class="flex items-center py-2 mx-5 font-ofelia text-primary text-md"
+          id="register"
+          href="../register/"
+          class="flex items-center font-ofelia text-primary text-md"
           ><i class="fa-solid fa-user mr-2"></i>
-          Login
+          Register
         </a>
       </nav>
     </header>
     <main class="items-center">
       <form
         id="loginForm"
-        class="max-w-xl mx-auto p-10 relative rounded-lg h-max border-2 m-4 bg-white"
+        class="max-w-xl mx-auto p-10 relative rounded-lg h-max m-4 backdrop-blur-3xl shadow-lg bg-white/20"
       >
         <h1
           class="font-lust text-primary text-3xl mx-auto bg-white inset-x-1/2 -translate-x-1/2 p-3 px-5 rounded-lg absolute -top-8 w-max shadow-md"
@@ -57,8 +57,8 @@
             name="email"
             placeholder="Email"
             required
-            pattern="^[\w\-.]+@(stud.)?noroff.no$"
-            title="Must be a valid @stud.noroff or @noroff email"
+            pattern="^[\w\-.]+@stud.?noroff.no$"
+            title="Must be a valid @stud.noroff email"
           />
         </div>
         <div class="py-2">

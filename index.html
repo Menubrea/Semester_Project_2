@@ -14,24 +14,21 @@
     <title>Vender | Home</title>
   </head>
   <body class="max-w-7xl container background-shadow bg-white">
-    <header class="bg-white flex items-center">
-      <a
-        href="./"
-        class="logo font-lust text-xl text-primary py-3 pt-5 max-w-xl3 container mx-5"
-      >
+    <header class="flex items-center px-5 justify-between py-2">
+      <a href="./" class="logo font-lust text-xl text-primary items-center">
         Vender
       </a>
-      <nav id="topNav" class="flex gap-2 mr-2">
+      <nav id="topNav" class="flex gap-5">
         <a
           id="home"
           href="./"
-          class="flex items-center py-2 font-ofelia text-primary text-md"
+          class="flex items-center font-ofelia text-primary text-md"
           href="#"
           ><i class="fa-solid fa-house mr-2"></i>Home</a
         >
       </nav>
     </header>
-    <main class="min-h-screen">
+    <main class="min-h-screen max-w-7xl">
       <div
         class="md:sticky top-0 backdrop-blur-2xl bg-white/70 z-50"
         id="profileData"
@@ -59,7 +56,8 @@
         </div>
       </section>
       <nav
-        class="lg:flex justify-between mx-auto px-4 sticky py-3 border-b border-t border-dark/30 md:top-10 top-0 backdrop-blur-2xl bg-white/70 z-40"
+        id="filterNav"
+        class="lg:flex justify-between mx-auto px-4 sticky py-3 border-t border-b border-dark/30 top-0 backdrop-blur-2xl bg-white/70 z-40"
       >
         <div class="flex items-center">
           <h2 class="font-lust text-primary text-2xl items-center mr-3 mt-1">
@@ -99,8 +97,95 @@
         class="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mx-auto container max-w-6xl px-4 z-10 mt-16"
         id="listingsContainer"
       ></div>
+      <div class="overlay backdrop-blur-lg bg-primary/30"></div>
+      <div
+        id="listingModal"
+        class="modal bg-white/70 md:p-10 p-5 md:grid-cols-2 gap-10"
+      >
+        <form class="font-ofelia" id="createListing">
+          <p class="font-lust text-primary text-3xl text-center mb-2">
+            Create Auction
+          </p>
+          <div class="lg:grid grid-cols-2 gap-2">
+            <div class="mt-2">
+              <label for="title">Provide a title</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                id="form-title"
+                type="text"
+                name="title"
+                required
+                placeholder="Title"
+                title="This field is required"
+              />
+            </div>
+
+            <div class="mt-2">
+              <label for="tags">Add tags</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                type="text"
+                name="tags"
+                placeholder="Tags"
+              />
+            </div>
+          </div>
+          <div class="lg:grid grid-cols-2 gap-2">
+            <div class="mt-2">
+              <label for="media">Image</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                id="form-media"
+                type="url"
+                name="media"
+                title="Must be a fully formed URL to a valid image publicly accessible"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="endsAt">Expiration</label>
+              <input
+                id="expiration"
+                class="p-2 w-full rounded-sm"
+                type="datetime-local"
+                name="endsAt"
+                title="This input is required"
+                required
+              />
+            </div>
+          </div>
+          <div class="mt-2">
+            <textarea
+              class="p-2 w-full rounded-sm"
+              id="form-description"
+              name="description"
+              rows="5"
+            ></textarea>
+          </div>
+          <button
+            class="py-1 px-2 bg-white mt-2 text-center float-right font-ofelia font-bold text-primary text-xl"
+            type="submit"
+          >
+            Create Listing
+          </button>
+        </form>
+        <div class="w-full mt-16 lg:mt-0" id="preview">
+          <div class="preview-card">
+            <img
+              class="md:rounded-lg md:shadow-md object-fill mx-auto"
+              id="preview-img"
+            />
+            <div class="mt-5 mx-5">
+              <p
+                class="font-lust text-primary text-3xl text-center"
+                id="preview-title"
+              ></p>
+              <p class="mt-2 font-ofelia" id="preview-description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-    <footer class="bg-white items-end flex justify-between px-5">
+    <footer class="bg-white items-end flex justify-between mx-5">
       <a href="./../../" class="logo font-lust text-xl text-primary py-3 px-3">
         Vender
       </a>
