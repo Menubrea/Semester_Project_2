@@ -3,7 +3,16 @@ import { renderListingTemplates } from '../templates/listings.js';
 
 export async function setGetListings() {
   const listings = await getListings();
-  console.log(listings);
+  const filteredListings = listings.filter((listing) => {
+    const { endsAt } = listing;
+    const expiration = new Date(endsAt);
+
+    const now = new Date();
+
+    if (expiration > now) {
+      return listing;
+    }
+  });
   const container = document.querySelector('#listingsContainer');
-  renderListingTemplates(listings, container);
+  renderListingTemplates(filteredListings, container);
 }
