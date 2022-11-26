@@ -11,6 +11,18 @@ export function listingsTemplate(data) {
   const details = document.createElement('div');
   const remainingTime = document.createElement('p');
   const anchor = document.createElement('a');
+  const headerContainer = document.createElement('div');
+  const bidContainer = document.createElement('div');
+
+  // Appending
+  expirationTime(data, remainingTime, bidContainer);
+  setInterval(expirationTime, 1000, data, remainingTime, bidContainer);
+  bidContainer.append(bid, remainingTime);
+  headerContainer.append(header, profileContainer);
+  details.append(headerContainer);
+  profileContainer.append(profileImage, profileName);
+  anchor.append(bidContainer, image, details);
+  card.append(anchor);
 
   const { title, media, seller, bids, id } = data;
 
@@ -24,70 +36,82 @@ export function listingsTemplate(data) {
     image.src = media;
   }
 
+  if (seller.avatar === '') {
+    profileImage.src = '../../../media/images/package.jpg';
+  } else {
+    profileImage.src = seller.avatar;
+  }
+
   // Conditional logic for handling bids
   if (bids.length === 0) {
-    bid.innerHTML = 'No bid';
+    bid.innerHTML = '';
   } else {
     bid.innerHTML = `${lastBid.amount},-`;
   }
 
-  function replaceImage() {
-    return (image.src = '../../../media/images/package.jpg');
+  if (title.length > 18) {
+    header.innerHTML = title.slice(0, 18).concat('...');
+  } else {
+    header.innerHTML = title;
+  }
+
+  function replaceImage(element) {
+    if (onerror) {
+      return (element.src = '../../../media/images/package.jpg');
+    }
   }
 
   // Classes
-  details.classList.add(
+  bidContainer.classList.add(
     'flex',
-    'bg-gradient-to-b',
-    'from-dark',
-    'absolute',
-    'top-0',
+    'flex-row-reverse',
     'justify-between',
+    'items-center'
+  );
+  headerContainer.classList.add(
+    'flex',
+    'items-center',
+    'gap-3',
+    'justify-between'
+  );
+  details.classList.add('w-full', 'rounded-t-lg', 'px-2');
+  card.classList.add(
+    'relative',
+    'w-full',
+    'rounded-lg',
+    'card',
+    'px-4',
+    'py-2',
+    'border',
+    'border-primary/10',
+    'bg-white'
+  );
+  image.classList.add(
+    'w-full',
+    'h-64',
+    'object-cover',
+    'card-image',
+    'rounded-lg'
+  );
+  profileImage.classList.add('w-3', 'h-3', 'mr-1', 'rounded-full');
+  profileName.classList.add('font-ofelia', 'text-dark/70');
+  profileContainer.classList.add('flex', 'items-center');
+  header.classList.add('font-lust', 'text-primary', 'text-lg', 'mt-1');
+  remainingTime.classList.add(
+    'font-bold',
+    'text-sm',
+    'text-dark',
     'w-full',
     'rounded-t-lg'
   );
-  card.classList.add('relative', 'w-full', 'rounded-lg', 'card');
-  image.classList.add('w-full', 'h-64', 'rounded-lg', 'object-cover');
-  profileImage.classList.add('w-8', 'h-8', 'mr-2', 'rounded-full');
-  profileName.classList.add('font-regular', 'font-ofelia', 'text-dark', 'ml-1');
-  profileContainer.classList.add(
-    'flex',
-    'mt-2',
-    'px-2',
-    'items-center',
-    'pb-2'
-  );
-  header.classList.add(
-    'font-ofelia',
-    'font-bold',
-    'text-white',
-    'px-3',
-    'py-1'
-  );
-  remainingTime.classList.add(
-    'absolute',
-    'bottom-20',
-    'left-0',
-    'font-bold',
-    'text-white',
-    'p-1',
-    'px-2'
-  );
-  bid.classList.add('px-3', 'py-1', 'font-ofelia', 'font-bold', 'text-white');
+  bid.classList.add('font-ofelia', 'font-bold', 'text-primary', 'text-sm');
 
   // Source and innerHTML
-  expirationTime(data, remainingTime, card);
-  image.onerror = replaceImage;
-  header.innerHTML = title;
+  profileImage.onerror = replaceImage(profileImage);
+  image.onerror = replaceImage(image);
   profileImage.src = seller.avatar;
   profileName.innerHTML = seller.name;
   anchor.href = `./listing/?id=${id}`;
-
-  // Appending
-  details.append(header, bid);
-  profileContainer.append(profileImage, profileName);
-  anchor.append(remainingTime, image, profileContainer, details);
-  card.append(anchor);
 
   return card;
 }
