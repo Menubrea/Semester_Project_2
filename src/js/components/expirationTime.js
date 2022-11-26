@@ -16,16 +16,9 @@ export function expirationTime(data, element, parent) {
   );
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-  const expired = expiration < now;
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  if (expired) {
-    element.innerHTML = 'Expired';
-    element.classList.add('bg-primary');
-    parent.classList.add('hidden');
-    return element;
-  }
-
-  element.innerHTML = `${days}d ${hours}h ${minutes}m`;
-  element.classList.add('bg-secondary');
+  element.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  parent.append(element);
   return element;
 }
