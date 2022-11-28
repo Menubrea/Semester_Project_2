@@ -18,12 +18,13 @@ export function listingTemplate(data) {
   const makeBidContainer = document.createElement('div');
   const biddingList = document.createElement('div');
 
-  console.log(data);
-
   const { title, description, _count, media, seller, bids } = data;
-
+  if (media.length === 0) {
+    image.src = '../../../media/images/package.jpg';
+  } else {
+    image.src = media[0];
+  }
   listingTitle.innerHTML = title;
-  image.src = media;
   body.innerHTML = description;
   totalBids.innerHTML = _count;
   profileAvatar.src = seller.avatar;
@@ -31,10 +32,12 @@ export function listingTemplate(data) {
 
   listing.classList.add(
     'lg:grid',
-    'gap-10',
+    'gap-16',
     'lg:grid-cols-2',
     'md:py-16',
-    'md:mx-16'
+    'md:mx-16',
+    'border-b',
+    'border-dark/30'
   );
 
   headerContainer.classList.add(
@@ -61,7 +64,12 @@ export function listingTemplate(data) {
     'my-5',
     'lg:mt-0'
   );
-  listingTitle.classList.add('font-lust', 'text-primary', 'text-3xl');
+  listingTitle.classList.add(
+    'font-ofelia',
+    'font-bold',
+    'text-primary',
+    'text-2xl'
+  );
   profileAvatar.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
   remainingTime.classList.add(
     'font-ofelia',
@@ -75,10 +83,16 @@ export function listingTemplate(data) {
     'w-max',
     'bg-secondary',
     'text-white',
-    'rounded-tl-lg',
+    'md:rounded-tl-lg',
     'rounded-br-lg'
   );
-  biddingContainer.classList.add('lg:col-span-1');
+  biddingContainer.classList.add(
+    'lg:col-span-1',
+    'md:bg-accent/20',
+    'md:p-5',
+    'md:rounded-lg',
+    'h-fit'
+  );
   listingContainer.classList.add('relative', 'lg:col-span-1');
 
   renderMakeBid(data, makeBidContainer);
@@ -106,11 +120,7 @@ export function listingTemplate(data) {
 
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
 
-    if (hours === 0 || days === 0) {
-      bidMade.innerHTML = `${minutes}m ago`;
-    } else {
-      bidMade.innerHTML = `${days}d ${hours}h ${minutes}m ago`;
-    }
+    bidMade.innerHTML = `${days}d ${hours}h ${minutes}m ago`;
 
     bidName.classList.add('w-full');
     bidMade.classList.add('text-right', 'w-full');
@@ -124,7 +134,7 @@ export function listingTemplate(data) {
       'text-dark',
       'border-dark/10',
       'first:border',
-      'first:bg-darkGrey',
+      'first:bg-white',
       'md:rounded-lg'
     );
 
@@ -197,32 +207,43 @@ export function renderMakeBid(data, parent) {
     registerAnchor.href = './../auth/register/';
 
     promoContainer.classList.add(
-      'border-primary',
-      'border-2',
+      'bg-secondary',
+      'text-white',
       'w-full',
       'py-7',
       'px-2',
       'rounded-lg',
       'relative',
-      'mb-5'
+      'mb-5',
+      'mx-5'
     );
     message.classList.add('text-lg', 'font-ofelia', 'text-center');
     loginAnchor.classList.add(
       'py-1',
-      'px-2',
+      'px-3',
       'bg-white',
-      'border-primary',
+      'text-secondary',
+      'font-bold',
+      'font-ofelia',
+      'border-secondary',
       'border-2',
-      'rounded-md'
+      'rounded-md',
+      'hover:bg-secondary',
+      'hover:text-white'
     );
     registerAnchor.classList.add(
       'py-1',
-      'px-2',
+      'px-3',
       'bg-white',
-      'border-primary',
+      'text-secondary',
+      'font-bold',
+      'font-ofelia',
+      'border-secondary',
       'border-2',
       'ml-2',
-      'rounded-md'
+      'rounded-md',
+      'hover:bg-secondary',
+      'hover:text-white'
     );
     anchorContainer.classList.add(
       'absolute',

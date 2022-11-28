@@ -6,6 +6,7 @@ export function profileData() {
   const modal = document.querySelector('#listingModal');
   const overlay = document.querySelector('.overlay');
   const profile = load('profile');
+  const path = location.pathname;
 
   if (profile) {
     const hero = document.querySelector('.hero');
@@ -42,28 +43,29 @@ export function profileData() {
     logoutButton.addEventListener('click', () => logout());
 
     // Remove hero section if profile is present
-    filterNav.classList.add('md:top-11');
-    filterNav.classList.remove('border-t');
-    hero.classList.add('hidden');
-    hero.classList.remove('grid');
+    if (path === '/' || path === '/index.html') {
+      filterNav.classList.add('md:top-11');
+      filterNav.classList.remove('border-t');
+      hero.classList.add('hidden');
+      hero.classList.remove('grid');
+    }
     createListing.classList.add(
       'py-1',
       'px-2',
       'text-xs',
-      'font-ofelia',
+      'font-josefin',
       'text-primary',
       'mr-4'
     );
     logoutButton.classList.add(
       'items-center',
       'flex',
-      'font-ofelia',
-      'text-primary',
+      'font-josefin',
       'text-md',
       'justify-center',
       'border-l',
       'pl-5',
-      'border-dark/30',
+      'border-white/50',
       'cursor-pointer'
     );
 
@@ -89,13 +91,13 @@ export function profileData() {
       'flex',
       'items-center',
       'text-primary',
-      'font-ofelia',
+      'font-josefin',
       'justify-end'
     );
 
     totalCredit.classList.add(
       'flex',
-      'font-ofelia',
+      'font-josefin',
       'font-bold',
       'items-center',
       'text-secondary',
@@ -108,7 +110,7 @@ export function profileData() {
     profileName.innerHTML = name;
     profilePicture.src = avatar;
 
-    logoutButton.innerHTML = `Logout <i class="ml-2 fa-solid fa-arrow-right-from-bracket"></i>`;
+    logoutButton.innerHTML = `Logout <i class="ml-2 fa-solid fa-arrow-right-from-bracket font-josefin"></i>`;
 
     profileContainer.append(profilePicture, profileName);
     profileData.append(profileContainer, totalCredit);
@@ -118,12 +120,11 @@ export function profileData() {
     return container;
   } else {
     const loginAnchor = document.createElement('a');
-    const path = location.pathname;
 
     loginAnchor.classList.add(
       'flex',
       'items-center',
-      'font-ofelia',
+      'font-josefin',
       'text-primary',
       'text-md'
     );
@@ -134,7 +135,8 @@ export function profileData() {
       loginAnchor.href = './../auth/login/';
     }
 
-    loginAnchor.innerHTML = ' <i class="fa-solid fa-user mr-2"></i>Login';
+    loginAnchor.innerHTML =
+      ' <i class="fa-solid fa-user mr-2 font-josefin"></i>Login';
     container.append(loginAnchor);
     return container;
   }

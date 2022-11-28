@@ -33,7 +33,7 @@ export function listingsTemplate(data) {
   if (media.length === 0) {
     image.src = '../../../media/images/package.jpg';
   } else {
-    image.src = media;
+    image.src = media[0];
   }
 
   if (seller.avatar === '') {
@@ -83,7 +83,7 @@ export function listingsTemplate(data) {
     'px-4',
     'py-2',
     'border',
-    'border-primary/10',
+    'border-secondary/10',
     'bg-white'
   );
   image.classList.add(
@@ -96,7 +96,7 @@ export function listingsTemplate(data) {
   profileImage.classList.add('w-3', 'h-3', 'mr-1', 'rounded-full');
   profileName.classList.add('font-ofelia', 'text-dark/70');
   profileContainer.classList.add('flex', 'items-center');
-  header.classList.add('font-lust', 'text-primary', 'text-lg', 'mt-1');
+  header.classList.add('font-ofelia', 'font-extraBold', 'text-primary');
   remainingTime.classList.add(
     'font-bold',
     'text-sm',
