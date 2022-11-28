@@ -1,43 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="background">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./dist/output.css" />
     <link rel="stylesheet" href="https://use.typekit.net/jgd2lxh.css" />
-    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/6b9295215b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./src/js/index.js" type="module"></script>
+    <title>Vender | Home</title>
   </head>
-  <body class="bg-darkGrey">
-    <header>
-      <nav class="bg-white max-w-xl3 container flex items-center">
-        <div
-          class="logo font-lust bg-white text-4xl text-primary py-3 pt-5 max-w-xl3 container mx-5"
+  <body class="max-w-7xl container background-shadow bg-white">
+    <header class="flex items-center px-5 justify-between py-2">
+      <a href="./" class="logo font-lust text-xl text-primary items-center"
+        >Vender
+      </a>
+      <nav id="topNav" class="flex gap-5">
+        <a
+          id="home"
+          href="./"
+          class="flex items-center font-ofelia text-primary text-md"
+          href="#"
+          ><i class="fa-solid fa-house mr-2"></i>Home</a
         >
-          Vender
-        </div>
-        <button class="p-2 mx-5 font-ofelia font-bold text-dark">Login</button>
       </nav>
     </header>
-    <main>
-      <section class="hero max-w-xl3 container grid grid-cols-12 gap-5">
-        <div class="col-start-1 col-span-7 mt-14 p-5">
+    <main class="min-h-screen max-w-7xl">
+      <div
+        class="md:sticky top-0 backdrop-blur-2xl bg-white/70 z-50"
+        id="profileData"
+      ></div>
+      <section
+        class="hero grid lg:grid-cols-12 gap-5 items-center bg-lightGrey py-10 lg:py-0"
+      >
+        <div class="col-start-1 col-span-7 px-16">
           <h1 class="font-lust text-primary text-4xl">
             Vender partners up with Quick
           </h1>
-          <p class="mt-2">
+          <p class="mt-2 px-10">
             For a limited time only, receive free delivery through Quick on your
             first purchase as well as a thousand credits to your account.
           </p>
-          <button class="px-10 py-2 text-lg font-ofelia font-bold mt-5">
+          <a
+            href="./auth/register"
+            class="px-8 py-1 text-lg font-ofelia font-bold mt-5 float-right text-white border-2 bg-secondary rounded-lg hover:bg-white hover:text-secondary hover:border-2"
+          >
             Sign Up!
-          </button>
+          </a>
         </div>
-        <div class="col-span-5">
+        <div class="col-span-5 hidden lg:block">
           <img src="./media/images/package.jpg" alt="package" />
         </div>
       </section>
+      <nav
+        id="filterNav"
+        class="md:flex items-center justify-between mx-auto px-4 sticky py-3 border-t border-b border-dark/30 top-0 backdrop-blur-2xl bg-white/70 z-40"
+      >
+        <div class="flex items-center">
+          <h2
+            class="font-ofelia font-bold text-primary text-2xl items-center mr-3"
+          >
+            Browse
+          </h2>
+          <input
+            id="searchBar"
+            class="border p-1 px-3 rounded search bg-lightGrey w-full text-sm"
+            placeholder="Search.."
+            type="text"
+            name="search"
+          />
+        </div>
+        <div
+          class="button-group flex justify-between items-center md:mt-0 mt-3"
+        >
+          <button
+            id="allButton"
+            class="active-button px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          >
+            <i class="fa-solid fa-icons pr-2"></i>All
+          </button>
+          <button
+            id="trendingButton"
+            class="ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          >
+            <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
+          </button>
+          <button
+            id="expiringButton"
+            class="ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          >
+            <i class="fa-regular fa-clock pr-2"></i>Expiring
+          </button>
+        </div>
+      </nav>
+      <!-- Listings -->
+      <div
+        class="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mx-auto container max-w-6xl px-4 z-10 mt-16"
+        id="listingsContainer"
+      ></div>
+      <div class="overlay backdrop-blur-lg bg-primary/30"></div>
+      <div
+        id="listingModal"
+        class="modal bg-white/70 md:p-10 p-5 md:grid-cols-2 gap-10"
+      >
+        <form class="font-ofelia" id="createListing">
+          <p class="font-lust text-primary text-3xl text-center mb-2">
+            Create Auction
+          </p>
+          <div class="lg:grid grid-cols-2 gap-2">
+            <div class="mt-2">
+              <label for="title">Provide a title</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                id="form-title"
+                type="text"
+                name="title"
+                required
+                placeholder="Title"
+                title="This field is required"
+              />
+            </div>
+
+            <div class="mt-2">
+              <label for="tags">Add tags</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                type="text"
+                name="tags"
+                placeholder="Tags"
+              />
+            </div>
+          </div>
+          <div class="lg:grid grid-cols-2 gap-2">
+            <div class="mt-2">
+              <label for="media">Image</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                id="form-media"
+                type="url"
+                name="media"
+                title="Must be a fully formed URL to a valid image publicly accessible"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="media">Image</label>
+              <input
+                class="p-2 w-full rounded-sm"
+                id="form-mediaGallary"
+                type="url"
+                name="media"
+                title="Must be a fully formed URL to a valid image publicly accessible"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="endsAt">Expiration</label>
+              <input
+                id="expiration"
+                class="p-2 w-full rounded-sm"
+                type="datetime-local"
+                name="endsAt"
+                title="This input is required"
+                required
+              />
+            </div>
+          </div>
+          <div class="mt-2">
+            <textarea
+              class="p-2 w-full rounded-sm"
+              id="form-description"
+              name="description"
+              rows="5"
+            ></textarea>
+          </div>
+          <button
+            class="py-1 px-2 bg-white mt-2 text-center float-right font-ofelia font-bold text-primary text-xl"
+            type="submit"
+          >
+            Create Listing
+          </button>
+        </form>
+        <div class="w-full mt-16 lg:mt-0" id="preview">
+          <div class="preview-card">
+            <img
+              class="md:rounded-lg md:shadow-md object-fill mx-auto"
+              id="preview-img"
+            />
+            <div class="mt-2 mx-2">
+              <p
+                class="font-ofelia text-primary text-xl font-bold"
+                id="preview-title"
+              ></p>
+              <p class="font-ofelia" id="preview-description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-    <footer></footer>
+    <footer
+      class="bg-primary text-white items-end flex justify-between px-5 py-2 mt-3"
+    >
+      <a href="./../../" class="logo font-lust text-xl"> Vender </a>
+    </footer>
   </body>
 </html>

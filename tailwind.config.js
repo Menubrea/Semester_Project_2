@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ['*.html'],
+  content: ['./index.html', './src/**/*.js', './**/*.html'],
   theme: {
     container: {
       center: true,
@@ -9,20 +9,22 @@ module.exports = {
     colors: {
       primary: '#943A0A',
       dark: '#363636',
-      white: '#fff',
+      white: '#fefcfc',
       lightGrey: '#FAFAFA',
       darkGrey: '#EBEBEB',
-      accent: '#004745',
+      secondary: '#144A67',
+      accent: '#debeb2',
     },
     fontFamily: {
       lust: ['Lust Script', 'sans-serif'],
       ofelia: ['Ofelia Display', 'sans-serif'],
     },
     fontWeight: {
-      extralight: 200,
+      extraLight: 200,
       light: 300,
       regular: 400,
       bold: 700,
+      extraBold: 800,
     },
   },
   plugins: [],
