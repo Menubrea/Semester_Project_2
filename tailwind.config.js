@@ -12,7 +12,7 @@ module.exports = {
       white: '#fefcfc',
       lightGrey: '#FAFAFA',
       darkGrey: '#EBEBEB',
-      secondary: '#004745',
+      secondary: '#144A67',
       accent: '#debeb2',
     },
     fontFamily: {
@@ -20,10 +20,11 @@ module.exports = {
       ofelia: ['Ofelia Display', 'sans-serif'],
     },
     fontWeight: {
-      extralight: 200,
+      extraLight: 200,
       light: 300,
       regular: 400,
       bold: 700,
+      extraBold: 800,
     },
   },
   plugins: [],
