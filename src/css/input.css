@@ -5,7 +5,7 @@
 :root {
   --clr-dark: #363636;
   --clr-primary: #943a0a;
-  --clr-secondary: #004745;
+  --clr-secondary: #144a67;
 }
 
 .background {
@@ -26,15 +26,13 @@
 button,
 .search,
 .btn {
-  border: 3px solid var(--clr-primary);
+  border: 2px solid var(--clr-primary);
   border-radius: 5px;
   height: min-content;
-  box-shadow: 3px 3px 0 0 var(--clr-primary);
 }
 
 .search {
-  border: 3px solid var(--clr-primary);
-  box-shadow: 3px 3px 0 0 var(--clr-primary);
+  border: 2px solid var(--clr-primary);
 }
 
 button.pills {
@@ -43,10 +41,10 @@ button.pills {
 
 button:hover,
 .btn:hover {
-  box-shadow: 3px 3px 0 0 var(--clr-secondary);
-  border: 3px solid var(--clr-secondary);
+  border: 2px solid var(--clr-secondary);
   transition: all 50ms ease-in-out;
-  color: var(--clr-secondary);
+  color: #fff;
+  background-color: var(--clr-secondary);
   cursor: pointer;
 }
 
@@ -71,9 +69,9 @@ button.active {
 }
 
 .active-button {
-  box-shadow: 3px 3px 0 0 var(--clr-secondary);
-  border: 3px solid var(--clr-secondary);
-  color: var(--clr-secondary);
+  border: 2px solid var(--clr-secondary);
+  background-color: var(--clr-secondary);
+  color: #fff;
 }
 
 .modal {
