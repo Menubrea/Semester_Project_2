@@ -9,6 +9,11 @@ export async function setCreateListings() {
     const listingForm = e.target;
     const formData = new FormData(listingForm);
     const listing = Object.fromEntries(formData.entries());
+    const media = formData.getAll('media');
+
+    listing.media = [listing.media];
+    listing.media.push(media);
+    Object.assign(listing.media, media);
 
     createListing(listing);
   });

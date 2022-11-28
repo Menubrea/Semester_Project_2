@@ -13,6 +13,7 @@ export async function setGetListings() {
       return listing;
     }
   });
+  console.log(filteredListings);
   const container = document.querySelector('#listingsContainer');
   renderListingTemplates(filteredListings, container);
 }

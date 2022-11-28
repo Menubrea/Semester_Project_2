@@ -7,7 +7,6 @@ const method = 'POST';
 export async function createListing(data) {
   const listingURL = `${API_AUCTION_URL}${action}`;
 
-  data.media = [data.media];
   data.tags = [data.tags];
 
   if (!data.tags) {
