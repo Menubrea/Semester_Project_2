@@ -1,5 +1,6 @@
 import { getListings } from '../api/listings/read.js';
-import { renderListingTemplates } from '../templates/listings.js';
+import { loader } from '../components/loader.js';
+import { listingsTemplate } from '../templates/listings.js';
 
 export async function setGetListings() {
   const listings = await getListings();
@@ -13,7 +14,73 @@ export async function setGetListings() {
       return listing;
     }
   });
-  console.log(filteredListings);
+
+  const paginationNumbers = document.querySelector('#paginationNumbers');
   const container = document.querySelector('#listingsContainer');
-  renderListingTemplates(filteredListings, container);
+  const paginationLimit = 24;
+  const pageCount = Math.ceil(filteredListings.length / paginationLimit);
+
+  const appendPageNumber = (index, parent) => {
+    const pageNumber = document.createElement('button');
+    pageNumber.classList.add(
+      'pagination-num',
+      'px-2',
+      'bg-primary',
+      'text-white'
+    );
+    pageNumber.innerHTML = index;
+    pageNumber.setAttribute('page-index', index);
+    pageNumber.setAttribute('aria-label', 'Page ' + index);
+
+    parent.append(pageNumber);
+  };
+
+  const getPaginationNumbers = () => {
+    for (let i = 0; i < pageCount; i++) {
+      appendPageNumber(i + 1, paginationNumbers);
+    }
+  };
+
+  getPaginationNumbers();
+
+  const setCurrentPage = (pageNum) => {
+    const prevRange = (pageNum - 1) * paginationLimit;
+    const currRange = pageNum * paginationLimit;
+
+    const handleActivePageNumber = () => {
+      document.querySelectorAll('.pagination-num').forEach((button) => {
+        button.classList.remove('active-pagination');
+        const pageIndex = Number(button.getAttribute('page-index'));
+        if (pageIndex === pageNum) {
+          button.classList.add('active-pagination');
+        }
+      });
+    };
+
+    handleActivePageNumber();
+
+    filteredListings.map((items, index) => {
+      if (index >= prevRange && index < currRange) {
+        container.append(listingsTemplate(items));
+      }
+    });
+  };
+
+  document.querySelectorAll('.pagination-num').forEach((button) => {
+    const pageIndex = Number(button.getAttribute('page-index'));
+    if (pageIndex) {
+      button.addEventListener('click', () => {
+        document
+          .querySelector('#filterNav')
+          .scrollIntoView({ behavior: 'smooth' });
+        container.innerHTML = '';
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+
+  window.onload = setCurrentPage(1);
+  window.onload = setTimeout(() => {
+    loader();
+  }, 200);
 }
