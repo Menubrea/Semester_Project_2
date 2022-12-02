@@ -49,8 +49,8 @@ export function listingsTemplate(data) {
     bid.innerHTML = `${lastBid.amount},-`;
   }
 
-  if (title.length > 18) {
-    header.innerHTML = title.slice(0, 18).concat('...');
+  if (title.length > 12) {
+    header.innerHTML = title.slice(0, 12).concat('...');
   } else {
     header.innerHTML = title;
   }
@@ -79,12 +79,11 @@ export function listingsTemplate(data) {
     'relative',
     'w-full',
     'rounded-lg',
+    'bg-white',
     'card',
     'px-4',
     'py-2',
-    'border',
-    'border-secondary/10',
-    'bg-white'
+    'backdrop-blur-lg'
   );
   image.classList.add(
     'w-full',

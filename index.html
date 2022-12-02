@@ -13,34 +13,56 @@
     <script src="./src/js/index.js" type="module"></script>
     <title>Vender | Home</title>
   </head>
-  <body class="max-w-7xl container background-shadow bg-white">
-    <header class="flex items-center px-5 justify-between py-2">
-      <a href="./" class="logo font-lust text-xl text-primary items-center"
-        >Vender
-      </a>
-      <nav id="topNav" class="flex gap-5">
+  <body class="max-w-7xl container px-2">
+    <div
+      id="loader"
+      class="inset-0 fixed bg-accent z-50 flex items-center justify-center"
+    >
+      <span class="loader"></span>
+    </div>
+    <header class="py-2 backdrop-blur-2xl bg-white rounded-lg mt-4 px-3">
+      <div id="headerContainer" class="flex items-center justify-between">
         <a
-          id="home"
           href="./"
-          class="flex items-center font-ofelia text-primary text-md"
-          href="#"
-          ><i class="fa-solid fa-house mr-2"></i>Home</a
-        >
-      </nav>
+          class="logo font-lust lg:text-2xl text-lg text-primary items-center pt-1"
+          >Vender
+        </a>
+        <nav id="topNav" class="flex gap-2">
+          <a
+            id="home"
+            href="./"
+            class="font-ofelia text-primary text-sm flex items-center font-bold"
+            ><i class="fa-solid fa-house md:mr-1 text-xs"></i
+            ><span class="hidden md:block">Home</span></a
+          >
+          <a
+            id="login"
+            href="./auth/login"
+            class="font-ofelia text-primary text-md flex items-center text-sm font-bold"
+            ><i class="fa-solid fa-user text-xs text-center w-full md:mr-1"></i
+            ><span class="hidden md:block">Login</span></a
+          >
+        </nav>
+      </div>
     </header>
     <main class="min-h-screen max-w-7xl">
       <div
-        class="md:sticky top-0 backdrop-blur-2xl bg-white/70 z-50"
-        id="profileData"
-      ></div>
-      <section
-        class="hero grid lg:grid-cols-12 gap-5 items-center bg-lightGrey py-10 lg:py-0"
+        id="profileContainer"
+        class="items-center w-full bg-white p-2 my-4 lg:rounded-lg"
       >
-        <div class="col-start-1 col-span-7 px-16">
-          <h1 class="font-lust text-primary text-4xl">
+        <div class="justify-start"></div>
+        <div id="profileData" class="items-center justify-end"></div>
+      </div>
+      <section
+        class="hero grid lg:grid-cols-12 lg:gap-24 items-center p-5 lg:p-0 bg-white rounded-lg my-5"
+      >
+        <div class="lg:col-start-2 col-span-5">
+          <h1 class="font-lust text-primary lg:text-3xl text-2xl">
             Vender partners up with Quick
           </h1>
-          <p class="mt-2 px-10">
+          <p
+            class="mt-2 font-ofelia whitespace-normal md:text-lg font-light text-sm"
+          >
             For a limited time only, receive free delivery through Quick on your
             first purchase as well as a thousand credits to your account.
           </p>
@@ -51,13 +73,17 @@
             Sign Up!
           </a>
         </div>
-        <div class="col-span-5 hidden lg:block">
-          <img src="./media/images/package.jpg" alt="package" />
+        <div class="col-span-5 hidden lg:block py-10 col-end-12">
+          <img
+            class="rounded-xl shadow-lg"
+            src="./media/images/package.jpg"
+            alt="package"
+          />
         </div>
       </section>
       <nav
         id="filterNav"
-        class="md:flex items-center justify-between mx-auto px-4 sticky py-3 border-t border-b border-dark/30 top-0 backdrop-blur-2xl bg-white/70 z-40"
+        class="md:flex items-center justify-between mx-auto py- z-40 mt-5"
       >
         <div class="flex items-center">
           <h2
@@ -67,7 +93,7 @@
           </h2>
           <input
             id="searchBar"
-            class="border p-1 px-3 rounded search bg-lightGrey w-full text-sm"
+            class="border p-1 px-3 rounded search bg-lightGrey w-full text-sm md:mb-2"
             placeholder="Search.."
             type="text"
             name="search"
@@ -98,18 +124,27 @@
       </nav>
       <!-- Listings -->
       <div
-        class="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mx-auto container max-w-6xl px-4 z-10 mt-16"
+        class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-3 gap-y-6 mx-auto container max-w-7xl z-10 mt-10"
         id="listingsContainer"
       ></div>
-      <div class="overlay backdrop-blur-lg bg-primary/30"></div>
+      <div
+        id="paginationNumbers"
+        class="flex gap-1 p-2 w-full mt-6 justify-center"
+      ></div>
+      <div class="overlay backdrop-blur-lg bg-dark/50"></div>
       <div
         id="listingModal"
-        class="modal bg-white/70 md:p-10 p-5 md:grid-cols-2 gap-10"
+        class="modal bg-white md:p-10 p-5 md:grid-cols-2 gap-10 shadow-lg relative"
       >
         <form class="font-ofelia" id="createListing">
-          <p class="font-lust text-primary text-3xl text-center mb-2">
-            Create Auction
-          </p>
+          <div class="justify-between bg-accent/20 col-span-2 col-start-1">
+            <p class="font-ofelia text-primary text-3xl text-center">
+              Create Auction
+            </p>
+            <button class="text-lg px-2 bg-secondary text-white">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
           <div class="lg:grid grid-cols-2 gap-2">
             <div class="mt-2">
               <label for="title">Provide a title</label>
@@ -140,16 +175,6 @@
               <input
                 class="p-2 w-full rounded-sm"
                 id="form-media"
-                type="url"
-                name="media"
-                title="Must be a fully formed URL to a valid image publicly accessible"
-              />
-            </div>
-            <div class="mt-2">
-              <label for="media">Image</label>
-              <input
-                class="p-2 w-full rounded-sm"
-                id="form-mediaGallary"
                 type="url"
                 name="media"
                 title="Must be a fully formed URL to a valid image publicly accessible"
@@ -199,9 +224,7 @@
         </div>
       </div>
     </main>
-    <footer
-      class="bg-primary text-white items-end flex justify-between px-5 py-2 mt-3"
-    >
+    <footer class="items-end flex justify-between px-5 py-2 mt-3">
       <a href="./../../" class="logo font-lust text-xl"> Vender </a>
     </footer>
   </body>

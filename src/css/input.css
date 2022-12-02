@@ -6,16 +6,36 @@
   --clr-dark: #363636;
   --clr-primary: #943a0a;
   --clr-secondary: #144a67;
+  --clr-accent: #e9dbd5;
 }
 
 .background {
   /* background-image: linear-gradient(180deg, #fdfcfb 0%, #f7f1ec 100%); */
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to left,
-    #debeb250 0%,
-    #debeb2 50%,
-    #debeb251 100%
-  );
+    #debeb200 0%,
+    #ecddd2 50%,
+    #debeb200 100%
+  ); */
+  /* #debeb2 50%, */
+  background-color: var(--clr-accent);
+}
+
+nav > a,
+nav > button {
+  padding: 0.5em 1em;
+  background-color: rgba(232, 217, 205, 0.123);
+  border-radius: 0.5em;
+  border-bottom: 3px solid var(--clr-primary);
+}
+
+nav > a:hover,
+nav > button:hover {
+  padding: 0.5em 1em;
+  background-color: #e9dbd585;
+  border-radius: 0.5em;
+  border-bottom: 3px solid var(--clr-secondary);
+  color: var(--clr-secondary);
 }
 
 .background-auth {
@@ -26,22 +46,12 @@
 button,
 .search,
 .btn {
-  border: 2px solid var(--clr-primary);
   border-radius: 5px;
   height: min-content;
 }
 
-.search {
-  border: 2px solid var(--clr-primary);
-}
-
-button.pills {
-  outline: none;
-}
-
 button:hover,
 .btn:hover {
-  border: 2px solid var(--clr-secondary);
   transition: all 50ms ease-in-out;
   color: #fff;
   background-color: var(--clr-secondary);
@@ -53,7 +63,7 @@ button.active {
 }
 
 .background-shadow {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
 }
 
 .card {
@@ -63,7 +73,8 @@ button.active {
 
 .card:hover {
   box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
+  transform: scale(1);
+  z-index: 10;
   cursor: pointer;
   transition-delay: 200ms;
 }
@@ -76,12 +87,10 @@ button.active {
 
 .modal {
   position: fixed;
-  height: fit-content;
-  max-height: 85vh;
   overflow-y: auto;
   scrollbar-width: none;
-  inset: clamp(0em, 5vw, 15em);
-  border-radius: 0.5em;
+  inset: 10vw 10vw 0em 10vw;
+  border-radius: 0.5em 0.5em 0 0;
   z-index: -99;
   display: none;
   transition: transform 200ms ease-in-out;
@@ -94,8 +103,49 @@ button.active {
   display: none;
 }
 
+.active-pagination {
+  background-color: var(--clr-secondary);
+  border: 2px solid var(--clr-secondary);
+}
+
 .active {
   transition: transform 200ms ease-in;
   display: block;
   z-index: 90;
+}
+
+.loader {
+  --size: 82px;
+  width: var(--size);
+  height: var(--size);
+  border: 3px solid var(--clr-secondary);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  background-color: #fff;
+}
+
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: var(--clr-primary) transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

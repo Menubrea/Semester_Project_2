@@ -1,21 +1,26 @@
 import { logout } from '../api/auth/logout.js';
+import { getProfileListings } from '../api/profile/listings.js';
+import { getProfile } from '../api/profile/read.js';
 import { load } from '../handlers/storage/load.js';
 
-export function profileData() {
+export async function profileData() {
   const container = document.querySelector('#topNav');
   const modal = document.querySelector('#listingModal');
   const overlay = document.querySelector('.overlay');
+  const profileContainer = document.querySelector('#profileContainer');
   const profile = load('profile');
   const path = location.pathname;
 
   if (profile) {
+    const { name } = profile;
+    const fullProfile = await getProfile(name);
+    // const profileListings = await getProfileListings(name);
+
     const hero = document.querySelector('.hero');
     const filterNav = document.querySelector('#filterNav');
-    const { credits, name, avatar } = profile;
-    const dataContainer = document.querySelector('#profileData');
-    const profileData = document.createElement('div');
+    const profileData = document.querySelector('#profileData');
     const createListing = document.createElement('button');
-
+    const login = document.querySelector('#login');
     const logoutButton = document.createElement('a');
     const totalCredit = document.createElement('p');
     const profileName = document.createElement('p');
@@ -50,94 +55,53 @@ export function profileData() {
       hero.classList.remove('grid');
     }
     createListing.classList.add(
-      'py-1',
-      'px-2',
-      'text-xs',
-      'font-josefin',
+      'text-lg',
+      'font-ofelia',
       'text-primary',
-      'mr-4'
+      'border',
+      'p-2'
     );
     logoutButton.classList.add(
-      'items-center',
-      'flex',
-      'font-josefin',
-      'text-md',
-      'justify-center',
-      'border-l',
-      'pl-5',
-      'border-white/50',
-      'cursor-pointer'
+      'font-ofelia',
+      'text-sm',
+      'cursor-pointer',
+      'text-primary',
+      'font-bold'
     );
 
-    profileContainer.classList.add(
-      'flex',
-      'items-center',
-      'border-l',
-      'border-dark/30'
-    );
-
-    dataContainer.classList.add(
-      'flex',
-      'justify-end',
-      'border-t',
-      'border-b',
-      'border-dark/20',
-      'py-2'
-    );
+    profileContainer.classList.add('p-4', 'w-max', 'h-max');
 
     profileData.classList.add('flex');
 
-    profileName.classList.add(
-      'flex',
-      'items-center',
-      'text-primary',
-      'font-josefin',
-      'justify-end'
-    );
+    profileName.classList.add('text-primary', 'font-ofelia', 'text-center');
 
     totalCredit.classList.add(
       'flex',
-      'font-josefin',
+      'font-ofelia',
       'font-bold',
+      'text-sm',
       'items-center',
       'text-secondary',
-      'px-3'
+      'pr-2'
     );
 
-    profilePicture.classList.add('w-6', 'h-6', 'mr-3', 'rounded-full', 'ml-3');
+    login.classList.add('hidden');
 
-    totalCredit.innerHTML = credits + ',-';
-    profileName.innerHTML = name;
-    profilePicture.src = avatar;
+    profilePicture.classList.add('w-16', 'h-16', 'rounded-full', 'mx-auto');
 
-    logoutButton.innerHTML = `Logout <i class="ml-2 fa-solid fa-arrow-right-from-bracket font-josefin"></i>`;
+    totalCredit.innerHTML = fullProfile.credits + ',-';
+    profileName.innerHTML = fullProfile.name;
+    profilePicture.src = fullProfile.avatar;
 
+    logoutButton.innerHTML = `Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>`;
+
+    profileData.append(createListing, totalCredit, profileContainer);
     profileContainer.append(profilePicture, profileName);
-    profileData.append(profileContainer, totalCredit);
-    dataContainer.append(createListing, profileData);
+
     container.append(logoutButton);
 
     return container;
   } else {
-    const loginAnchor = document.createElement('a');
-
-    loginAnchor.classList.add(
-      'flex',
-      'items-center',
-      'font-josefin',
-      'text-primary',
-      'text-md'
-    );
-
-    if (path === '/' || path === '/index.html') {
-      loginAnchor.href = './auth/login/';
-    } else if (path === '/listing/') {
-      loginAnchor.href = './../auth/login/';
-    }
-
-    loginAnchor.innerHTML =
-      ' <i class="fa-solid fa-user mr-2 font-josefin"></i>Login';
-    container.append(loginAnchor);
-    return container;
+    profileContainer.classList.add('hidden');
   }
 }

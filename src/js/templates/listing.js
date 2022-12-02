@@ -55,7 +55,9 @@ export function listingTemplate(data) {
     'mx-auto'
   );
 
-  body.classList.add('mx-2', 'mt-2');
+  profileName.classList.add('font-ofelia', 'text-dark/70');
+
+  body.classList.add('mx-2', 'mt-2', 'font-ofelia');
   profileContainer.classList.add('flex', 'items-center');
   makeBidContainer.classList.add(
     'flex',
@@ -97,8 +99,8 @@ export function listingTemplate(data) {
 
   renderMakeBid(data, makeBidContainer);
 
-  const filteredBids = bids.slice(0, 3);
-  filteredBids.reverse().forEach((bid) => {
+  const filteredBids = bids.reverse().slice(0, 3);
+  filteredBids.forEach((bid) => {
     const { amount, bidderName, created } = bid;
     const bidContainer = document.createElement('div');
     const bidValue = document.createElement('p');
@@ -175,18 +177,38 @@ export function renderMakeBid(data, parent) {
     });
 
     bidButton.innerHTML = 'Make Bid';
-
+    bidContainer.classList.add(
+      'bg-secondary',
+      'text-white',
+      'w-full',
+      'p-2',
+      'md:rounded-lg',
+      'grid',
+      'grid-cols-3',
+      'gap-2',
+      'items-center'
+    );
     input.placeholder = 'Amount';
     input.name = 'amount';
-    input.classList.add('border', 'search', 'p-2', 'text-sm');
+    input.classList.add(
+      'text-sm',
+      'text-dark',
+      'w-full',
+      'h-full',
+      'p-2',
+      'rounded-sm',
+      'col-span-2'
+    );
     input.type = 'number';
-    input.required = 'true';
+    input.setAttribute('required', true);
     bidButton.classList.add(
       'p-2',
-      'ml-2',
+      'border-white',
       'text-sm',
-      'text-primary',
-      'font-bold'
+      'bg-white',
+      'text-secondary',
+      'font-bold',
+      'w-full'
     );
     bidButton.type = 'submit';
 
