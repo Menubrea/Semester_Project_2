@@ -1,7 +1,10 @@
+import { popUp } from '../../components/popUp.js';
 import { API_AUCTION_URL } from '../constants.js';
+import { login } from './login.js';
 
 const action = '/auth/register';
 const method = 'POST';
+const container = document.querySelector('body');
 
 export async function register(profile) {
   const registerURL = API_AUCTION_URL + action;
@@ -14,19 +17,25 @@ export async function register(profile) {
     },
   };
 
-  if (!profile.avatar) {
-    delete profile.avatar;
-  }
+  // if (!profile.avatar) {
+  //   delete profile.avatar;
+  // }
 
   try {
     const response = await fetch(registerURL, options);
-    const profile = await response.json();
+    const result = await response.json();
 
     switch (response.status) {
       case 201:
-        return profile;
+        login(profile);
+        return result;
+      case 400:
+        return popUp('Username/email already exist in database', container);
+      default:
+        throw new Error();
     }
   } catch (err) {
     console.log(err);
+    return popUp('An unknown error occured, please try again', container);
   }
 }
