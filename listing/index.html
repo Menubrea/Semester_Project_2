@@ -13,27 +13,52 @@
     <script src="./../src/js/index.js" type="module"></script>
     <title>Vender | Home</title>
   </head>
-  <body class="max-w-7xl container background-shadow bg-white min-h-screen">
-    <header class="bg-white flex items-center px-5 py-2 justify-between">
-      <a href="./../" class="logo font-lust text-xl text-primary items-center">
-        Vender
-      </a>
-      <nav id="topNav" class="flex gap-5">
+  <body class="max-w-7xl container min-h-screen">
+    <div
+      id="loader"
+      class="inset-0 fixed bg-accent z-50 flex items-center justify-center"
+    >
+      <span class="loader"></span>
+    </div>
+    <header
+      class="py-2 backdrop-blur-2xl bg-white rounded-lg mt-4 px-3 mx-2 md:mx-0"
+    >
+      <div id="headerContainer" class="flex items-center justify-between">
         <a
-          id="home"
           href="./../"
-          class="flex items-center font-ofelia text-primary text-md"
-          href="#"
-          ><i class="fa-solid fa-house mr-2"></i>Home</a
-        >
-      </nav>
+          class="logo font-lust lg:text-2xl text-lg text-primary items-center pt-1"
+          >Vender
+        </a>
+        <nav id="topNav" class="flex gap-2">
+          <a
+            id="home"
+            href="./../"
+            class="font-ofelia text-primary text-sm flex items-center font-bold"
+            ><i class="fa-solid fa-house md:mr-1 text-xs"></i
+            ><span class="hidden md:block">Home</span></a
+          >
+          <a
+            id="login"
+            href="./../auth/login"
+            class="font-ofelia text-primary text-md flex items-center text-sm font-bold"
+            ><i class="fa-solid fa-user text-xs text-center w-full md:mr-1"></i
+            ><span class="hidden md:block">Login</span></a
+          >
+        </nav>
+      </div>
     </header>
-    <main class="bg-lightGrey">
+    <main>
       <!-- ProfileData goes here -->
-      <div id="profileData"></div>
+      <div
+        id="profileContainer"
+        class="items-center w-full bg-white p-2 my-4 lg:rounded-lg"
+      >
+        <div class="justify-start"></div>
+        <div id="profileData" class="items-center justify-end"></div>
+      </div>
       <section>
         <!-- Listing goes here -->
-        <div id="listingContainer"></div>
+        <div id="listingContainer" class="bg-white/70 lg:rounded-lg my-5"></div>
       </section>
       <section>
         <div id="listingsContainer"></div>
@@ -125,7 +150,7 @@
         </div>
       </div>
     </main>
-    <footer class="bg-white items-end flex justify-between mx-5">
+    <footer class="items-end flex justify-between mx-5">
       <a href="./../../" class="logo font-lust text-xl text-primary py-3 px-3">
         Vender
       </a>
