@@ -21,14 +21,20 @@ if (path === '/' || path === '/index.html') {
   profileData();
   createPreviewTemplate();
   setCreateListings();
-} else if (path === '/listing/' || '/Semester_Project_2/listing/') {
+} else if (path === '/listing/' || path === '/Semester_Project_2/listing/') {
   createPreviewTemplate();
   setCreateListings();
   setGetListing();
   profileData();
-} else if (path === '/auth/register/' || 'Semester_Project_2/auth/register/') {
+} else if (
+  path === '/auth/register/' ||
+  path === '/Semester_Project_2/auth/register/'
+) {
   setRegisterFormListener();
-} else if (path === '/auth/login/' || 'Semester_Project_2/auth/login/') {
+} else if (
+  path === '/auth/login/' ||
+  path === '/Semester_Project_2/auth/login/'
+) {
   setLoginFormListener();
 }
 
