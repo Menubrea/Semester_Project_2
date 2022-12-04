@@ -13,14 +13,22 @@ if (path === '/' || path === '/index.html') {
   profileData();
   createPreviewTemplate();
   setCreateListings();
-} else if (path === '/listing/') {
+} else if (
+  path === '/Semester_Project_2/' ||
+  path === '/Semester_Project_2/index.html'
+) {
+  setGetListings();
+  profileData();
+  createPreviewTemplate();
+  setCreateListings();
+} else if (path === '/listing/' || '/Semester_Project_2/listing/') {
   createPreviewTemplate();
   setCreateListings();
   setGetListing();
   profileData();
-} else if (path === '/auth/register/') {
+} else if (path === '/auth/register/' || 'Semester_Project_2/auth/register/') {
   setRegisterFormListener();
-} else if (path === '/auth/login/') {
+} else if (path === '/auth/login/' || 'Semester_Project_2/auth/login/') {
   setLoginFormListener();
 }
 
