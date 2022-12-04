@@ -28,7 +28,6 @@ export function listingsTemplate(data) {
 
   // Get last entry in array.
   const lastBid = bids.at(-1);
-
   // Conditional logic for handling media
   if (media.length === 0) {
     image.src = '../../../media/images/package.jpg';
@@ -36,8 +35,8 @@ export function listingsTemplate(data) {
     image.src = media[0];
   }
 
-  if (seller.avatar === '') {
-    profileImage.src = '../../../media/images/package.jpg';
+  if (seller.avatar === null) {
+    profileImage.src = '../../../media/images/christmas_background.webp';
   } else {
     profileImage.src = seller.avatar;
   }
@@ -56,11 +55,10 @@ export function listingsTemplate(data) {
   }
 
   function replaceImage(element) {
-    if (onerror) {
+    if ((element = onerror)) {
       return (element.src = '../../../media/images/package.jpg');
     }
   }
-
   // Classes
   bidContainer.classList.add(
     'flex',
@@ -82,8 +80,7 @@ export function listingsTemplate(data) {
     'bg-white',
     'card',
     'px-4',
-    'py-2',
-    'backdrop-blur-lg'
+    'py-2'
   );
   image.classList.add(
     'w-full',
@@ -106,9 +103,10 @@ export function listingsTemplate(data) {
   bid.classList.add('font-ofelia', 'font-bold', 'text-primary', 'text-sm');
 
   // Source and innerHTML
+  profileImage.src = seller.avatar;
   profileImage.onerror = replaceImage(profileImage);
   image.onerror = replaceImage(image);
-  profileImage.src = seller.avatar;
+
   profileName.innerHTML = seller.name;
   anchor.href = `./listing/?id=${id}`;
 

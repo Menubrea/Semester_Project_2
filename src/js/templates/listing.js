@@ -158,7 +158,7 @@ export function listingTemplate(data) {
 
 export function renderMakeBid(data, parent) {
   const profile = load('profile');
-  const { id } = data;
+  const { id, bids, seller } = data;
 
   if (profile) {
     const bidContainer = document.createElement('form');
@@ -200,6 +200,25 @@ export function renderMakeBid(data, parent) {
       'col-span-2'
     );
     input.type = 'number';
+
+    if (profile.name === seller.name) {
+      input.setAttribute('disabled', true);
+      bidButton.setAttribute('disabled', true);
+      input.setAttribute('hidden', true);
+      bidButton.setAttribute('hidden', true);
+      bidContainer.innerHTML = 'Cannot place bid on your own listing.';
+      bidContainer.classList.add('whitespace-normal');
+    }
+
+    if (bids.length >= 1) {
+      input.value = bids.at(-1).amount + 1;
+      input.min = bids.at(-1).amount + 1;
+    } else {
+      input.value = 1;
+      input.min = 1;
+    }
+
+    input.max = profile.credits;
     input.setAttribute('required', true);
     bidButton.classList.add(
       'p-2',
