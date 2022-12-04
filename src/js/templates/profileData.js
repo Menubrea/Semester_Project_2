@@ -48,7 +48,12 @@ export async function profileData() {
     logoutButton.addEventListener('click', () => logout());
 
     // Remove hero section if profile is present
-    if (path === '/' || path === '/index.html') {
+    if (
+      path === '/' ||
+      path === '/index.html' ||
+      path === '/Semester_Project_2/' ||
+      path === '/Semester_Project_2/index.html'
+    ) {
       filterNav.classList.add('md:top-11');
       filterNav.classList.remove('border-t');
       hero.classList.add('hidden');
