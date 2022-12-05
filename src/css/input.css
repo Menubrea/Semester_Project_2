@@ -5,13 +5,13 @@
 :root {
   --clr-dark: #363636;
   --clr-primary: #943a0a;
-  --clr-secondary: #144a67;
+  --clr-secondary: #612607;
   --clr-accent: #e9dbd5;
 }
 
 .background {
   background-color: var(--clr-accent);
-  background-color: #f4ebe6;
+  background-color: #e4d3ca;
 }
 
 .hero {
@@ -78,7 +78,6 @@ button.active {
 }
 
 .active-button {
-  border: 2px solid var(--clr-secondary);
   background-color: var(--clr-secondary);
   color: #fff;
 }

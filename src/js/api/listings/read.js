@@ -1,7 +1,8 @@
 import { API_AUCTION_URL } from '../constants.js';
 
 const action = '/listings/';
-const details = '?_seller=true&_bids=true&_count=1000';
+const details =
+  '?_seller=true&_bids=true&_active=true&sort=created&sortOrder=desc';
 
 export async function getListings() {
   const listingsURL = `${API_AUCTION_URL}${action}${details}`;

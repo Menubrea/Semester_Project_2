@@ -1,7 +1,7 @@
 import { API_AUCTION_URL } from '../constants.js';
 
 const action = '/listings/';
-const details = '?_seller=true&_bids=true';
+const details = '?_seller=true&_bids=true&sort=created&sortOrder=desc';
 
 export async function getListing() {
   const queryString = document.location.search;

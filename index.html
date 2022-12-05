@@ -79,50 +79,57 @@
           />
         </div>
       </section>
-      <nav
-        id="filterNav"
-        class="md:flex items-center justify-between mx-auto py- z-40 my-5"
-      >
-        <div class="flex items-center">
-          <h2
-            class="font-ofelia font-bold text-primary text-2xl items-center mr-3"
-          >
-            Browse
-          </h2>
-          <input
-            id="searchBar"
-            class="border p-1 px-3 rounded search bg-lightGrey w-full text-sm md:mb-2"
-            placeholder="Search.."
-            type="text"
-            name="search"
-          />
-        </div>
-        <div
-          class="button-group flex justify-between items-center md:mt-0 mt-3"
+      <div class="relative bg-white rounded-lg border-primary mb-5">
+        <nav
+          id="filterNav"
+          class="md:flex items-center justify-between mx-auto py- z-40 p-2 border-4 rounded-lg border-primary"
         >
-          <button
-            id="allButton"
-            class="active-button px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+          <div class="flex items-center">
+            <h2
+              class="font-ofelia font-bold text-primary text-2xl items-center mr-3"
+            >
+              Browse
+            </h2>
+            <input
+              id="searchBar"
+              class="border-2 p-1 px-3 rounded-lg bg-white w-max text-sm"
+              placeholder="Search.."
+              type="text"
+              name="search"
+            />
+          </div>
+          <div
+            class="button-group flex justify-between items-center md:mt-0 mt-3"
           >
-            <i class="fa-solid fa-icons pr-2"></i>All
-          </button>
-          <button
-            id="trendingButton"
-            class="ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
-          >
-            <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
-          </button>
-          <button
-            id="expiringButton"
-            class="ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
-          >
-            <i class="fa-regular fa-clock pr-2"></i>Expiring
-          </button>
+            <button
+              id="allButton"
+              class="filterButton active-button px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+            >
+              <i class="fa-solid fa-icons pr-2"></i>All
+            </button>
+            <button
+              id="trendingButton"
+              class="filterButton ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+            >
+              <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
+            </button>
+            <button
+              id="expiringButton"
+              class="filterButton ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+            >
+              <i class="fa-regular fa-clock pr-2"></i>Expiring
+            </button>
+          </div>
+        </nav>
+          <div
+            id="searchResults"
+            class="absolute hidden p-2 bg-white backdrop-blur-lg lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2 z-40 w-full rounded-b-lg shadow-lg border-b-4 border-x-4 border-primary max-h-96 overflow-auto"
+          ></div>
         </div>
-      </nav>
+      </div>
       <!-- Listings -->
       <div
-        class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-3 gap-y-6 mx-auto container max-w-7xl z-10 bg-white p-4 rounded-lg grid-rows-12"
+        class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-x-3 gap-y-6 mx-auto container max-w-7xl z-10 bg-white p-4 rounded-lg grid-rows-12"
         id="listingsContainer"
       ></div>
       <div

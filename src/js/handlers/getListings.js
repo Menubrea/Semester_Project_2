@@ -4,21 +4,19 @@ import { listingsTemplate } from '../templates/listings.js';
 
 export async function setGetListings() {
   const listings = await getListings();
-  const filteredListings = listings.filter((listing) => {
-    const { endsAt } = listing;
-    const expiration = new Date(endsAt);
+  // const filteredListings = listings.filter((listing) => {
+  //   const { endsAt } = listing;
+  //   const expiration = new Date(endsAt).getTime();
+  //   const now = new Date().getTime();
 
-    const now = new Date();
-
-    if (expiration > now) {
-      return listing;
-    }
-  });
-
+  //   if (expiration > now) {
+  //     return listing;
+  //   }
+  // });
   const paginationNumbers = document.querySelector('#paginationNumbers');
   const container = document.querySelector('#listingsContainer');
   const paginationLimit = 24;
-  const pageCount = Math.ceil(filteredListings.length / paginationLimit);
+  const pageCount = Math.ceil(listings.length / paginationLimit);
 
   const appendPageNumber = (index, parent) => {
     const pageNumber = document.createElement('button');
@@ -59,7 +57,7 @@ export async function setGetListings() {
 
     handleActivePageNumber();
 
-    filteredListings.map((items, index) => {
+    listings.map((items, index) => {
       if (index >= prevRange && index < currRange) {
         container.append(listingsTemplate(items));
       }
