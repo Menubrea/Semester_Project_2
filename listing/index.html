@@ -58,10 +58,19 @@
       </div>
       <section>
         <!-- Listing goes here -->
-        <div id="listingContainer" class="bg-white/70 lg:rounded-lg my-5"></div>
+        <div id="listingContainer" class="bg-white lg:rounded-lg my-5"></div>
       </section>
-      <section>
-        <div id="listingsContainer"></div>
+      <!-- Listings goes here -->
+      <section class="p-4 rounded-lg">
+        <h2
+          class="font-ofelia font-bold text-primary text-xl mb-2 border-b-2 text-center"
+        >
+          Other auctions by this user:
+        </h2>
+        <div
+          class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-x-3 gap-y-6 mx-auto container max-w-7xl z-10 grid-rows-12 mt-4"
+          id="listingsContainer"
+        ></div>
       </section>
       <div class="overlay backdrop-blur-lg bg-dark/80"></div>
       <div
