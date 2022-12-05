@@ -30,13 +30,13 @@ export function listingsTemplate(data) {
   const lastBid = bids.at(-1);
   // Conditional logic for handling media
   if (media.length === 0) {
-    image.src = '../../../media/images/package.jpg';
+    image.src = './media/images/package.jpg';
   } else {
     image.src = media[0];
   }
 
   if (seller.avatar === null) {
-    profileImage.src = '../../../media/images/christmas_background.webp';
+    profileImage.src = './media/images/christmas_background.webp';
   } else {
     profileImage.src = seller.avatar;
   }
@@ -56,7 +56,7 @@ export function listingsTemplate(data) {
 
   function replaceImage(element) {
     if ((element = onerror)) {
-      return (element.src = '../../../media/images/package.jpg');
+      return (element.src = './media/images/package.jpg');
     }
   }
   // Classes
@@ -80,7 +80,8 @@ export function listingsTemplate(data) {
     'bg-white',
     'card',
     'px-4',
-    'py-2'
+    'py-2',
+    'h-min'
   );
   image.classList.add(
     'w-full',
@@ -108,7 +109,14 @@ export function listingsTemplate(data) {
   image.onerror = replaceImage(image);
 
   profileName.innerHTML = seller.name;
-  anchor.href = `./listing/?id=${id}`;
+  if (
+    location.pathname === '/listing/' ||
+    location.pathname === '/Semester_Project_2/listing/'
+  ) {
+    anchor.href = `?id=${id}`;
+  } else {
+    anchor.href = `./listing/?id=${id}`;
+  }
 
   return card;
 }

@@ -35,9 +35,7 @@ export function listingTemplate(data) {
     'gap-16',
     'lg:grid-cols-2',
     'md:py-16',
-    'md:mx-16',
-    'border-b',
-    'border-dark/30'
+    'md:mx-16'
   );
 
   headerContainer.classList.add(
