@@ -11,6 +11,10 @@
       crossorigin="anonymous"
     ></script>
     <script src="./src/js/index.js" type="module"></script>
+    <meta
+      name="description"
+      content="Vender is an auction site for all kinds of second-hand goods"
+    />
     <title>Vender | Home</title>
   </head>
   <body class="max-w-7xl container px-2">
@@ -107,19 +111,19 @@
           >
             <button
               id="allButton"
-              class="filterButton px-5 py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 active-button"
+              class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 active-button"
             >
               <i class="fa-solid fa-icons pr-2"></i>All
             </button>
             <button
               id="trendingButton"
-              class="filterButton px-5 py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2"
+              class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2"
             >
               <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
             </button>
             <button
               id="expiringButton"
-              class="filterButton px-5 py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2"
+              class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2"
             >
               <i class="fa-regular fa-clock pr-2"></i>Expiring
             </button>
@@ -155,7 +159,7 @@
           </div>
           <div class="lg:grid grid-cols-2 gap-2">
             <div class="mt-2">
-              <label for="title">Provide a title</label>
+              <label for="form-title">Provide a title</label>
               <input
                 class="p-2 w-full rounded-sm"
                 id="form-title"
@@ -168,18 +172,19 @@
             </div>
 
             <div class="mt-2">
-              <label for="tags">Add tags</label>
+              <label for="form-tags">Add tags</label>
               <input
                 class="p-2 w-full rounded-sm"
                 type="text"
                 name="tags"
                 placeholder="Tags"
+                id="form-tags"
               />
             </div>
           </div>
           <div class="lg:grid grid-cols-2 gap-2">
             <div class="mt-2">
-              <label for="media">Image</label>
+              <label for="form-media">Image</label>
               <input
                 class="p-2 w-full rounded-sm"
                 id="form-media"
@@ -189,7 +194,7 @@
               />
             </div>
             <div class="mt-2">
-              <label for="endsAt">Expiration</label>
+              <label for="expiration">Expiration</label>
               <input
                 id="expiration"
                 class="p-2 w-full rounded-sm"
@@ -220,6 +225,8 @@
             <img
               class="md:rounded-lg md:shadow-md object-fill mx-auto"
               id="preview-img"
+              src=""
+              alt="preview"
             />
             <div class="mt-2 mx-2">
               <p

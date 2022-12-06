@@ -18,8 +18,13 @@ export function listingTemplate(data) {
   const profileContainer = document.createElement('div');
   const makeBidContainer = document.createElement('div');
   const biddingList = document.createElement('div');
+  const metaTitle = document.querySelector('title');
+  const metaDesc = document.querySelector('meta[name="description"]');
 
   const { title, description, _count, media, seller, bids } = data;
+
+  metaTitle.innerHTML = `Vender | ${title}`;
+  metaDesc.content = description;
 
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
