@@ -19,6 +19,7 @@ export function expirationTime(data, element, parent) {
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   element.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
   parent.append(element);
   return element;
 }

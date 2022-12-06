@@ -25,7 +25,7 @@ export async function login(profile) {
       case 200:
         storage.save('token', accessToken);
         storage.save('profile', profile);
-        location.replace('./../../../../');
+        location.replace('./../../');
         break;
       case 401:
         const container = document.querySelector('body');

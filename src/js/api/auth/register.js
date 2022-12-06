@@ -17,9 +17,9 @@ export async function register(profile) {
     },
   };
 
-  // if (!profile.avatar) {
-  //   delete profile.avatar;
-  // }
+  if (!profile.avatar) {
+    delete profile.avatar;
+  }
 
   try {
     const response = await fetch(registerURL, options);
