@@ -268,6 +268,7 @@ export function renderMakeBid(data, parent) {
       'border-secondary',
       'border-2',
       'rounded-md',
+      'w-full',
       'hover:bg-secondary',
       'hover:text-white'
     );
@@ -282,6 +283,7 @@ export function renderMakeBid(data, parent) {
       'border-2',
       'ml-2',
       'rounded-md',
+      'w-full',
       'hover:bg-secondary',
       'hover:text-white'
     );
@@ -289,7 +291,9 @@ export function renderMakeBid(data, parent) {
       'absolute',
       '-bottom-3',
       'left-1/2',
-      '-translate-x-1/2'
+      '-translate-x-1/2',
+      'w-full',
+      'text-center'
     );
 
     parent.classList.remove('lg:justify-end');
