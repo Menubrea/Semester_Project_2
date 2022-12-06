@@ -14,8 +14,8 @@ module.exports = {
       accent: '#e8e1db',
     },
     fontFamily: {
-      lust: ['Lust Script', 'sans-serif'],
-      ofelia: ['Ofelia Display', 'sans-serif'],
+      lust: ['lust-script-display', 'sans-serif'],
+      ofelia: ['ofelia-display', 'sans-serif'],
     },
     fontWeight: {
       extraLight: 200,
