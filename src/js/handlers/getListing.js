@@ -14,7 +14,6 @@ export async function setGetListing() {
   const listings = await getListings();
   const filteredListings = listings.filter((listing) => {
     if (listing.seller.name === name && listing.id !== listingID) {
-      listingsContainer.innerHTML = '';
       return listing;
     }
   });

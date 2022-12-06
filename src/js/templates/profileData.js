@@ -194,8 +194,7 @@ export function createUpdateForm(name, parent) {
     'border-secondary',
     'p-2',
     'rounded-l-lg',
-    'font-ofelia',
-    'text-sm'
+    'text-base'
   );
 
   updateForm.addEventListener('submit', (e) => {
