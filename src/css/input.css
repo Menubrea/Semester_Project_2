@@ -10,7 +10,7 @@
 }
 
 .bg-listing {
-  background-image: url('./../../media/images/bg-listing.jpg');
+  background-image: url('/../../media/images/bg-listing.jpg');
   background-size: cover;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .hero {
-  background-image: url('./../../media/images/christmas-theme.jpg');
+  background-image: url('/../../media/images/christmas-theme.jpg');
   background-size: cover;
 }
 

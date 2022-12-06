@@ -149,7 +149,7 @@ export async function profileData() {
     totalCredit.innerHTML = profile.credits + ',-';
     profileName.innerHTML = profile.name;
     profilePicture.src = profile.avatar;
-    profileButton.innerHTML = `<i class="fa-solid fa-user text-xs text-center w-full md:mr-1"></i> ${profile.name}`;
+    profileButton.innerHTML = `<i class="fa-solid fa-user text-xs text-center w-full mr-1"></i> ${profile.name}`;
     logoutButton.innerHTML = `Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>`;
 
     fullProfile.append(profilePicture, profileName, totalCredit);
