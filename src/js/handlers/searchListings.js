@@ -27,7 +27,7 @@ export async function handleSearchControlInput(event) {
       filterNav.classList.add('rounded-t-lg');
       container.classList.add('grid');
       container.classList.remove('hidden');
-      return true;
+      return listing;
     } else if (inputValue.length === 0) {
       return clearSearchContainer();
     }
