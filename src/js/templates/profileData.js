@@ -1,5 +1,5 @@
 import { logout } from '../api/auth/logout.js';
-import { hostPath } from '../api/constants.js';
+import { defaultProfile, hostPath } from '../api/constants.js';
 import { updateMedia } from '../api/profile/updateMedia.js';
 import { load } from '../handlers/storage/load.js';
 
@@ -148,7 +148,12 @@ export async function profileData() {
 
     totalCredit.innerHTML = profile.credits + ',-';
     profileName.innerHTML = profile.name;
-    profilePicture.src = profile.avatar;
+    if (profile.avatar === '' || profile.avatar === null) {
+      profilePicture.src = defaultProfile;
+    } else {
+      profilePicture.src = profile.avatar;
+    }
+    profilePicture.setAttribute('onerror', `src="${defaultProfile}"`);
     profileButton.innerHTML = `<i class="fa-solid fa-user text-xs text-center w-full mr-1"></i> ${profile.name}`;
     logoutButton.innerHTML = `Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>`;
 

@@ -1,4 +1,5 @@
 import { expirationTime } from '../components/expirationTime.js';
+import { defaultProfile, errorImage } from '../api/constants.js';
 
 export function listingsTemplate(data) {
   const card = document.createElement('article');
@@ -29,14 +30,19 @@ export function listingsTemplate(data) {
   // Get last entry in array.
   const lastBid = bids.at(-1);
   // Conditional logic for handling media
-  if (media.length === 0) {
-    image.src = './media/images/package.jpg';
+
+  if (media.length === 0 || media === '' || media === null) {
+    image.src = defaultProfile;
   } else {
     image.src = media[0];
   }
 
-  if (seller.avatar === null) {
-    profileImage.src = './media/images/christmas_background.webp';
+  if (
+    seller.avatar === '' ||
+    seller.avatar === null ||
+    seller.avatar.length === 0
+  ) {
+    profileImage.src = defaultProfile;
   } else {
     profileImage.src = seller.avatar;
   }
@@ -54,11 +60,6 @@ export function listingsTemplate(data) {
     header.innerHTML = title;
   }
 
-  function replaceImage(element) {
-    if ((element = onerror)) {
-      return (element.src = './media/images/package.jpg');
-    }
-  }
   // Classes
   bidContainer.classList.add(
     'flex',
@@ -105,10 +106,9 @@ export function listingsTemplate(data) {
 
   // Source and innerHTML
   profileImage.src = seller.avatar;
-  profileImage.onerror = replaceImage(profileImage);
-  image.onerror = replaceImage(image);
-
+  profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
   profileName.innerHTML = seller.name;
+  image.setAttribute('onerror', `src="${errorImage}"`);
   if (
     location.pathname === '/listing/' ||
     location.pathname === '/Semester_Project_2/listing/'

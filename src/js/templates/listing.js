@@ -1,7 +1,7 @@
 import { makeBid } from '../api/listings/bid.js';
-import { getProfile } from '../api/profile/read.js';
 import { expirationTime } from '../components/expirationTime.js';
 import { load } from '../handlers/storage/load.js';
+import { defaultProfile, errorImage } from '../api/constants.js';
 
 export function listingTemplate(data) {
   const listing = document.createElement('article');
@@ -20,16 +20,29 @@ export function listingTemplate(data) {
   const biddingList = document.createElement('div');
 
   const { title, description, _count, media, seller, bids } = data;
-  if (media.length === 0) {
-    image.src = '../../../media/images/package.jpg';
+
+  if (media.length === 0 || media === '' || media === null) {
+    image.src = defaultProfile;
   } else {
     image.src = media[0];
   }
+
+  if (
+    seller.avatar === '' ||
+    seller.avatar === null ||
+    seller.avatar.length === 0
+  ) {
+    profileAvatar.src = defaultProfile;
+  } else {
+    profileAvatar.src = seller.avatar;
+  }
+
   listingTitle.innerHTML = title;
   body.innerHTML = description;
   totalBids.innerHTML = _count;
-  profileAvatar.src = seller.avatar;
   profileName.innerHTML = seller.name;
+  profileAvatar.setAttribute('onerror', `src="${defaultProfile}"`);
+  image.setAttribute('onerror', `src="${errorImage}"`);
 
   listing.classList.add(
     'lg:grid',
