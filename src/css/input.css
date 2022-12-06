@@ -41,12 +41,8 @@ nav > button:hover {
 }
 
 .background-auth {
-  background-image: url('./../../media/images/retro-bg.jpg');
+  background-image: url('./../../media/images/christmas-theme.jpg');
   background-size: cover;
-}
-
-button.active {
-  box-shadow: none;
 }
 
 .card {
