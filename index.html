@@ -20,8 +20,11 @@
     >
       <span class="loader"></span>
     </div>
-    <header class="py-2 backdrop-blur-2xl bg-white rounded-lg mt-4 px-3">
-      <div id="headerContainer" class="flex items-center justify-between">
+    <header class="relative">
+      <div
+        id="headerContainer"
+        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3"
+      >
         <a
           href="./"
           class="logo font-lust lg:text-2xl text-lg text-primary items-center pt-1"
@@ -44,23 +47,22 @@
           >
         </nav>
       </div>
+      <div
+        id="dataContainer"
+        class="w-max bg-white pt-4 pb-2 my-2 z-40 rounded-lg hidden absolute right-0 border-4 border-secondary"
+      ></div>
     </header>
     <main class="min-h-screen max-w-7xl">
-      <div
-        id="profileContainer"
-        class="items-center w-full bg-white p-2 my-4 lg:rounded-lg"
-      >
-        <div class="justify-start"></div>
-        <div id="profileData" class="items-center justify-end"></div>
-      </div>
       <section
-        class="hero grid lg:grid-cols-12 lg:gap-24 items-center p-5 lg:p-0 bg-white rounded-lg my-5"
+        class="hero grid lg:grid-cols-12 lg:gap-24 items-center p-5 lg:p-0 bg-white rounded-lg md:my-4 my-2"
       >
-        <div class="lg:col-start-2 col-span-5">
+        <div
+          class="lg:col-start-2 col-span-5 bg-white/20 p-2 rounded-lg backdrop-blur-md"
+        >
           <h1 class="font-lust text-primary lg:text-3xl text-2xl">
             From us at Vender to you
           </h1>
-          <p class="mt-2 font-ofelia md:text-lg text-sm">
+          <p class="mt-2 font-ofelia md:text-lg text-md">
             In celebration of the Christmas holidays we would like to offer new
             and existing members with a christmas present of 1000 credits.
           </p>
@@ -79,57 +81,58 @@
           />
         </div>
       </section>
-      <div class="relative bg-white rounded-lg border-primary mb-5">
+      <div
+        class="bg-white mt-4 rounded-lg border-primary md:mb-4 mb-2 sticky top-1 z-30"
+      >
         <nav
           id="filterNav"
           class="md:flex items-center justify-between mx-auto py- z-40 p-2 border-4 rounded-lg border-primary"
         >
-          <div class="flex items-center">
+          <div class="flex items-center w-full">
             <h2
-              class="font-ofelia font-bold text-primary text-2xl items-center mr-3"
+              class="font-ofelia font-bold text-primary text-2xl items-center mr-2 md:mr-0"
             >
               Browse
             </h2>
             <input
               id="searchBar"
-              class="border-2 p-1 px-3 rounded-lg bg-white w-max text-sm"
+              class="border-2 p-1 px-3 rounded-lg bg-white w-full text-sm md:mx-2 mx-0"
               placeholder="Search.."
               type="text"
               name="search"
             />
           </div>
           <div
-            class="button-group flex justify-between items-center md:mt-0 mt-3"
+            class="button-group flex justify-between items-center md:mt-0 mt-3 gap-2 w-full"
           >
             <button
               id="allButton"
-              class="filterButton active-button px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+              class="filterButton px-5 py-1 w-full min-w-32 text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 active-button"
             >
               <i class="fa-solid fa-icons pr-2"></i>All
             </button>
             <button
               id="trendingButton"
-              class="filterButton ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+              class="filterButton px-5 py-1 w-full min-w-32 text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2"
             >
               <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
             </button>
             <button
               id="expiringButton"
-              class="filterButton ml-2 px-5 py-1 pills text-primary font-bold md:text-sm text-xs bg-white"
+              class="filterButton px-5 py-1 w-full min-w-32 text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2"
             >
               <i class="fa-regular fa-clock pr-2"></i>Expiring
             </button>
           </div>
         </nav>
-          <div
-            id="searchResults"
-            class="absolute hidden p-2 bg-white backdrop-blur-lg lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2 z-40 w-full rounded-b-lg shadow-lg border-b-4 border-x-4 border-primary max-h-96 overflow-auto"
-          ></div>
-        </div>
+        <div
+          id="searchResults"
+          class="absolute hidden p-2 bg-white backdrop-blur-lg lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2 z-40 w-full rounded-b-lg shadow-lg border-b-4 border-x-4 border-primary max-h-96 overflow-auto"
+        ></div>
       </div>
       <!-- Listings -->
       <div
-        class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-x-3 gap-y-6 mx-auto container max-w-7xl z-10 bg-white p-4 rounded-lg grid-rows-12"
+        class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-2 mx-auto container max-w-7xl z-10 rounded-lg grid-rows-12"
         id="listingsContainer"
       ></div>
       <div

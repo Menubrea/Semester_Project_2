@@ -4,14 +4,19 @@
 
 :root {
   --clr-dark: #363636;
-  --clr-primary: #943a0a;
-  --clr-secondary: #612607;
-  --clr-accent: #e9dbd5;
+  --clr-primary: #515661;
+  --clr-secondary: #4a5954;
+  --clr-accent: #e8e1db;
+}
+
+.bg-listing {
+  background-image: url('/media/images/bg-listing.jpg');
+  background-size: cover;
 }
 
 .background {
   background-color: var(--clr-accent);
-  background-color: #e4d3ca;
+  background-color: var(--clr-accent);
 }
 
 .hero {
@@ -41,27 +46,8 @@ nav > button:hover {
   background-size: cover;
 }
 
-button,
-.search,
-.btn {
-  border-radius: 5px;
-  height: min-content;
-}
-
-button:hover,
-.btn:hover {
-  transition: all 50ms ease-in-out;
-  color: #fff;
-  background-color: var(--clr-secondary);
-  cursor: pointer;
-}
-
 button.active {
   box-shadow: none;
-}
-
-.background-shadow {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
 }
 
 .card {
@@ -71,7 +57,7 @@ button.active {
 
 .card:hover {
   box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
-  transform: scale(1);
+  transform: scale(1.01);
   z-index: 10;
   cursor: pointer;
   transition-delay: 200ms;

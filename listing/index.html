@@ -20,10 +20,11 @@
     >
       <span class="loader"></span>
     </div>
-    <header
-      class="py-2 backdrop-blur-2xl bg-white rounded-lg mt-4 px-3 mx-2 md:mx-0"
-    >
-      <div id="headerContainer" class="flex items-center justify-between">
+    <header class="relative">
+      <div
+        id="headerContainer"
+        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3"
+      >
         <a
           href="./../"
           class="logo font-lust lg:text-2xl text-lg text-primary items-center pt-1"
@@ -46,19 +47,15 @@
           >
         </nav>
       </div>
+      <div
+        id="dataContainer"
+        class="w-max bg-white pt-4 pb-2 mt-4 z-40 rounded-lg hidden absolute right-0 shadow-lg"
+      ></div>
     </header>
     <main>
-      <!-- ProfileData goes here -->
-      <div
-        id="profileContainer"
-        class="items-center w-full bg-white p-2 my-4 lg:rounded-lg"
-      >
-        <div class="justify-start"></div>
-        <div id="profileData" class="items-center justify-end"></div>
-      </div>
       <section>
         <!-- Listing goes here -->
-        <div id="listingContainer" class="bg-white lg:rounded-lg my-5"></div>
+        <div id="listingContainer" class="bg-listing lg:rounded-lg my-5"></div>
       </section>
       <!-- Listings goes here -->
       <section class="p-4 rounded-lg">

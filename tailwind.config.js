@@ -7,13 +7,11 @@ module.exports = {
       center: true,
     },
     colors: {
-      primary: '#943A0A',
+      primary: '#515661',
       dark: '#363636',
-      white: '#fefcfc',
-      lightGrey: '#FAFAFA',
-      darkGrey: '#EBEBEB',
-      secondary: '#612607',
-      accent: '#E9DBD5',
+      white: '#FCFFFE',
+      secondary: '#4A5954',
+      accent: '#e8e1db',
     },
     fontFamily: {
       lust: ['Lust Script', 'sans-serif'],

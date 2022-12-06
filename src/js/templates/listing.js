@@ -1,4 +1,5 @@
 import { makeBid } from '../api/listings/bid.js';
+import { getProfile } from '../api/profile/read.js';
 import { expirationTime } from '../components/expirationTime.js';
 import { load } from '../handlers/storage/load.js';
 

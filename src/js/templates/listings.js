@@ -77,11 +77,11 @@ export function listingsTemplate(data) {
     'relative',
     'w-full',
     'rounded-lg',
-    'bg-white',
     'card',
     'px-4',
     'py-2',
-    'h-min'
+    'h-min',
+    'bg-white'
   );
   image.classList.add(
     'w-full',

@@ -15,7 +15,19 @@ export function searchTemplate(data) {
   } else {
     header.innerHTML = title;
   }
-  image.src = media[0];
+
+  if (media.length === 0) {
+    image.src = './media/images/package.jpg';
+  } else {
+    image.src = media[0];
+  }
+
+  if (seller.avatar === '') {
+    userAvatar.src = './media/images/package.jpg';
+  } else {
+    userAvatar.src = seller.avatar;
+  }
+
   userName.innerHTML = seller.name;
   userAvatar.src = seller.avatar;
   anchor.href = `./listing/?id=${id}`;
