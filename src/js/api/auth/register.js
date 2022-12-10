@@ -4,7 +4,7 @@ import { login } from './login.js';
 
 const action = '/auth/register';
 const method = 'POST';
-const container = document.querySelector('body');
+const container = document.querySelector('#registerForm');
 
 export async function register(profile) {
   const registerURL = API_AUCTION_URL + action;

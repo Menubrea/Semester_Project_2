@@ -10,13 +10,9 @@ export async function setCreateListings() {
     const formData = new FormData(listingForm);
     const listing = Object.fromEntries(formData.entries());
     listing.media = [listing.media];
+    const media = formData.getAll('media');
 
-    if (listing.media.length > 1) {
-      const media = formData.getAll('media');
-      listing.media.push(media);
-      Object.assign(listing.media, media);
-    }
-
+    Object.assign(listing.media, media);
     createListing(listing);
   });
 }

@@ -1,8 +1,10 @@
+import { popUp } from '../../components/popUp.js';
 import { authFetch } from '../authFetch.js';
 import { API_AUCTION_URL } from '../constants.js';
 
 const action = '/listings/';
 const method = 'POST';
+const container = document.querySelector('#listingModal');
 
 export async function createListing(data) {
   const listingURL = `${API_AUCTION_URL}${action}`;
@@ -26,10 +28,26 @@ export async function createListing(data) {
     body: JSON.stringify(data),
   };
 
-  const response = await authFetch(listingURL, headers);
+  try {
+    const response = await authFetch(listingURL, headers);
 
-  if (response.ok) {
-    const result = await response.json();
-    return result;
+    switch (response.status) {
+      case 201:
+        const listing = await response.json();
+        popUp('Listing created successfully', container);
+        setTimeout(() => {
+          location.reload();
+        }, 500);
+        return listing;
+      case 400:
+        popUp('All media urls need to be filled out.', container);
+        break;
+      default: {
+        throw new Error('An unknown error occured');
+      }
+    }
+  } catch (err) {
+    popUp('An unknown error occured');
+    console.log(err);
   }
 }

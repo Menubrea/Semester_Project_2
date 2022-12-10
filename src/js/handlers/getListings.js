@@ -4,15 +4,6 @@ import { listingsTemplate } from '../templates/listings.js';
 
 export async function setGetListings() {
   const listings = await getListings();
-  // const filteredListings = listings.filter((listing) => {
-  //   const { endsAt } = listing;
-  //   const expiration = new Date(endsAt).getTime();
-  //   const now = new Date().getTime();
-
-  //   if (expiration > now) {
-  //     return listing;
-  //   }
-  // });
   const paginationNumbers = document.querySelector('#paginationNumbers');
   const container = document.querySelector('#listingsContainer');
   const paginationLimit = 24;

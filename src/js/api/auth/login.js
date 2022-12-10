@@ -4,7 +4,7 @@ import { popUp } from '../../components/popUp.js';
 
 const action = '/auth/login';
 const method = 'POST';
-const container = document.querySelector('body');
+const container = document.querySelector('#loginForm');
 
 export async function login(profile) {
   const loginURL = API_AUCTION_URL + action;
@@ -25,10 +25,9 @@ export async function login(profile) {
       case 200:
         storage.save('token', accessToken);
         storage.save('profile', profile);
-        location.replace('./../../');
+        location.reload();
         break;
       case 401:
-        const container = document.querySelector('body');
         popUp('Wrong username/password', container);
         break;
       default:
