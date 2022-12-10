@@ -23,6 +23,18 @@ export function listingTemplate(data) {
 
   const { title, description, _count, media, seller, bids } = data;
 
+  let count = 0;
+
+  // For looping through images on interval
+  setInterval(() => {
+    if (media.length === 1) return;
+    count += 1;
+    if (count === media.length) {
+      count = 0;
+    }
+    image.src = media[count];
+  }, 10000);
+
   metaTitle.innerHTML = `Vender | ${title}`;
   metaDesc.content = description;
 
@@ -66,10 +78,13 @@ export function listingTemplate(data) {
   );
 
   image.classList.add(
-    'md:rounded-lg',
-    'md:shadow-md',
-    'object-fill',
-    'mx-auto'
+    'object-cover',
+    'mx-auto',
+    'w-full',
+    'relative',
+    'h-72',
+    'shadow-lg',
+    'rounded-lg'
   );
 
   profileName.classList.add('font-ofelia', 'text-dark/70');
@@ -252,17 +267,14 @@ export function renderMakeBid(data, parent) {
     parent.append(bidContainer);
   } else {
     const promoContainer = document.createElement('div');
-    const loginAnchor = document.createElement('a');
-    const registerAnchor = document.createElement('a');
+    const loginAnchor = document.createElement('button');
+    const registerAnchor = document.createElement('button');
     const message = document.createElement('p');
     const anchorContainer = document.createElement('div');
 
     loginAnchor.innerHTML = 'Sign In';
     registerAnchor.innerHTML = 'Register';
     message.innerHTML = `You must be logged in to bid on this item`;
-
-    loginAnchor.href = './../auth/login/';
-    registerAnchor.href = './../auth/register/';
 
     promoContainer.classList.add(
       'bg-secondary',
@@ -303,7 +315,8 @@ export function renderMakeBid(data, parent) {
       'rounded-md',
       'w-full',
       'hover:bg-secondary',
-      'hover:text-white'
+      'hover:text-white',
+      'register'
     );
     anchorContainer.classList.add(
       'absolute',
@@ -311,7 +324,8 @@ export function renderMakeBid(data, parent) {
       'left-1/2',
       '-translate-x-1/2',
       'w-full',
-      'text-center'
+      'text-center',
+      'flex'
     );
 
     parent.classList.remove('lg:justify-end');

@@ -23,6 +23,7 @@ export async function profileData() {
     const fullProfile = document.createElement('div');
 
     createListing.innerHTML = 'Create Listing';
+
     createListing.addEventListener('click', () => {
       modal.classList.add('active', 'md:grid');
       overlay.classList.add('active');
@@ -171,17 +172,18 @@ export function createUpdateForm(name, parent) {
   const updateInput = document.createElement('input');
   const inputSubmit = document.createElement('button');
 
-  updateForm.classList.add('flex', 'w-fit', 'mb-4');
+  updateForm.classList.add('flex', 'w-max', 'mb-4', 'mx-auto');
   inputSubmit.innerHTML = 'Update';
   inputSubmit.type = 'submit';
   inputSubmit.classList.add(
     'bg-secondary',
-    'p-2',
+    'px-2',
     'rounded-r-lg',
     'font-ofelia',
     'text-white',
     'font-bold',
-    'text-sm'
+    'text-sm',
+    'hover:opacity-80'
   );
 
   updateInput.type = 'url';
@@ -192,7 +194,7 @@ export function createUpdateForm(name, parent) {
     'w-full',
     'border-2',
     'border-secondary',
-    'p-2',
+    'p-1',
     'rounded-l-lg',
     'text-base'
   );

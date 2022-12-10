@@ -5,7 +5,7 @@ export function popUp(message, parent) {
 
   headerContainer.classList.add(
     'font-lust',
-    'text-primary',
+    'text-white',
     'p-2',
     'pb-1',
     'text-lg',
@@ -13,17 +13,18 @@ export function popUp(message, parent) {
     'w-full',
     'border-b',
     'border-primary/20',
-    'bg-dark/10'
+    'bg-contrast'
   );
   container.classList.add(
     'fixed',
-    'top-16',
+    'top-0',
     'bg-white',
     'shadow-lg',
-    'z-50',
     'rounded',
     'backdrop-blur-lg',
-    'inset-x-24'
+    'inset-x-0',
+    'w-full',
+    'popUp'
   );
   messageContainer.classList.add('font-ofelia', 'p-2', 'text-sm', 'text-dark');
 

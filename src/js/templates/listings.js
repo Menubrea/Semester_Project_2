@@ -49,9 +49,10 @@ export function listingsTemplate(data) {
 
   // Conditional logic for handling bids
   if (bids.length === 0) {
-    bid.innerHTML = '';
+    bid.innerHTML = 'Be the first to bid';
   } else {
     bid.innerHTML = `${lastBid.amount},-`;
+    bid.classList.add('font-extraBold');
   }
 
   if (title.length > 12) {
@@ -65,7 +66,8 @@ export function listingsTemplate(data) {
     'flex',
     'flex-row-reverse',
     'justify-between',
-    'items-center'
+    'items-center',
+    'w-full'
   );
   headerContainer.classList.add(
     'flex',
@@ -91,18 +93,29 @@ export function listingsTemplate(data) {
     'card-image',
     'rounded-lg'
   );
-  profileImage.classList.add('w-3', 'h-3', 'mr-1', 'rounded-full');
-  profileName.classList.add('font-ofelia', 'text-dark/70');
+  profileImage.classList.add('w-4', 'h-4', 'mr-1', 'rounded-full');
+  profileName.classList.add('font-ofelia', 'text-white', 'text-sm');
   profileContainer.classList.add('flex', 'items-center');
-  header.classList.add('font-ofelia', 'font-extraBold', 'text-primary');
+  header.classList.add(
+    'font-ofelia',
+    'font-extraBold',
+    'text-primary',
+    'text-lg'
+  );
   remainingTime.classList.add(
     'font-bold',
     'text-sm',
-    'text-dark',
+    'text-primary',
     'w-full',
     'rounded-t-lg'
   );
-  bid.classList.add('font-ofelia', 'font-bold', 'text-primary', 'text-sm');
+  bid.classList.add(
+    'font-ofelia',
+    'text-primary',
+    'text-sm',
+    'w-full',
+    'text-end'
+  );
 
   // Source and innerHTML
   profileImage.src = seller.avatar;
