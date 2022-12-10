@@ -5,8 +5,9 @@
 :root {
   --clr-dark: #363636;
   --clr-primary: #515661;
-  --clr-secondary: #4a5954;
-  --clr-accent: #e8e1db;
+  --clr-secondary: #515661;
+  --clr-accent: #a3a6ad;
+  --clr-contrast: #ad9b6f;
 }
 
 .bg-listing {
@@ -19,25 +20,59 @@
 }
 
 .hero {
-  background-image: url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcC00MjEta3V0LTAwNjUtY2hpbS5qcGc.jpg');
+  background-image: url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMy1jaGltLTMxLWktd2FsbF8yLmpwZw.jpg');
   background-size: cover;
 }
 
 nav > a,
 nav > button {
-  padding: 0.5em 1em;
-  background-color: rgba(232, 217, 205, 0.123);
+  position: relative;
+  padding: 0.4em 1em;
   border-radius: 0.5em;
-  border-bottom: 3px solid var(--clr-primary);
+  border: 2px solid var(--clr-primary);
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+nav > a:after,
+nav > button:after,
+.card:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0.5em solid var(--clr-primary);
+  border-left: 0.5em solid transparent;
+  border-top: 0.5em solid transparent;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.card:after {
+  border: 6em solid var(--clr-primary);
+  border-left: 6em solid transparent;
+  border-top: 6em solid transparent;
 }
 
 nav > a:hover,
 nav > button:hover {
-  padding: 0.5em 1em;
-  background-color: #e9dbd585;
-  border-radius: 0.5em;
-  border-bottom: 3px solid var(--clr-secondary);
-  color: var(--clr-secondary);
+  background-color: var(--clr-secondary);
+  color: #fff;
+  transition: all 500ms ease-in-out;
+}
+
+nav > button:hover:after,
+nav > a:hover:after {
+  border: 0.5em solid #fff;
+  border-left: 0.5em solid transparent;
+  border-top: 0.5em solid transparent;
+  transition: all 500ms ease-in-out;
+  z-index: 1000;
 }
 
 .background-auth {
@@ -65,10 +100,14 @@ nav > button:hover {
 
 .modal {
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   overflow-y: auto;
   scrollbar-width: none;
-  inset: 10vw 10vw 0em 10vw;
-  border-radius: 0.5em 0.5em 0 0;
+  width: max-content;
+  height: max-content;
+  border-radius: 0.5em;
   z-index: -99;
   display: none;
   transition: transform 200ms ease-in-out;
@@ -117,6 +156,15 @@ nav > button:hover {
   border-radius: 50%;
   border: 3px solid;
   border-color: var(--clr-primary) transparent;
+}
+
+input:focus {
+  outline: 4px solid var(--clr-contrast);
+  transition: all 200ms ease-in-out;
+}
+
+.popUp {
+  z-index: 1000;
 }
 
 @keyframes rotation {
