@@ -17,21 +17,34 @@
   <body class="max-w-7xl container min-h-screen px-2">
     <div
       id="loader"
-      class="inset-0 fixed bg-accent z-50 flex items-center justify-center"
+      class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
     >
-      <span class="loader"></span>
+      <div class="flex items-center justify-center">
+        <span class="loader"></span>
+        <p class="font-lust text-primary text-3xl ml-3">Vender is loading...</p>
+      </div>
     </div>
-    <header class="relative">
+    <header class="relative z-40">
       <div
         id="headerContainer"
         class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3"
       >
         <a
           href="./../"
-          class="logo font-lust lg:text-2xl text-lg text-primary items-center pt-1"
-          >Vender
+          class="logo font-lust text-2xl text-primary items-center flex w-fit"
+        >
+          <i
+            class="fa-brands fa-nfc-symbol text-white bg-primary text-sm p-2 mr-1 rounded-lg"
+          ></i>
+          Vender
         </a>
-        <nav id="topNav" class="flex gap-2">
+        <nav id="topNav" class="flex gap-1">
+          <button
+            id="createListingNavButton"
+            class="font-ofelia text-primary text-sm items-center font-bold hidden"
+          >
+            <i class="fa-solid fa-circle-plus text-xs"></i>
+          </button>
           <a
             id="home"
             href="./../"
@@ -50,7 +63,7 @@
       </div>
       <div
         id="dataContainer"
-        class="md:w-max w-full bg-white pt-4 pb-2 mt-4 z-40 rounded-lg hidden absolute right-0 shadow-lg"
+        class="md:w-max w-full bg-white pt-4 pb-2 my-2 z-20 rounded-lg hidden absolute right-0 border-4 border-secondary"
       ></div>
     </header>
     <main>
@@ -58,7 +71,7 @@
         <!-- Listing goes here -->
         <div
           id="listingContainer"
-          class="lg:rounded-lg lg:my-4 my-2 md:pb-0 pb-2 bg-[url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMy1jaGltLTMxLWktd2FsbF8yLmpwZw.jpg')]"
+          class="rounded-lg lg:my-4 my-2 md:pb-0 pb-2 listing"
         ></div>
       </section>
       <!-- Listings goes here -->
@@ -77,16 +90,48 @@
       <!-- Listing Modal -->
       <div
         id="listingModal"
-        class="modal bg-primary lg:grid-cols-2 shadow-lg max-w-7xl"
+        class="modal bg-primary md:grid-cols-2 shadow-lg max-w-7xl relative overflow-x-hidden"
       >
-        <form id="createListing" class="p-4">
+        <button
+          data-button="close-modal"
+          class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
+        >
+          <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
+        </button>
+        <div class="w-full lg:mt-0 lg:p-4 bg-white" id="preview">
+          <div
+            class="preview-card pb-2 border-y-4 border-contrast md:border-none"
+          >
+            <img
+              class="md:rounded-lg shadow-md object-fill mx-auto max-h-72 w-full"
+              id="preview-img"
+              src="https://images.rawpixel.com/image_1300/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA2L2stZy1nMDM1OS1pZGVhcy5qcGc.jpg"
+              alt="preview-image"
+            />
+            <div class="mt-2 lg:mx-2 mx-4">
+              <p
+                class="font-lust text-primary text-xl lg:text-3xl font-bold"
+                id="preview-title"
+              >
+                Preview Title
+              </p>
+              <p
+                class="font-ofelia text-dark lg:text-md sm:text-sm"
+                id="preview-description"
+              >
+                Preview Description
+              </p>
+            </div>
+          </div>
+        </div>
+        <form id="createListing" class="p-8">
           <input type="text" name="tags" hidden />
           <div class="lg:grid grid-cols-2 gap-2">
             <div class="mt-2">
               <label
                 class="font-ofelia text-white text-sm text-center w-full"
                 for="form-title"
-                >A good title will boost interest</label
+                >Provide a title &#42;</label
               >
               <input
                 class="p-2 pl-4 w-full rounded-full"
@@ -104,94 +149,99 @@
               <label
                 class="font-ofelia text-white text-sm text-center mx-auto"
                 for="expiration"
-                >Set an expiration date</label
+                >Set an expiration date &#42;</label
               >
-              <input
-                id="expiration"
-                class="p-2 pl-4 w-full rounded-full"
-                type="datetime-local"
-                placeholder="Provide an expriation date"
-                name="endsAt"
-                title="Please provide an expiration date"
+              <select
+                class="p-2 pl-4 w-full rounded-full font-ofelia"
                 required
-              />
+                title="Please select a duration for your auction"
+                name="endsAt"
+                id="expiration"
+                required
+              >
+                <option id="inOneHour" value="">Express: 1 hour</option>
+                <option id="inOneDay" value="">Regular: 24 hours</option>
+                <option id="inOneWeek" value="">Long: 7 days</option>
+              </select>
             </div>
           </div>
-          <div class="p-2 bg-white/70 mt-2 rounded-lg">
-            <label class="font-ofelia text-sm" for="form-media"
-              >Set a main image</label
-            >
-            <div class="flex justify-between">
+          <div class="mt-4 w-full">
+            <div>
+              <label class="font-ofelia text-white text-sm" for="form-media"
+                >Provide an image &#42;</label
+              >
               <input
                 type="url"
                 name="media"
                 id="form-media"
                 title="Must be a fully formed and publicly accessible URL"
-                placeholder="Add an Image"
-                class="w-full px-2"
+                placeholder="Main image"
+                class="p-2 pl-4 w-full rounded-full"
+                required
               />
+              <div class="w-full">
+                <p
+                  class="w-full text-sm text-white font-ofelia text-center mt-1"
+                >
+                  Additional images will not be displayed in the preview.
+                </p>
+              </div>
               <button
-                class="bg-primary text-white p-2 font-ofelia font-bold w-full hover:bg-primary/80"
+                class="bg-primary text-white p-2 text-sm font-ofelia font-bold w-max flex justify-center items-center hover:bg-primary/80 mx-auto mt-2 rounded-lg border-4 border-contrast"
                 type="button"
                 id="addImage"
               >
-                <i class="fa-solid fa-circle-plus text-white text-lg"></i> Add
-                Image
+                <i class="fa-solid fa-circle-plus text-white text-sm mr-1"></i>
+                Add Image
               </button>
             </div>
-            <div class="w-full">
-              <p class="w-full text-xs text-center mt-1">
-                Additional images will not be displayed in the preview.
-              </p>
-            </div>
+
             <div
               id="inputMediaContainer"
               class="lg:grid grid-cols-2 gap-2 mt-2"
             ></div>
           </div>
           <div class="mt-2">
+            <label for="form-description" class="font-ofelia text-white text-sm"
+              >Describe your item &#42;</label
+            >
             <textarea
               class="p-2 w-full rounded-lg"
               id="form-description"
               name="description"
               rows="5"
+              required
             ></textarea>
+            <p class="w-full text-xs text-end text-white">
+              Providing a detailed description will help potential buyers making
+              a decision
+            </p>
           </div>
-          <div class="flex justify-between items-center">
+          <div class="flex justify-center items-center">
             <button
-              class="py-1 px-2 bg-white mt-2 text-center float-right font-ofelia font-bold text-primary text-xl"
+              class="py-1 px-2 bg-primary mt-2 text-center font-ofelia font-bold text-white text-xl w-full rounded-lg border-contrast border-4 shadow-lg hover:text-primary hover:bg-white"
               type="submit"
             >
               Create Listing
             </button>
           </div>
         </form>
-        <div class="w-full mt-16 lg:mt-0 p-4 bg-white" id="preview">
-          <div class="preview-card">
-            <img
-              class="md:rounded-lg md:shadow-md object-fill mx-auto h-72 w-full"
-              id="preview-img"
-              src="./media/images/image-from-rawpixel-id-1231278-jpeg.jpg"
-            />
-            <div class="mt-2 mx-2">
-              <p
-                class="font-ofelia text-primary text-xl font-bold"
-                id="preview-title"
-              ></p>
-              <p class="font-ofelia text-dark" id="preview-description"></p>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- Login Modal -->
-      <div id="loginModal" class="modal bg-primary p-4">
+      <div id="loginModal" class="modal modal-auth bg-primary p-4 relative">
+        <button
+          data-button="close-modal"
+          class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
+        >
+          <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
+        </button>
         <!-- loginForm -->
         <form
           id="loginForm"
           class="max-w-xl mx-auto p-8 rounded-lg backdrop-blur-3xl shadow-lg bg-white/20 w-max"
         >
           <p
-            class="font-lust text-primary text-xl bg-white pt-3 pb-2 px-5 rounded-lg shadow-md w-fit mx-auto"
+            class="font-lust text-primary text-2xl bg-white py-2 px-5 rounded-lg shadow-md w-fit mx-auto"
           >
             Log in to Vender
           </p>
@@ -219,32 +269,40 @@
             />
           </div>
           <div
-            class="font-ofelia font-bold text-dark my-2 bg-white/40 p-2 rounded-lg mx-5"
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg mx-5"
           >
             Don't have an account?
-            <a
+            <button
+              type="button"
               id="register"
-              class="bg-dark rounded-xl px-2 py-1 text-white ml-1 cursor-pointer hover:bg-dark/50"
+              class="bg-dark/80 rounded-xl px-2 py-1 text-white ml-1 cursor-pointer hover:bg-dark/50"
             >
               Register
-            </a>
+            </button>
           </div>
           <button
             id="loginButton"
             type="submit"
-            class="font-ofelia font-bold px-4 py-1 text-white text-xl rounded-lg bg-primary w-full border-4 border-contrast mt-5 shadow-xl hover:bg-white hover:text-dark hover:border-4"
+            class="font-ofelia font-bold px-4 py-1 text-white text-xl rounded-lg bg-primary w-full border-4 border-contrast mt-5 shadow-xl hover:bg-white hover:text-primary"
           >
             Log in
           </button>
         </form>
       </div>
-      <div id="registerModal" class="modal bg-primary p-4">
+      <!-- RegisterModal -->
+      <div id="registerModal" class="modal modal-auth bg-primary p-4 relative">
+        <button
+          data-button="close-modal"
+          class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
+        >
+          <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
+        </button>
         <form
           id="registerForm"
           class="max-w-xl mx-auto p-10 rounded-lg h-max m-4 backdrop-blur-3xl shadow-lg bg-white/20 w-max"
         >
           <p
-            class="font-lust text-primary text-xl bg-white pt-3 pb-2 px-5 rounded-lg shadow-md w-fit mx-auto"
+            class="font-lust text-primary text-2xl bg-white py-2 px-5 rounded-lg shadow-md w-fit mx-auto"
           >
             Sign up to Vender
           </p>
@@ -293,16 +351,16 @@
             />
           </div>
           <div
-            class="font-ofelia font-bold text-dark my-2 bg-white/40 p-2 rounded-lg mx-5"
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg mx-5"
           >
             Already have an account?
-            <a
+            <button
+              type="button"
               id="loginFromForm"
-              tabindex="0"
-              class="bg-dark rounded-xl px-2 py-1 text-white ml-1 cursor-pointer hover:bg-dark/50"
+              class="rounded-xl bg-dark/80 px-2 py-1 ml-1 cursor-pointer hover:bg-dark/50 text-white"
             >
-              Log in
-            </a>
+              Log In
+            </button>
           </div>
           <button
             id="registerButton"
@@ -314,13 +372,29 @@
         </form>
       </div>
     </main>
-    <footer class="items-end flex justify-between mx-5">
-      <a href="./../../" class="logo font-lust text-xl text-primary py-3 px-3">
+    <footer
+      class="md:flex flex-row items-center md:justify-between justify-center bg-white py-2 backdrop-blur-2xl rounded-lg md:my-4 my-2 px-3 shadow-lg w-full"
+    >
+      <a
+        href="#"
+        class="logo font-lust text-2xl text-primary items-center flex w-fit md:mx-0 mx-auto"
+      >
+        <i
+          class="fa-brands fa-nfc-symbol text-white bg-primary text-sm p-2 mr-1 rounded-lg"
+        ></i>
         Vender
       </a>
-      <a href="#" class="logo font-lust text-xl text-primary py-3 px-3">
-        Back to Top
-      </a>
+      <div class="font-ofelia md:mx-0 mx-auto w-fit">
+        <p>
+          All Rights Reserved | Menubrea
+          <i class="fa-regular fa-copyright"></i>
+        </p>
+      </div>
+      <div class="flex gap-1 text-primary mx-auto w-fit mt-2 md:mt-0 md:mx-0">
+        <a href="#"><i class="fa-brands fa-square-twitter text-2xl"></i></a>
+        <a href="#"><i class="fa-brands fa-square-instagram text-2xl"></i></a>
+        <a href="#"><i class="fa-brands fa-square-facebook text-2xl"></i></a>
+      </div>
     </footer>
   </body>
 </html>

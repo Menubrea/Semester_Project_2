@@ -1,5 +1,7 @@
 import { hostPath } from '../api/constants.js';
 
+const closeButtons = document.querySelectorAll('[data-button="close-modal"]');
+
 export function handleAuthModal() {
   handleLoginModal();
   handleRegisterModal();
@@ -33,6 +35,13 @@ export function handleLoginModal() {
       overlay.classList.remove('active');
     }
   });
+
+  closeButtons.forEach((button) =>
+    button.addEventListener('click', () => {
+      loginModal.classList.remove('active');
+      overlay.classList.remove('active');
+    })
+  );
 }
 
 export function handleRegisterModal() {
@@ -62,10 +71,18 @@ export function handleRegisterModal() {
       inputName.focus();
     });
   }
+
   window.addEventListener('click', (e) => {
     if (e.target.matches('.overlay')) {
       registerModal.classList.remove('active');
       overlay.classList.remove('active');
     }
   });
+
+  closeButtons.forEach((button) =>
+    button.addEventListener('click', () => {
+      registerModal.classList.remove('active');
+      overlay.classList.remove('active');
+    })
+  );
 }
