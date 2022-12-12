@@ -62,8 +62,8 @@ export function handleRegisterModal() {
   if (
     location.pathname === '/' ||
     location.pathname === '/index.html' ||
-    location.pathname === hostPath + '/' ||
-    location.pathname === hostPath + '/index.html'
+    location.pathname === hostPath ||
+    location.pathname === hostPath + 'index.html'
   ) {
     registerButton.addEventListener('click', (e) => {
       registerModal.classList.add('active');
