@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --clr-dark: #363636;
+  --clr-dark: #2e2e2e;
   --clr-primary: #515661;
   --clr-secondary: #515661;
   --clr-accent: #a3a6ad;
-  --clr-contrast: #ad9b6f;
+  --clr-contrast: #c5bb9b;
 }
 
 .bg-listing {
@@ -38,9 +38,19 @@ nav > button {
   overflow: hidden;
 }
 
+.listing {
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+}
+
 nav > a:after,
 nav > button:after,
-.card:after {
+.card:after,
+.card-promo:after,
+.card-promo:before,
+.listingC:before,
+.listing:after {
   content: '';
   position: absolute;
   width: 0;
@@ -57,6 +67,28 @@ nav > button:after,
   border: 6em solid var(--clr-primary);
   border-left: 6em solid transparent;
   border-top: 6em solid transparent;
+}
+
+.card-promo:after,
+.listing:after {
+  --width: 9em;
+  --height: 4.5em;
+  border: var(--height) solid var(--clr-contrast);
+  border-left: var(--width) solid transparent;
+  border-top: var(--height) solid transparent;
+  border-right: var(--width) solid var(--clr-contrast);
+}
+
+.card-promo:before,
+.listing:before {
+  --width: 9em;
+  --height: 4.5em;
+  left: 0;
+  top: 0;
+  border: var(--height) solid transparent;
+  border-left: var(--width) solid var(--clr-primary);
+  border-top: var(--height) solid var(--clr-primary);
+  border-right: var(--width) solid transparent;
 }
 
 nav > a:hover,
@@ -105,12 +137,18 @@ nav > a:hover:after {
   transform: translate(-50%, -50%);
   overflow-y: auto;
   scrollbar-width: none;
-  width: max-content;
-  height: max-content;
+  width: 90vw;
+  max-height: 90vh;
   border-radius: 0.5em;
   z-index: -99;
   display: none;
   transition: transform 200ms ease-in-out;
+}
+
+.modal-auth {
+  min-width: 320px;
+  width: 100%;
+  max-width: max-content;
 }
 
 .overlay {
@@ -121,7 +159,8 @@ nav > a:hover:after {
 }
 
 .active-pagination {
-  background-color: var(--clr-secondary);
+  background-color: #fff;
+  color: var(--clr-primary);
   border: 2px solid var(--clr-secondary);
 }
 
@@ -135,7 +174,7 @@ nav > a:hover:after {
   --size: 82px;
   width: var(--size);
   height: var(--size);
-  border: 3px solid var(--clr-secondary);
+  border: 3px solid var(--clr-contrast);
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -158,8 +197,10 @@ nav > a:hover:after {
   border-color: var(--clr-primary) transparent;
 }
 
-input:focus {
-  outline: 4px solid var(--clr-contrast);
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--clr-contrast);
   transition: all 200ms ease-in-out;
 }
 

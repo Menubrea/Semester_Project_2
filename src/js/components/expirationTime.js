@@ -1,3 +1,5 @@
+import { hostPath } from '../api/constants.js';
+
 export function expirationTime(data, element, parent) {
   const { endsAt } = data;
 
@@ -18,8 +20,18 @@ export function expirationTime(data, element, parent) {
 
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  element.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  const path = location.pathname;
 
+  if (
+    path === '/' ||
+    path === '/index.html' ||
+    path === hostPath ||
+    path === hostPath + '/index.html'
+  ) {
+    element.innerHTML = `${days}d ${hours}h ${minutes}m`;
+  } else {
+    element.innerHTML = `This auction ends in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
   parent.append(element);
   return element;
 }

@@ -63,10 +63,12 @@ export function listingTemplate(data) {
 
   listing.classList.add(
     'lg:grid',
-    'gap-16',
+    'gap-8',
     'lg:grid-cols-2',
-    'md:py-16',
-    'md:mx-16'
+    'md:pt-16',
+    'pb-8',
+    'md:px-8',
+    'relative'
   );
 
   headerContainer.classList.add(
@@ -74,7 +76,7 @@ export function listingTemplate(data) {
     'justify-between',
     'items-center',
     'mt-3',
-    'mx-2'
+    'ml-3'
   );
 
   image.classList.add(
@@ -84,13 +86,13 @@ export function listingTemplate(data) {
     'relative',
     'h-72',
     'shadow-lg',
-    'rounded-lg'
+    'lg:rounded-lg'
   );
 
   profileName.classList.add('font-ofelia', 'text-dark/70');
 
-  body.classList.add('mx-2', 'mt-2', 'font-ofelia');
-  profileContainer.classList.add('flex', 'items-center');
+  body.classList.add('mx-3', 'mt-1', 'font-ofelia');
+  profileContainer.classList.add('flex', 'items-center', 'mr-3');
   makeBidContainer.classList.add(
     'flex',
     'lg:justify-end',
@@ -106,28 +108,27 @@ export function listingTemplate(data) {
   );
   profileAvatar.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
   remainingTime.classList.add(
-    'font-ofelia',
-    'text-md',
+    'font-lust',
+    'text-xl',
     'font-bold',
     'absolute',
     'top-0',
     'left-0',
     'p-2',
     'px-3',
-    'w-max',
-    'bg-secondary',
-    'text-white',
-    'md:rounded-tl-lg',
-    'rounded-br-lg'
+    'w-fit',
+    'bg-dark',
+    'text-contrast',
+    'text-center'
   );
   biddingContainer.classList.add(
     'lg:col-span-1',
-    'md:bg-accent/20',
+    'md:bg-accent/30',
     'md:p-5',
     'md:rounded-lg',
     'h-fit'
   );
-  listingContainer.classList.add('relative', 'lg:col-span-1');
+  listingContainer.classList.add('lg:col-span-1');
 
   renderMakeBid(data, makeBidContainer);
 
@@ -168,8 +169,12 @@ export function listingTemplate(data) {
       'text-dark',
       'border-dark/10',
       'first:border',
-      'first:bg-white',
-      'md:rounded-lg'
+      'first:bg-contrast',
+      'md:rounded-lg',
+      'font-ofelia',
+      'text-sm',
+      'w-full',
+      'col-span-3'
     );
 
     bidContainer.append(bidName, bidMade, bidValue);
@@ -178,7 +183,7 @@ export function listingTemplate(data) {
     return biddingList;
   });
 
-  setInterval(expirationTime, 1000, data, remainingTime, listingContainer);
+  setInterval(expirationTime, 1000, data, remainingTime, listing);
   profileContainer.append(profileAvatar, profileName);
   headerContainer.append(listingTitle, profileContainer);
   listingContainer.append(image, headerContainer, body);
@@ -238,8 +243,10 @@ export function renderMakeBid(data, parent) {
       bidButton.setAttribute('disabled', true);
       input.setAttribute('hidden', true);
       bidButton.setAttribute('hidden', true);
-      bidContainer.innerHTML = 'Cannot place bid on your own listing.';
-      bidContainer.classList.add('whitespace-normal');
+      const message = document.createElement('p');
+      message.innerHTML = 'Cannot place bid on your own listing';
+      message.classList.add('col-span-3', 'text-center', 'font-ofelia');
+      bidContainer.append(message);
     }
 
     if (bids.length >= 1) {
@@ -282,10 +289,9 @@ export function renderMakeBid(data, parent) {
       'w-full',
       'py-7',
       'px-2',
-      'rounded-lg',
+      'lg:rounded-lg',
       'relative',
-      'mb-5',
-      'mx-5'
+      'mb-5'
     );
     message.classList.add('text-lg', 'font-ofelia', 'text-center');
     loginAnchor.classList.add(
@@ -298,7 +304,7 @@ export function renderMakeBid(data, parent) {
       'border-secondary',
       'border-2',
       'rounded-md',
-      'w-full',
+      'w-max',
       'hover:bg-secondary',
       'hover:text-white'
     );
@@ -313,19 +319,20 @@ export function renderMakeBid(data, parent) {
       'border-2',
       'ml-2',
       'rounded-md',
-      'w-full',
+      'w-max',
       'hover:bg-secondary',
       'hover:text-white',
       'register'
     );
     anchorContainer.classList.add(
       'absolute',
-      '-bottom-3',
+      '-bottom-4',
       'left-1/2',
       '-translate-x-1/2',
       'w-full',
       'text-center',
-      'flex'
+      'flex',
+      'justify-center'
     );
 
     parent.classList.remove('lg:justify-end');

@@ -3,7 +3,7 @@ import { renderSearchTemplates } from '../templates/searchResults.js';
 
 export async function setSearchListingsFormListener() {
   const searchControl = document.querySelector('#searchBar');
-  searchControl.addEventListener('keyup', handleSearchControlInput);
+  searchControl.addEventListener('input', handleSearchControlInput);
 
   document.addEventListener('click', (event) => {
     if (event !== searchControl) {
@@ -27,7 +27,8 @@ export async function handleSearchControlInput(event) {
       filterNav.classList.add('rounded-t-lg');
       container.classList.add('grid');
       container.classList.remove('hidden');
-      return listing;
+
+      return true;
     } else if (inputValue.length === 0) {
       return clearSearchContainer();
     }

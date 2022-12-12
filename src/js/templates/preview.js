@@ -1,7 +1,19 @@
+import { setExpiration } from '../components/setExpiration.js';
+
 export function createPreviewTemplate() {
   const previewtTitle = document.querySelector('#preview-title');
   const previewImg = document.querySelector('#preview-img');
   const previewDescription = document.querySelector('#preview-description');
+  const listingModal = document.querySelector('#listingModal');
+  const modalOverlay = document.querySelector('.overlay');
+  const closeButton = document.querySelector('[data-button="close-modal"]');
+
+  setExpiration();
+
+  closeButton.addEventListener('click', () => {
+    listingModal.classList.remove('active', 'md:grid');
+    modalOverlay.classList.remove('active');
+  });
 
   const inputMediaContainer = document.querySelector('#inputMediaContainer');
   const addImageButton = document.querySelector('#addImage');
@@ -37,10 +49,15 @@ export function createMediaInput(parent) {
   const inputElement = document.createElement('input');
   const deleteButton = document.createElement('button');
   deleteButton.innerHTML =
-    '<i class="fa-solid fa-circle-xmark text-accent text-lg"></i>';
+    '<i class="fa-solid fa-circle-xmark bg-white text-dark rounded-full text-lg"></i>';
 
   inputContainer.classList.add('relative');
-  deleteButton.classList.add('absolute', 't', 'right-0');
+  deleteButton.classList.add(
+    'absolute',
+    'top-1/2',
+    'right-2',
+    '-translate-y-1/2'
+  );
   deleteButton.type = 'button';
 
   deleteButton.addEventListener('click', () => inputContainer.remove());
@@ -52,7 +69,14 @@ export function createMediaInput(parent) {
 
   inputElement.type = 'url';
   inputElement.name = 'media';
-  inputElement.classList.add('p-2', 'pl-4', 'w-full', 'rounded-full');
+  inputElement.classList.add(
+    'p-2',
+    'pl-4',
+    'w-full',
+    'rounded-full',
+    'mt-1',
+    'lg:mt-0'
+  );
   inputElement.title = 'Must be a fully formed and publicly accessible URL';
   inputElement.placeholder = 'Add an image';
 

@@ -13,6 +13,9 @@ export async function profileData() {
 
   if (profile) {
     const hero = document.querySelector('.hero');
+    const createListingButton = document.querySelector(
+      '#createListingNavButton'
+    );
     const createListing = document.createElement('button');
     const login = document.querySelector('#login');
     const profileButton = document.createElement('button');
@@ -22,24 +25,17 @@ export async function profileData() {
     const profilePicture = document.createElement('img');
     const fullProfile = document.createElement('div');
 
+    createListingButton.classList.remove('hidden');
+
     createListing.innerHTML = 'Create Listing';
 
-    createListing.addEventListener('click', () => {
-      modal.classList.add('active', 'md:grid');
-      overlay.classList.add('active');
-      window.addEventListener('click', (e) => {
-        if (e.target.matches('.overlay')) {
-          modal.classList.remove('active', 'md:grid');
-          overlay.classList.remove('active');
-        }
-      });
-      window.addEventListener('load', () => {
-        if (modal) {
-          modal.classList.remove('active', 'md:grid');
-          overlay.classList.remove('active');
-        }
-      });
-    });
+    createListing.addEventListener('click', () =>
+      handleListingModal(modal, overlay)
+    );
+
+    createListingButton.addEventListener('click', () =>
+      handleListingModal(modal, overlay)
+    );
 
     logoutButton.addEventListener('click', () => logout());
 
@@ -211,4 +207,21 @@ export function createUpdateForm(name, parent) {
 
   updateForm.append(updateInput, inputSubmit);
   parent.append(updateForm);
+}
+
+export function handleListingModal(modal, overlay) {
+  modal.classList.add('active', 'md:grid');
+  overlay.classList.add('active');
+  window.addEventListener('click', (e) => {
+    if (e.target.matches('.overlay')) {
+      modal.classList.remove('active', 'md:grid');
+      overlay.classList.remove('active');
+    }
+  });
+  window.addEventListener('load', () => {
+    if (modal) {
+      modal.classList.remove('active', 'md:grid');
+      overlay.classList.remove('active');
+    }
+  });
 }

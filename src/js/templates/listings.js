@@ -16,9 +16,8 @@ export function listingsTemplate(data) {
   const bidContainer = document.createElement('div');
 
   // Appending
+  bidContainer.append(bid);
   expirationTime(data, remainingTime, bidContainer);
-  setInterval(expirationTime, 1000, data, remainingTime, bidContainer);
-  bidContainer.append(bid, remainingTime);
   headerContainer.append(header, profileContainer);
   details.append(headerContainer);
   profileContainer.append(profileImage, profileName);
@@ -51,12 +50,12 @@ export function listingsTemplate(data) {
   if (bids.length === 0) {
     bid.innerHTML = 'Be the first to bid';
   } else {
-    bid.innerHTML = `${lastBid.amount},-`;
-    bid.classList.add('font-extraBold');
+    bid.innerHTML = `Current bid: ${lastBid.amount},-`;
+    bid.classList.add('font-bold');
   }
 
-  if (title.length > 12) {
-    header.innerHTML = title.slice(0, 12).concat('...');
+  if (title.length > 20) {
+    header.innerHTML = title.slice(0, 20).concat('..');
   } else {
     header.innerHTML = title;
   }
@@ -64,10 +63,10 @@ export function listingsTemplate(data) {
   // Classes
   bidContainer.classList.add(
     'flex',
-    'flex-row-reverse',
     'justify-between',
     'items-center',
-    'w-full'
+    'w-full',
+    'relative'
   );
   headerContainer.classList.add(
     'flex',
@@ -82,7 +81,7 @@ export function listingsTemplate(data) {
     'rounded-lg',
     'card',
     'px-4',
-    'py-2',
+    'py-1',
     'h-min',
     'bg-white'
   );
@@ -97,31 +96,28 @@ export function listingsTemplate(data) {
   profileName.classList.add('font-ofelia', 'text-white', 'text-sm');
   profileContainer.classList.add('flex', 'items-center');
   header.classList.add(
-    'font-ofelia',
+    'font-lust',
     'font-extraBold',
     'text-primary',
-    'text-lg'
+    'text-xl'
   );
   remainingTime.classList.add(
     'font-bold',
     'text-sm',
     'text-primary',
     'w-full',
-    'rounded-t-lg'
+    'rounded-t-lg',
+    'text-end',
+    'font-ofelia'
   );
-  bid.classList.add(
-    'font-ofelia',
-    'text-primary',
-    'text-sm',
-    'w-full',
-    'text-end'
-  );
+  bid.classList.add('font-lust', 'text-primary', 'text-lg', 'w-full');
 
   // Source and innerHTML
   profileImage.src = seller.avatar;
   profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
   profileName.innerHTML = seller.name;
   image.setAttribute('onerror', `src="${errorImage}"`);
+
   if (
     location.pathname === '/listing/' ||
     location.pathname === '/Semester_Project_2/listing/'
