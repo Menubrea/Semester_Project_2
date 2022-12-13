@@ -10,26 +10,12 @@
   --clr-contrast: #c5bb9b;
 }
 
-.bg-listing {
-  background-image: url('/../../media/images/bg-listing.jpg');
-  background-size: cover;
-}
-
-.background {
-  background-color: var(--clr-accent);
-}
-
-.hero {
-  background-image: url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMy1jaGltLTMxLWktd2FsbF8yLmpwZw.jpg');
-  background-size: cover;
-}
-
 nav > a,
 nav > button {
   position: relative;
-  padding: 0.4em 1em;
-  border-radius: 0.5em;
-  border: 2px solid var(--clr-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
+  border: 0.2rem solid var(--clr-primary);
   overflow: hidden;
 }
 
@@ -38,41 +24,62 @@ nav > button {
   overflow: hidden;
 }
 
+.preview-card {
+  position: relative;
+}
+
 .listing {
   position: relative;
   overflow: hidden;
   background-color: #fff;
 }
 
-nav > a:after,
-nav > button:after,
 .card:after,
 .card-promo:after,
 .card-promo:before,
 .listingC:before,
-.listing:after {
+.listing:after,
+.preview-card:before {
   content: '';
   position: absolute;
   width: 0;
   height: 0;
-  border: 0.5em solid var(--clr-primary);
-  border-left: 0.5em solid transparent;
-  border-top: 0.5em solid transparent;
+  border: 0.5rem solid var(--clr-primary);
+  border-left: 0.5rem solid transparent;
+  border-top: 0.5rem solid transparent;
   right: 0;
   bottom: 0;
   z-index: -1;
 }
 
+.preview-card:before {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  border: 4.5rem solid var(--clr-contrast);
+  border-bottom: 4.5em solid transparent;
+  border-right: 4.5em solid transparent;
+}
+
+.preview-card:after {
+  position: absolute;
+  content: 'This is a preview';
+  top: 2.8rem;
+  left: 0rem;
+  transform: rotate(-45deg);
+  z-index: 10;
+}
+
 .card:after {
-  border: 6em solid var(--clr-primary);
-  border-left: 6em solid transparent;
-  border-top: 6em solid transparent;
+  border: 6rem solid var(--clr-primary);
+  border-left: 6rem solid transparent;
+  border-top: 6rem solid transparent;
 }
 
 .card-promo:after,
 .listing:after {
-  --width: 9em;
-  --height: 4.5em;
+  --width: 9rem;
+  --height: 4.5rem;
   border: var(--height) solid var(--clr-contrast);
   border-left: var(--width) solid transparent;
   border-top: var(--height) solid transparent;
@@ -81,8 +88,8 @@ nav > button:after,
 
 .card-promo:before,
 .listing:before {
-  --width: 9em;
-  --height: 4.5em;
+  --width: 9rem;
+  --height: 4.5rem;
   left: 0;
   top: 0;
   border: var(--height) solid transparent;
@@ -95,21 +102,16 @@ nav > a:hover,
 nav > button:hover {
   background-color: var(--clr-secondary);
   color: #fff;
-  transition: all 500ms ease-in-out;
-}
-
-nav > button:hover:after,
-nav > a:hover:after {
-  border: 0.5em solid #fff;
-  border-left: 0.5em solid transparent;
-  border-top: 0.5em solid transparent;
-  transition: all 500ms ease-in-out;
-  z-index: 1000;
+  transition: all 200ms ease-in-out;
 }
 
 .background-auth {
   background-image: url('./../../media/images/christmas-theme.jpg');
   background-size: cover;
+}
+
+:hover {
+  transition: all 200ms ease-in-out;
 }
 
 .card {
@@ -118,11 +120,10 @@ nav > a:hover:after {
 }
 
 .card:hover {
-  box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1em 0 rgba(0, 0, 0, 0.4);
   transform: scale(1.01);
   z-index: 10;
   cursor: pointer;
-  transition-delay: 200ms;
 }
 
 .active-button {
@@ -146,8 +147,6 @@ nav > a:hover:after {
 }
 
 .modal-auth {
-  min-width: 320px;
-  width: 100%;
   max-width: max-content;
 }
 
@@ -197,6 +196,11 @@ nav > a:hover:after {
   border-color: var(--clr-primary) transparent;
 }
 
+:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--clr-contrast);
+}
+
 input:focus,
 textarea:focus {
   outline: none;
@@ -214,5 +218,12 @@ textarea:focus {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 465) {
+  .modal-auth {
+    width: 320px;
+    max-width: fit-content;
   }
 }

@@ -5,22 +5,24 @@ export function popUp(message, parent) {
 
   headerContainer.classList.add(
     'font-lust',
-    'text-white',
+    'text-dark',
     'p-2',
     'pb-1',
-    'text-lg',
+    'text-2xl',
     'rounded-t',
     'w-full',
     'border-b',
     'border-primary/20',
-    'bg-contrast'
+    'bg-contrast',
+    'flex',
+    'items-center',
+    'justify-center'
   );
   container.classList.add(
     'fixed',
     'top-0',
     'bg-white',
     'shadow-lg',
-    'rounded',
     'backdrop-blur-lg',
     'inset-x-0',
     'w-full',
@@ -37,7 +39,9 @@ export function popUp(message, parent) {
 
   setTimeout(hidePopUp, 3000);
 
-  headerContainer.innerHTML = 'Vender';
+  headerContainer.innerHTML = `<i
+            class="fa-brands fa-nfc-symbol text-white bg-dark text-sm p-2 mr-2 rounded-lg grid items-center justify-center "
+          ></i>Vender`;
   messageContainer.innerHTML = message;
   container.append(headerContainer, messageContainer);
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="background">
+<html lang="en" class="bg-gradient-to-br from-white via-accent/80 to-white">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,7 +27,7 @@
     <header class="relative z-40">
       <div
         id="headerContainer"
-        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3"
+        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3 shadow-lg"
       >
         <a
           href="./../"
@@ -63,7 +63,7 @@
       </div>
       <div
         id="dataContainer"
-        class="md:w-max w-full bg-white pt-4 pb-2 my-2 z-20 rounded-lg hidden absolute right-0 border-4 border-secondary"
+        class="md:w-max w-full bg-white pt-2 pb-2 my-2 lg:my-4 z-20 rounded-lg hidden absolute right-0 border-4 border-secondary"
       ></div>
     </header>
     <main>
@@ -228,7 +228,10 @@
         </form>
       </div>
       <!-- Login Modal -->
-      <div id="loginModal" class="modal modal-auth bg-primary p-4 relative">
+      <div
+        id="loginModal"
+        class="modal modal-auth bg-primary p-2 md:p-4 relative"
+      >
         <button
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
@@ -238,7 +241,7 @@
         <!-- loginForm -->
         <form
           id="loginForm"
-          class="max-w-xl mx-auto p-8 rounded-lg backdrop-blur-3xl shadow-lg bg-white/20 w-max"
+          class="max-w-xl mx-auto p-8 rounded-lg backdrop-blur-3xl shadow-lg bg-white/20 w-fit"
         >
           <p
             class="font-lust text-primary text-2xl bg-white py-2 px-5 rounded-lg shadow-md w-fit mx-auto"
@@ -269,13 +272,13 @@
             />
           </div>
           <div
-            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg mx-5"
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg flex"
           >
             Don't have an account?
             <button
               type="button"
               id="register"
-              class="bg-dark/80 rounded-xl px-2 py-1 text-white ml-1 cursor-pointer hover:bg-dark/50"
+              class="bg-dark/80 px-2 pb-1 text-white ml-1 cursor-pointer hover:bg-dark/50"
             >
               Register
             </button>
@@ -290,7 +293,10 @@
         </form>
       </div>
       <!-- RegisterModal -->
-      <div id="registerModal" class="modal modal-auth bg-primary p-4 relative">
+      <div
+        id="registerModal"
+        class="modal modal-auth bg-primary p-2 md:p-4 relative"
+      >
         <button
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
@@ -299,7 +305,7 @@
         </button>
         <form
           id="registerForm"
-          class="max-w-xl mx-auto p-10 rounded-lg h-max m-4 backdrop-blur-3xl shadow-lg bg-white/20 w-max"
+          class="max-w-xl mx-auto p-8 rounded-lg h-max m-4 backdrop-blur-3xl shadow-lg bg-white/20 w-fit"
         >
           <p
             class="font-lust text-primary text-2xl bg-white py-2 px-5 rounded-lg shadow-md w-fit mx-auto"
@@ -351,13 +357,13 @@
             />
           </div>
           <div
-            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg mx-5"
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg flex"
           >
             Already have an account?
             <button
               type="button"
               id="loginFromForm"
-              class="rounded-xl bg-dark/80 px-2 py-1 ml-1 cursor-pointer hover:bg-dark/50 text-white"
+              class="bg-dark/80 px-2 pb-1 ml-1 cursor-pointer hover:bg-dark/50 text-white"
             >
               Log In
             </button>

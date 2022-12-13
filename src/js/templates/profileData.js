@@ -85,7 +85,7 @@ export async function profileData() {
     );
 
     profileName.classList.add(
-      'text-dark',
+      'text-primary',
       'font-ofelia',
       'text-center',
       'font-bold'
@@ -95,25 +95,18 @@ export async function profileData() {
       'font-ofelia',
       'font-bold',
       'text-sm',
-      'text-white',
+      'text-primary',
       'text-center',
-      'bg-dark',
-      'p-2',
       'w-fit',
-      'rounded',
-      'mx-auto'
+      'mx-auto',
+      'border-2',
+      'p-2',
+      'my-1'
     );
 
     login.classList.add('hidden');
 
-    profilePicture.classList.add(
-      'w-24',
-      'h-24',
-      'mx-auto',
-      'rounded-lg',
-      'hover:opacity-70',
-      'mb-2'
-    );
+    profilePicture.classList.add('w-24', 'h-24', 'mx-auto', 'rounded-lg');
     profileButton.classList.add(
       'font-ofelia',
       'text-primary',
@@ -143,13 +136,17 @@ export async function profileData() {
       }
     });
 
-    totalCredit.innerHTML = profile.credits + ',-';
+    totalCredit.innerHTML =
+      'You have ' +
+      profile.credits +
+      '<i class="fa-solid  fa-coins text-primary ml-1"></i>';
     profileName.innerHTML = profile.name;
     if (profile.avatar === '' || profile.avatar === null) {
       profilePicture.src = defaultProfile;
     } else {
       profilePicture.src = profile.avatar;
     }
+
     profilePicture.setAttribute('onerror', `src="${defaultProfile}"`);
     profileButton.innerHTML = `<i class="fa-solid fa-user text-xs text-center w-full mr-1"></i> ${profile.name}`;
     logoutButton.innerHTML = `Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>`;
@@ -191,6 +188,7 @@ export function createUpdateForm(name, parent) {
     'border-2',
     'border-secondary',
     'p-1',
+    'pl-2',
     'rounded-l-lg',
     'text-base'
   );

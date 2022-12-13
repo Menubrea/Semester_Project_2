@@ -28,7 +28,7 @@ export function promoListingTemplate(data) {
   if (bids.length === 0) {
     bidElement.innerHTML = 'Be the first to bid';
   } else {
-    bidElement.innerHTML = `Current bid: ${latestBid.amount}`;
+    bidElement.innerHTML = `Current bid: ${latestBid.amount} <i class="fa-solid  fa-coins text-dark text-md ml-1"></i>`;
   }
 
   bidElement.classList.add(
@@ -139,8 +139,4 @@ export function promoListingTemplate(data) {
 
 export function renderPromoListingTemplate(data, parent) {
   return parent.append(promoListingTemplate(data));
-}
-
-export function renderListingTemplates(dataList, parent) {
-  parent.append(...dataList.map(listingsTemplate));
 }

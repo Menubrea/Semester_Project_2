@@ -101,10 +101,10 @@ export function listingTemplate(data) {
     'lg:mt-0'
   );
   listingTitle.classList.add(
-    'font-ofelia',
+    'font-lust',
     'font-bold',
     'text-primary',
-    'text-2xl'
+    'text-4xl'
   );
   profileAvatar.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
   remainingTime.classList.add(
@@ -140,7 +140,7 @@ export function listingTemplate(data) {
     const bidName = document.createElement('p');
     const bidMade = document.createElement('p');
 
-    bidValue.innerHTML = `Amount: ${amount},-`;
+    bidValue.innerHTML = `Amount: ${amount} <i class="fa-solid  fa-coins text-primary ml-1"></i>`;
     bidName.innerHTML = `<i class="fa-solid fa-user mr-2"></i>${bidderName}`;
 
     const dateCreated = new Date(created);
@@ -158,7 +158,7 @@ export function listingTemplate(data) {
     bidMade.innerHTML = `${days}d ${hours}h ${minutes}m ago`;
 
     bidName.classList.add('w-full');
-    bidMade.classList.add('text-right', 'w-full');
+    bidMade.classList.add('text-center', 'w-full');
     bidValue.classList.add('text-right', 'w-full');
 
     bidContainer.classList.add(

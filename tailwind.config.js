@@ -16,7 +16,6 @@ module.exports = {
     },
     fontFamily: {
       lust: ['modesto-condensed', 'serif'],
-      creative: ['sisters-four', 'sans-serif'],
       ofelia: ['ofelia-display', 'sans-serif'],
     },
     fontWeight: {

@@ -50,7 +50,7 @@ export function listingsTemplate(data) {
   if (bids.length === 0) {
     bid.innerHTML = 'Be the first to bid';
   } else {
-    bid.innerHTML = `Current bid: ${lastBid.amount},-`;
+    bid.innerHTML = `Current bid: ${lastBid.amount} <i class="fa-solid  fa-coins text-primary ml-1"></i>`;
     bid.classList.add('font-bold');
   }
 
