@@ -21,18 +21,24 @@ export function handleLoginModal() {
     registerModal.classList.remove('active');
     overlay.classList.add('active');
     inputEmail.focus();
+
+    return loginModal;
   });
 
   loginButton.addEventListener('click', (e) => {
     loginModal.classList.add('active');
     overlay.classList.add('active');
     inputEmail.focus();
+
+    return loginModal;
   });
 
   window.addEventListener('click', (e) => {
     if (e.target.matches('.overlay')) {
       loginModal.classList.remove('active');
       overlay.classList.remove('active');
+
+      return loginModal;
     }
   });
 
@@ -57,6 +63,8 @@ export function handleRegisterModal() {
     registerModal.classList.add('active');
     overlay.classList.add('active');
     inputName.focus();
+
+    return registerModal;
   });
 
   if (
@@ -69,6 +77,8 @@ export function handleRegisterModal() {
       registerModal.classList.add('active');
       overlay.classList.add('active');
       inputName.focus();
+
+      return registerModal;
     });
   }
 
@@ -76,6 +86,8 @@ export function handleRegisterModal() {
     if (e.target.matches('.overlay')) {
       registerModal.classList.remove('active');
       overlay.classList.remove('active');
+
+      return registerModal;
     }
   });
 
@@ -83,6 +95,8 @@ export function handleRegisterModal() {
     button.addEventListener('click', () => {
       registerModal.classList.remove('active');
       overlay.classList.remove('active');
+
+      return registerModal;
     })
   );
 }

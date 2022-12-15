@@ -1,8 +1,7 @@
 import { getListing } from '../api/listings/read_single.js';
 import { renderListingTemplate } from '../templates/listing.js';
-import { renderListingTemplates } from '../templates/listings.js';
-import { clearLoader } from '../components/loader.js';
 import { getListings } from '../api/listings/read.js';
+import { setPagination } from '../components/pagination.js';
 
 export async function setGetListing() {
   const listing = await getListing();
@@ -10,17 +9,32 @@ export async function setGetListing() {
   const name = listing.seller.name;
   const listingID = listing.id;
 
-  const listingsContainer = document.querySelector('#listingsContainer');
   const listings = await getListings();
-  const filteredListings = listings.filter((listing) => {
-    if (listing.seller.name === name && listing.id !== listingID) {
+
+  const filteredPopular = listings.filter((listing) => {
+    if (listing.bids.length > 2) {
       return listing;
     }
   });
 
-  renderListingTemplates(filteredListings, listingsContainer);
+  const filteredListingsProfile = listings.filter((listing) => {
+    if (
+      listing.seller.name === name &&
+      listing.id !== listingID &&
+      listing.length !== 0
+    ) {
+      return listing;
+    }
+  });
+
+  if (filteredListingsProfile.length !== 0) {
+    setPagination(filteredListingsProfile);
+  } else {
+    const header = document.querySelector('#subHeader');
+    header.innerHTML = '';
+    header.innerHTML = 'Popular auctions';
+    setPagination(filteredPopular);
+  }
+
   renderListingTemplate(listing, container);
-  window.onload = setTimeout(() => {
-    clearLoader();
-  }, 200);
 }

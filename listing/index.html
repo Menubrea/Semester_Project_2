@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-gradient-to-br from-white via-accent/80 to-white">
+<html
+  lang="en"
+  class="bg-gradient-to-br from-white via-accent/80 to-white min-h-screen"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,20 +17,29 @@
     <meta name="description" content="" />
     <title>Vender | Listing |</title>
   </head>
-  <body class="max-w-7xl container min-h-screen px-2">
+  <body class="max-w-7xl container lg:px-4 px-2">
     <div
       id="loader"
       class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
     >
-      <div class="flex items-center justify-center">
-        <span class="loader"></span>
-        <p class="font-lust text-primary text-3xl ml-3">Vender is loading...</p>
+      <div id="errorContainer">
+        <div class="flex items-center justify-center" id="loaderContainer">
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p class="font-lust text-primary text-3xl ml-3">
+            Vender is loading...
+          </p>
+        </div>
       </div>
     </div>
-    <header class="relative z-40">
+    <header class="relative z-40 shadow-lg">
       <div
         id="headerContainer"
-        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3 shadow-lg"
+        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg lg:mt-4 mt-2 px-3"
       >
         <a
           href="./../"
@@ -67,23 +79,40 @@
       ></div>
     </header>
     <main>
+      <div id="breadCrumbsNav" class="ml-4 mt-2 font-ofelia text-sm">
+        <a href="./../">Home |</a>
+        <a id="locationHere" href=""></a>
+      </div>
       <section>
         <!-- Listing goes here -->
         <div
           id="listingContainer"
-          class="rounded-lg lg:my-4 my-2 md:pb-0 pb-2 listing"
+          class="rounded-lg lg:mb-4 mt-2 my-2 md:pb-0 pb-2 overflow-hidden shadow-lg"
         ></div>
       </section>
       <!-- Listings goes here -->
       <section id="listingsSection">
-        <h2
-          class="font-ofelia font-bold text-primary text-xl mb-2 border-b-2 text-center"
-        >
-          Other auctions by this user:
-        </h2>
         <div
-          class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-2 mx-auto container max-w-7xl z-10 grid-rows-12 mt-4"
+          class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg px-2 flex items-center mt-8 rounded-md w-fit"
+        >
+          <div class="flex gap-1 items-center w-fit">
+            <p class="text-sm w-fit mx-auto border-dark/50">browse -</p>
+            <h2
+              id="subHeader"
+              class="font-lust text-xl text-extraBold text-dark/90 font-bold w-max mx-auto"
+            >
+              Auctions from this user
+            </h2>
+          </div>
+        </div>
+        <div
+          class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-2 mx-auto container max-w-7xl z-10 grid-rows-12 md:mt-4 mt-2"
           id="listingsContainer"
+        ></div>
+        <!-- Pagination -->
+        <div
+          id="paginationNumbers"
+          class="flex gap-1 p-2 w-full mt-6 justify-center"
         ></div>
       </section>
       <div class="overlay backdrop-blur-lg bg-accent/90"></div>
@@ -98,14 +127,15 @@
         >
           <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
         </button>
-        <div class="w-full lg:mt-0 lg:p-4 bg-white" id="preview">
-          <div
-            class="preview-card pb-2 border-y-4 border-contrast md:border-none"
-          >
+        <div
+          class="w-full lg:mt-0 lg:p-4 bg-white relative preview-card font-ofelia text-dark font-bold border-4 border-contrast"
+          id="preview"
+        >
+          <div class="pb-2 border-y-4 border-contrast md:border-none">
             <img
-              class="md:rounded-lg shadow-md object-fill mx-auto max-h-72 w-full"
+              class="object-fill mx-auto max-h-96 w-full border-b border-b-secondary"
               id="preview-img"
-              src="https://images.rawpixel.com/image_1300/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA2L2stZy1nMDM1OS1pZGVhcy5qcGc.jpg"
+              src="https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvay0yNi1hLTEyNzc4LW9sajE5NjctMS1iZWNyZWF0aXZlXzEuanBn.jpg"
               alt="preview-image"
             />
             <div class="mt-2 lg:mx-2 mx-4">
@@ -113,13 +143,10 @@
                 class="font-lust text-primary text-xl lg:text-3xl font-bold"
                 id="preview-title"
               >
-                Preview Title
+                A thoughtful title will generate interest!
               </p>
-              <p
-                class="font-ofelia text-dark lg:text-md sm:text-sm"
-                id="preview-description"
-              >
-                Preview Description
+              <p class="font-ofelia text-dark text-md" id="preview-description">
+                Be creative and detailed in your description.
               </p>
             </div>
           </div>
@@ -141,9 +168,12 @@
                 required
                 placeholder="Title"
                 title="Please provide a title"
-                minlength="1"
-                maxlength="40"
+                maxlength="50"
               />
+              <div
+                id="titleCount"
+                class="w-full text-xs text-end text-white"
+              ></div>
             </div>
             <div class="mt-2">
               <label
@@ -157,11 +187,10 @@
                 title="Please select a duration for your auction"
                 name="endsAt"
                 id="expiration"
-                required
               >
-                <option id="inOneHour" value="">Express: 1 hour</option>
-                <option id="inOneDay" value="">Regular: 24 hours</option>
-                <option id="inOneWeek" value="">Long: 7 days</option>
+                <option id="inOneHour">Express: 1 hour</option>
+                <option id="inOneDay">Regular: 24 hours</option>
+                <option id="inOneWeek">Long: 7 days</option>
               </select>
             </div>
           </div>
@@ -179,13 +208,10 @@
                 class="p-2 pl-4 w-full rounded-full"
                 required
               />
-              <div class="w-full">
-                <p
-                  class="w-full text-sm text-white font-ofelia text-center mt-1"
-                >
-                  Additional images will not be displayed in the preview.
-                </p>
+              <div class="font-ofelia text-xs text-end text-white">
+                Horisontal high quality images work best for this app
               </div>
+
               <button
                 class="bg-primary text-white p-2 text-sm font-ofelia font-bold w-max flex justify-center items-center hover:bg-primary/80 mx-auto mt-2 rounded-lg border-4 border-contrast"
                 type="button"
@@ -194,6 +220,13 @@
                 <i class="fa-solid fa-circle-plus text-white text-sm mr-1"></i>
                 Add Image
               </button>
+              <div class="w-full">
+                <p
+                  class="w-full text-sm text-white font-ofelia text-center mt-1"
+                >
+                  Additional images will not be displayed in the preview.
+                </p>
+              </div>
             </div>
 
             <div
@@ -211,11 +244,12 @@
               name="description"
               rows="5"
               required
+              maxlength="280"
             ></textarea>
-            <p class="w-full text-xs text-end text-white">
-              Providing a detailed description will help potential buyers making
-              a decision
-            </p>
+            <div
+              id="descriptionCount"
+              class="w-full text-xs text-end text-white"
+            ></div>
           </div>
           <div class="flex justify-center items-center">
             <button

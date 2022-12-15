@@ -14,7 +14,7 @@ export async function setSearchListingsFormListener() {
 
 export async function handleSearchControlInput(event) {
   const container = document.querySelector('#searchResults');
-  const filterNav = document.querySelector('#filterNav');
+  const searchContainer = document.querySelector('#searchContainer');
   const listings = await getListings();
   const inputValue = event.target.value.toLowerCase();
 
@@ -23,10 +23,16 @@ export async function handleSearchControlInput(event) {
       listing.title.toLowerCase().startsWith(inputValue) &&
       inputValue.length > 0
     ) {
-      filterNav.classList.remove('rounded-lg');
-      filterNav.classList.add('rounded-t-lg');
-      container.classList.add('grid');
+      searchContainer.classList.remove('rounded-full');
+      searchContainer.classList.add(
+        'border-t-2',
+        'border-x-2',
+        'border-contrast',
+        'rounded-t-lg',
+        'shadow-xl'
+      );
       container.classList.remove('hidden');
+      container.classList.add('grid');
 
       return true;
     } else if (inputValue.length === 0) {
@@ -40,12 +46,19 @@ export async function handleSearchControlInput(event) {
 
 export function clearSearchContainer() {
   const container = document.querySelector('#searchResults');
-  const searchName = document.querySelector('#searchBar');
-  const filterNav = document.querySelector('#filterNav');
-  searchName.value = '';
+  const searchInput = document.querySelector('#searchBar');
+  const searchContainer = document.querySelector('#searchContainer');
+  searchInput.value = '';
   container.innerHTML = '';
-  filterNav.classList.add('rounded-lg');
-  filterNav.classList.remove('rounded-t-lg');
+  searchContainer.classList.add('rounded-full');
+  searchContainer.classList.remove(
+    'border-t-2',
+    'border-x-2',
+    'border-contrast',
+    'rounded-t-lg',
+    'shadow-xl'
+  );
+
   container.classList.add('hidden');
   container.classList.remove('grid');
   return container;

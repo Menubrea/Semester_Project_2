@@ -1,5 +1,5 @@
 import { getListings } from '../api/listings/read.js';
-import { clearLoader } from '../components/loader.js';
+import { cycleListings } from '../components/cycleListings.js';
 import { renderPromoListingTemplate } from '../templates/promoListing.js';
 import { setPagination } from './../components/pagination.js';
 
@@ -10,17 +10,19 @@ export async function setGetListingsFiltered() {
   const trendingButton = document.querySelector('#trendingButton');
   const expirationButton = document.querySelector('#expiringButton');
   const filterButtons = document.querySelectorAll('.filterButton');
+  const prevButton = document.querySelector('#prevButton');
+  const nextButton = document.querySelector('#nextButton');
   const allButton = document.querySelector('#allButton');
   const listings = await getListings();
 
-  const filteredFirst = listings.filter((listing, index) => {
-    if (index === 0) {
+  const filteredPromo = listings.filter((listing, index) => {
+    if (index <= 4) {
       return listing;
     }
   });
 
   const filteredAll = listings.filter((listing, index) => {
-    if (index > 0) {
+    if (index > 4) {
       return listing;
     }
   });
@@ -33,20 +35,15 @@ export async function setGetListingsFiltered() {
 
   const filteredExpiring = listings.filter((listing) => {
     const { endsAt } = listing;
-
     const expiration = new Date(endsAt).getTime();
-
     const now = new Date().getTime();
     const distance = expiration - now;
-
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
     if (days <= 0) {
       return listing;
     }
   });
-
-  clearLoader();
 
   setPagination(filteredAll);
 
@@ -74,5 +71,6 @@ export async function setGetListingsFiltered() {
     return setPagination(filteredExpiring);
   });
 
-  renderPromoListingTemplate(filteredFirst[0], firstEntryContainer);
+  cycleListings(prevButton, nextButton, filteredPromo, firstEntryContainer);
+  renderPromoListingTemplate(filteredPromo[0], firstEntryContainer);
 }

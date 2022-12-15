@@ -9,7 +9,6 @@ export function popUp(message, parent) {
     'p-2',
     'pb-1',
     'text-2xl',
-    'rounded-t',
     'w-full',
     'border-b',
     'border-primary/20',
@@ -24,11 +23,11 @@ export function popUp(message, parent) {
     'bg-white',
     'shadow-lg',
     'backdrop-blur-lg',
-    'inset-x-0',
     'w-full',
+    'inset-x-0',
     'popUp'
   );
-  messageContainer.classList.add('font-ofelia', 'p-2', 'text-sm', 'text-dark');
+  messageContainer.classList.add('font-ofelia', 'p-2', 'text-md', 'text-dark');
 
   function hidePopUp() {
     container.classList.remove('fixed');
