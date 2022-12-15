@@ -113,7 +113,8 @@ export function listingTemplate(data) {
     'flex',
     'lg:justify-end',
     'justify-center',
-    'my-5',
+    'lg:my-5',
+    'my-2',
     'lg:mt-0'
   );
   listingTitle.classList.add(
@@ -145,7 +146,7 @@ export function listingTemplate(data) {
     'md:col-span-1',
     'md:bg-accent/30',
     'md:p-5',
-    'md:rounded-lg',
+    'rounded-lg',
     'h-fit'
   );
   listingContainer.classList.add('lg:col-span-3', 'md:col-span-1', 'relative');
@@ -161,8 +162,8 @@ export function listingTemplate(data) {
     const bidName = document.createElement('p');
     const bidMade = document.createElement('p');
 
-    bidValue.innerHTML = `Amount: ${amount} <i class="fa-solid  fa-coins text-primary ml-1"></i>`;
-    bidName.innerHTML = `<i class="fa-solid fa-user mr-2"></i>${bidderName}`;
+    bidValue.innerHTML = `${amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
+    bidName.innerHTML = `${bidderName}`;
 
     const dateCreated = new Date(created);
     const now = new Date();

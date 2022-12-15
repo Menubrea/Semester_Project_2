@@ -149,7 +149,7 @@ export function listingsTemplate(data) {
   profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
   profileName.innerHTML = seller.name;
   image.setAttribute('onerror', `src="${errorImage}"`);
-  expiringIcon.innerHTML = `<i class="fa-solid fa-clock mr-1"></i> less than 24h`;
+  expiringIcon.innerHTML = `<i class="fa-solid fa-clock mr-1"></i> > 24h`;
   popularIcon.innerHTML = `<i class="fa-solid fa-fire-flame-curved mr-1"></i>${bids.length}`;
 
   // Conditional logic
@@ -176,13 +176,13 @@ export function listingsTemplate(data) {
   }
 
   if (bids.length === 0) {
-    bid.innerHTML = 'Be the first to bid';
+    bid.innerHTML = 'No bids yet';
   } else {
-    bid.innerHTML = `Current bid: ${lastBid.amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
+    bid.innerHTML = ` ${lastBid.amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
   }
 
-  if (title.length > 20) {
-    header.innerHTML = title.slice(0, 20).concat('..');
+  if (title.length > 18) {
+    header.innerHTML = title.slice(0, 18).concat('..');
   } else {
     header.innerHTML = title;
   }
