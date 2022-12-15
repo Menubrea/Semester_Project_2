@@ -7,7 +7,7 @@ import { getProfile } from '../profile/read.js';
 
 const action = '/listings/';
 const method = 'POST';
-const container = document.querySelector('body');
+const container = document.querySelector('main');
 
 export async function makeBid(data, id) {
   try {
@@ -36,7 +36,7 @@ export async function makeBid(data, id) {
       throw new Error();
     }
   } catch (err) {
-    popUp('Something went wrong while bididng on your item', container);
+    popUp('Something went wrong while bidding on this item', container);
     console.log(err);
   }
 }
