@@ -1,5 +1,5 @@
-import { expirationTime } from '../components/expirationTime.js';
 import { defaultProfile, errorImage } from '../api/constants.js';
+import { mouseOverCountdown } from '../components/eventCountDown.js';
 
 export function listingsTemplate(data) {
   const card = document.createElement('article');
@@ -8,27 +8,184 @@ export function listingsTemplate(data) {
   const profileImage = document.createElement('img');
   const profileName = document.createElement('p');
   const profileContainer = document.createElement('div');
-  const bid = document.createElement('p');
-  const details = document.createElement('div');
+  const bid = document.createElement('div');
   const remainingTime = document.createElement('p');
   const anchor = document.createElement('a');
   const headerContainer = document.createElement('div');
-  const bidContainer = document.createElement('div');
+  const infoContainer = document.createElement('div');
+  const expiringIcon = document.createElement('div');
+  const popularIcon = document.createElement('div');
 
   // Appending
-  bidContainer.append(bid);
-  expirationTime(data, remainingTime, bidContainer);
+  infoContainer.append(bid);
+  mouseOverCountdown(card, remainingTime, data, anchor);
   headerContainer.append(header, profileContainer);
-  details.append(headerContainer);
   profileContainer.append(profileImage, profileName);
-  anchor.append(bidContainer, image, details);
-  card.append(anchor);
+  anchor.append(image, headerContainer);
+  card.append(anchor, infoContainer);
 
-  const { title, media, seller, bids, id } = data;
+  const { title, media, seller, bids, endsAt, id } = data;
+  bids.sort((a, b) => b.amount - a.amount);
 
-  // Get last entry in array.
-  const lastBid = bids.at(-1);
+  // Since order is reversed, we access the first index for highest entry.
+  const lastBid = bids.at(0);
   // Conditional logic for handling media
+
+  // Classes
+  headerContainer.classList.add(
+    'flex',
+    'items-center',
+    'gap-3',
+    'justify-between',
+    'mx-2'
+  );
+  card.classList.add(
+    'relative',
+    'w-full',
+    'rounded-lg',
+    'card',
+    'px-2',
+    'pt-2',
+    'h-min',
+    'bg-white'
+  );
+  image.classList.add(
+    'w-full',
+    'h-64',
+    'object-cover',
+    'card-image',
+    'rounded-lg'
+  );
+  profileImage.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
+  profileName.classList.add(
+    'font-ofelia',
+    'text-white',
+    'text-md',
+    'items-center'
+  );
+  profileContainer.classList.add('flex', 'items-center');
+  header.classList.add(
+    'font-lust',
+    'font-extraBold',
+    'text-primary',
+    'text-2xl'
+  );
+
+  remainingTime.classList.add(
+    'text-md',
+    'text-white',
+    'font-ofelia',
+    'countDownOpacity',
+    'absolute',
+    'left-1/2',
+    '-translate-x-1/2',
+    'top-1/2',
+    '-translate-y-1/2',
+    'bg-primary/80',
+    'backdrop-blur-lg',
+    'px-4',
+    'py-1',
+    'w-max',
+    'rounded-md',
+    'border-dark/20',
+    'border',
+    'shadow-lg'
+  );
+  bid.classList.add(
+    'bg-contrast/90',
+    'backdrop-blur-lg',
+    'px-4',
+    'py-1',
+    'font-ofelia',
+    'text-sm',
+    'rounded-md',
+    'border-dark/20',
+    'border',
+    'shadow-lg',
+    'text-dark/80'
+  );
+
+  expiringIcon.classList.add(
+    'font-ofelia',
+    'text-sm',
+    'rounded-md',
+    'bg-expiring/90',
+    'backdrop-blur-lg',
+    'px-3',
+    'py-1',
+    'border-dark/20',
+    'border',
+    'shadow-lg',
+    'text-white/80',
+    'w-fit'
+  );
+
+  popularIcon.classList.add(
+    'font-ofelia',
+    'text-sm',
+    'rounded-md',
+    'bg-popular/90',
+    'backdrop-blur-lg',
+    'px-3',
+    'py-1',
+    'border-dark/20',
+    'border',
+    'shadow-lg',
+    'text-white/80',
+    'w-fit'
+  );
+
+  infoContainer.classList.add(
+    'absolute',
+    'top-4',
+    'left-4',
+    'w-fit',
+    'flex',
+    'gap-1'
+  );
+
+  // Source and innerHTML
+  profileImage.src = seller.avatar;
+  profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
+  profileName.innerHTML = seller.name;
+  image.setAttribute('onerror', `src="${errorImage}"`);
+  expiringIcon.innerHTML = `<i class="fa-solid fa-clock mr-1"></i> less than 24h`;
+  popularIcon.innerHTML = `<i class="fa-solid fa-fire-flame-curved mr-1"></i>${bids.length}`;
+
+  // Conditional logic
+
+  if (bids.length >= 2) {
+    infoContainer.append(popularIcon);
+  }
+
+  const expiration = new Date(endsAt).getTime();
+  const now = new Date().getTime();
+  const distance = expiration - now;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+
+  if (!days) {
+    infoContainer.append(expiringIcon);
+  }
+
+  if (!days && !hours) {
+    expiringIcon.innerHTML =
+      '<i class="fa-solid fa-clock mr-1"></i> Ending Soon!';
+  }
+
+  if (bids.length === 0) {
+    bid.innerHTML = 'Be the first to bid';
+  } else {
+    bid.innerHTML = `Current bid: ${lastBid.amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
+  }
+
+  if (title.length > 20) {
+    header.innerHTML = title.slice(0, 20).concat('..');
+  } else {
+    header.innerHTML = title;
+  }
 
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
@@ -45,78 +202,6 @@ export function listingsTemplate(data) {
   } else {
     profileImage.src = seller.avatar;
   }
-
-  // Conditional logic for handling bids
-  if (bids.length === 0) {
-    bid.innerHTML = 'Be the first to bid';
-  } else {
-    bid.innerHTML = `Current bid: ${lastBid.amount} <i class="fa-solid  fa-coins text-primary ml-1"></i>`;
-    bid.classList.add('font-bold');
-  }
-
-  if (title.length > 20) {
-    header.innerHTML = title.slice(0, 20).concat('..');
-  } else {
-    header.innerHTML = title;
-  }
-
-  // Classes
-  bidContainer.classList.add(
-    'flex',
-    'justify-between',
-    'items-center',
-    'w-full',
-    'relative'
-  );
-  headerContainer.classList.add(
-    'flex',
-    'items-center',
-    'gap-3',
-    'justify-between'
-  );
-  details.classList.add('w-full', 'rounded-t-lg', 'px-2');
-  card.classList.add(
-    'relative',
-    'w-full',
-    'rounded-lg',
-    'card',
-    'px-4',
-    'py-1',
-    'h-min',
-    'bg-white'
-  );
-  image.classList.add(
-    'w-full',
-    'h-64',
-    'object-cover',
-    'card-image',
-    'rounded-lg'
-  );
-  profileImage.classList.add('w-4', 'h-4', 'mr-1', 'rounded-full');
-  profileName.classList.add('font-ofelia', 'text-white', 'text-sm');
-  profileContainer.classList.add('flex', 'items-center');
-  header.classList.add(
-    'font-lust',
-    'font-extraBold',
-    'text-primary',
-    'text-xl'
-  );
-  remainingTime.classList.add(
-    'font-bold',
-    'text-sm',
-    'text-primary',
-    'w-full',
-    'rounded-t-lg',
-    'text-end',
-    'font-ofelia'
-  );
-  bid.classList.add('font-lust', 'text-primary', 'text-lg', 'w-full');
-
-  // Source and innerHTML
-  profileImage.src = seller.avatar;
-  profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
-  profileName.innerHTML = seller.name;
-  image.setAttribute('onerror', `src="${errorImage}"`);
 
   if (
     location.pathname === '/listing/' ||

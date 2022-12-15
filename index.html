@@ -17,23 +17,32 @@
     />
     <title>Vender | Home</title>
   </head>
-  <body class="max-w-7xl container px-2">
+  <body class="max-w-7xl container lg:px-4 px-2">
     <div
       id="loader"
       class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
     >
-      <div class="flex items-center justify-center">
-        <span class="loader"></span>
-        <p class="font-lust text-primary text-3xl ml-3">Vender is loading...</p>
+      <div id="errorContainer">
+        <div class="flex items-center justify-center" id="loaderContainer">
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p class="font-lust text-primary text-3xl ml-3">
+            Vender is loading...
+          </p>
+        </div>
       </div>
     </div>
-    <header class="relative z-40">
+    <header class="relative z-40 shadow-lg">
       <div
         id="headerContainer"
-        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg md:mt-4 mt-2 px-3 shadow-lg"
+        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg lg:mt-4 mt-2 px-3"
       >
         <a
-          href="./"
+          href="./../"
           class="logo font-lust text-2xl text-primary items-center flex w-fit"
         >
           <i
@@ -44,20 +53,20 @@
         <nav id="topNav" class="flex gap-1">
           <button
             id="createListingNavButton"
-            class="font-ofelia text-primary text-sm items-center font-bold hidden w-max h-full"
+            class="font-ofelia text-primary text-sm items-center font-bold hidden"
           >
             <i class="fa-solid fa-circle-plus text-xs"></i>
           </button>
           <a
             id="home"
-            href="./"
+            href="./../"
             class="font-ofelia text-primary text-sm flex items-center font-bold"
             ><i class="fa-solid fa-house md:mr-1 text-xs"></i
             ><span class="hidden md:block">Home</span></a
           >
           <button
             id="login"
-            class="font-ofelia text-primary flex items-center text-sm font-bold"
+            class="font-ofelia text-primary text-md flex items-center text-sm font-bold"
           >
             <i class="fa-solid fa-user text-xs text-center w-full md:mr-1"></i
             ><span class="hidden md:block">Login</span>
@@ -87,71 +96,107 @@
             </p>
           </div>
           <button
-            class="px-8 py-1 bg-primary text-white text-2xl font-lust font-bold border-2 rounded-lg register items-center md:float-right lg:float-none mt-5 lg:mt-0 hover:bg-white hover:text-primary hover:border-white"
+            class="px-8 py-1 bg-primary text-white text-2xl font-lust font-bold border-2 rounded-lg register items-center md:float-right lg:float-none mt-5 lg:mt-0 hover:bg-white hover:text-primary hover:border-primary"
           >
             Sign Up Now!
           </button>
         </div>
       </section>
-
-      <section class="max-w-7xl mx-auto" id="firstEntryContainer"></section>
+      <!-- first entry in listing goes here -->
+      <section class="max-w-7xl mx-auto relative">
+        <div id="firstEntryContainer"></div>
+        <div
+          class="flex justify-between items-center h-max w-full lg:mt-4 px-2 mt-2"
+          id="buttonNav"
+        >
+          <button id="prevButton" class="w-max">
+            <i
+              class="fa-solid fa-circle-chevron-left text-2xl text-primary"
+            ></i>
+          </button>
+          <div class="h-0.5 bg-primary w-full rounded-full mx-2"></div>
+          <div
+            class="w-32 bg-primary text-white text-sm font-ofelia px-3 py-1 rounded-full text-center"
+            id="count"
+          ></div>
+          <div class="h-0.5 bg-primary w-full rounded-full mx-2"></div>
+          <button id="nextButton" class="w-max">
+            <i
+              class="fa-solid fa-circle-chevron-right text-2xl text-primary"
+            ></i>
+          </button>
+        </div>
+      </section>
 
       <!-- listing Navigation -->
-      <div
-        class="bg-white md:mt-4 mt-2 rounded-lg border-primary md:mb-4 mb-2 sticky top-0 z-20 max-w-3xl mx-auto"
-      >
-        <nav
-          id="filterNav"
-          class="md:flex items-center justify-between mx-auto py- z-20 p-2 border-4 rounded-lg border-primary"
-        >
-          <div class="flex items-center w-full">
-            <h2
-              class="font-lust font-bold text-primary text-2xl items-center mr-2 md:mr-0"
-            >
-              Browse
-            </h2>
-            <input
-              id="searchBar"
-              class="border-2 p-1 px-3 rounded-lg bg-white w-full text-base md:mx-2 mx-0"
-              placeholder="Search.."
-              type="search"
-              name="search"
-            />
-          </div>
-          <div
-            class="button-group flex justify-between items-center md:mt-0 mt-3 gap-2 w-full"
-          >
-            <button
-              id="allButton"
-              class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white"
-            >
-              <i class="fa-solid fa-icons pr-2"></i>All
-            </button>
-            <button
-              id="trendingButton"
-              class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 hover:bg-primary hover:text-white"
-            >
-              <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
-            </button>
-            <button
-              id="expiringButton"
-              class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 hover:bg-primary hover:text-white"
-            >
-              <i class="fa-regular fa-clock pr-2"></i>Expiring
-            </button>
-          </div>
-        </nav>
-        <!-- Search Result Container -->
+      <section class="relative" id="forAllListings">
         <div
-          id="searchResults"
-          class="absolute hidden p-2 bg-white backdrop-blur-lg lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2 z-20 w-full rounded-b-lg shadow-lg border-b-4 border-x-4 border-primary max-h-96 overflow-x-hidden overflow-y-auto"
-        ></div>
-      </div>
+          class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg px-2 flex items-center mt-16 rounded-md w-fit mb-2"
+        >
+          <div class="flex gap-1 items-center w-fit">
+            <p class="text-sm w-fit mx-auto border-dark/50">browse -</p>
+            <h2
+              class="font-lust text-xl text-extraBold text-dark/90 font-bold w-max mx-auto"
+            >
+              All our auctions
+            </h2>
+          </div>
+        </div>
+        <div class="container w-full max-w-7xl mx-auto mb-2">
+          <div
+            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex gap-16"
+          >
+            <div class="relative z-20 w-full md:mb-0 mb-1">
+              <div id="searchContainer" class="p-1 bg-white/50 rounded-full">
+                <input
+                  id="searchBar"
+                  class="border border-contrast p-1 px-4 bg-white w-full text-base rounded-full"
+                  placeholder="Search by title"
+                  type="search"
+                  name="search"
+                />
+              </div>
+              <div
+                id="searchResults"
+                class="absolute hidden p-2 bg-white/50 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full rounded-b-lg shadow-xl border-b-2 border-x-2 border-contrast max-h-80 overflow-x-hidden overflow-y-auto"
+              ></div>
+            </div>
+            <nav
+              id="filterNav"
+              class="md:flex items-center justify-between w-full rounded-full bg-white/50 backdrop-blur-lg px-2 py-2"
+            >
+              <div
+                class="button-group flex justify-between items-center gap-2 w-full"
+              >
+                <button
+                  id="allButton"
+                  class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white rounded-full"
+                >
+                  <i class="fa-solid fa-icons pr-2"></i>All
+                </button>
+                <button
+                  id="trendingButton"
+                  class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full"
+                >
+                  <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
+                </button>
+                <button
+                  id="expiringButton"
+                  class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full"
+                >
+                  <i class="fa-regular fa-solid fa-clock pr-2"></i>Expiring
+                </button>
+              </div>
+            </nav>
+            <!-- Search Result Container -->
+          </div>
+        </div>
+      </section>
       <!-- Listings -->
-      <div
-        class="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-4 gap-2 mx-auto container max-w-7xl z-10 rounded-lg grid-rows-12"
+      <section
+        class="grid xl:grid-cols-3 md:grid-cols-2 lg:gap-4 gap-2 mx-auto container max-w-7xl rounded-lg grid-rows-12"
         id="listingsContainer"
-      ></div>
+      ></section>
       <!-- Pagination Numbers -->
       <div
         id="paginationNumbers"
@@ -170,14 +215,14 @@
           <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
         </button>
         <div
-          class="w-full lg:mt-0 lg:p-4 bg-white relative preview-card font-ofelia text-dark font-bold"
+          class="w-full lg:mt-0 lg:p-4 bg-white relative preview-card font-ofelia text-dark font-bold border-4 border-contrast"
           id="preview"
         >
           <div class="pb-2 border-y-4 border-contrast md:border-none">
             <img
               class="object-fill mx-auto max-h-96 w-full border-b border-b-secondary"
               id="preview-img"
-              src="https://images.rawpixel.com/image_1300/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA2L2stZy1nMDM1OS1pZGVhcy5qcGc.jpg"
+              src="https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvay0yNi1hLTEyNzc4LW9sajE5NjctMS1iZWNyZWF0aXZlXzEuanBn.jpg"
               alt="preview-image"
             />
             <div class="mt-2 lg:mx-2 mx-4">
@@ -187,10 +232,7 @@
               >
                 A thoughtful title will generate interest!
               </p>
-              <p
-                class="font-ofelia text-dark lg:text-md sm:text-sm"
-                id="preview-description"
-              >
+              <p class="font-ofelia text-dark text-md" id="preview-description">
                 Be creative and detailed in your description.
               </p>
             </div>
@@ -213,9 +255,12 @@
                 required
                 placeholder="Title"
                 title="Please provide a title"
-                minlength="1"
-                maxlength="40"
+                maxlength="50"
               />
+              <div
+                id="titleCount"
+                class="w-full text-xs text-end text-white"
+              ></div>
             </div>
             <div class="mt-2">
               <label
@@ -229,7 +274,6 @@
                 title="Please select a duration for your auction"
                 name="endsAt"
                 id="expiration"
-                required
               >
                 <option id="inOneHour">Express: 1 hour</option>
                 <option id="inOneDay">Regular: 24 hours</option>
@@ -251,9 +295,9 @@
                 class="p-2 pl-4 w-full rounded-full"
                 required
               />
-              <p class="font-ofelia text-xs text-end text-white">
+              <div class="font-ofelia text-xs text-end text-white">
                 Horisontal high quality images work best for this app
-              </p>
+              </div>
 
               <button
                 class="bg-primary text-white p-2 text-sm font-ofelia font-bold w-max flex justify-center items-center hover:bg-primary/80 mx-auto mt-2 rounded-lg border-4 border-contrast"
@@ -287,11 +331,12 @@
               name="description"
               rows="5"
               required
+              maxlength="280"
             ></textarea>
-            <p class="w-full text-xs text-end text-white">
-              Providing a detailed description will help potential buyers making
-              a decision
-            </p>
+            <div
+              id="descriptionCount"
+              class="w-full text-xs text-end text-white"
+            ></div>
           </div>
           <div class="flex justify-center items-center">
             <button

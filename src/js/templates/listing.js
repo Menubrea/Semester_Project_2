@@ -20,28 +20,33 @@ export function listingTemplate(data) {
   const biddingList = document.createElement('div');
   const metaTitle = document.querySelector('title');
   const metaDesc = document.querySelector('meta[name="description"]');
+  const locationHere = document.querySelector('#locationHere');
+  const imageCounter = document.createElement('div');
 
   const { title, description, _count, media, seller, bids } = data;
 
+  // For looping through images on click
   let count = 0;
-
-  // For looping through images on interval
-  setInterval(() => {
+  imageCounter.innerHTML = `${count + 1} / ${media.length}`;
+  image.addEventListener('click', () => {
     if (media.length === 1) return;
     count += 1;
     if (count === media.length) {
       count = 0;
     }
-    image.src = media[count];
-  }, 10000);
+    imageCounter.innerHTML = `${count + 1} / ${media.length}`;
+    return (image.src = media[count]);
+  });
 
   metaTitle.innerHTML = `Vender | ${title}`;
   metaDesc.content = description;
 
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
+    image.alt = 'Stock Image when no image is provided';
   } else {
     image.src = media[0];
+    image.alt = `${description}`;
   }
 
   if (
@@ -50,47 +55,58 @@ export function listingTemplate(data) {
     seller.avatar.length === 0
   ) {
     profileAvatar.src = defaultProfile;
+    profileAvatar.alt = 'default avatar';
   } else {
     profileAvatar.src = seller.avatar;
+    profileAvatar.alt = `${seller.name} Avatar`;
   }
 
+  locationHere.innerHTML = `${title}`;
   listingTitle.innerHTML = title;
   body.innerHTML = description;
   totalBids.innerHTML = _count;
   profileName.innerHTML = seller.name;
   profileAvatar.setAttribute('onerror', `src="${defaultProfile}"`);
   image.setAttribute('onerror', `src="${errorImage}"`);
+  image.setAttribute('tabindex', '0');
 
   listing.classList.add(
-    'lg:grid',
-    'gap-8',
-    'lg:grid-cols-2',
-    'md:pt-16',
-    'pb-8',
-    'md:px-8',
-    'relative'
+    'md:grid',
+    'p-4',
+    'gap-4',
+    'lg:grid-cols-5',
+    'md:grid-cols-2',
+    'relative',
+    'bg-white',
+    'listing',
+    'rounded-lg'
   );
 
-  headerContainer.classList.add(
-    'flex',
-    'justify-between',
-    'items-center',
-    'mt-3',
-    'ml-3'
+  imageCounter.classList.add(
+    'absolute',
+    'top-2',
+    'right-2',
+    'bg-dark',
+    'text-white',
+    'font-ofelia',
+    'px-2',
+    'py-1',
+    'rounded-lg'
   );
+
+  headerContainer.classList.add('flex', 'justify-between', 'mt-1', 'ml-3');
 
   image.classList.add(
     'object-cover',
     'mx-auto',
     'w-full',
     'relative',
-    'h-72',
-    'shadow-lg',
-    'lg:rounded-lg'
+    'h-96',
+    'rounded-lg',
+    'hover:cursor-pointer'
   );
 
   profileName.classList.add('font-ofelia', 'text-dark/70');
-
   body.classList.add('mx-3', 'mt-1', 'font-ofelia');
   profileContainer.classList.add('flex', 'items-center', 'mr-3');
   makeBidContainer.classList.add(
@@ -108,32 +124,37 @@ export function listingTemplate(data) {
   );
   profileAvatar.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
   remainingTime.classList.add(
-    'font-lust',
-    'text-xl',
-    'font-bold',
     'absolute',
-    'top-0',
-    'left-0',
-    'p-2',
-    'px-3',
-    'w-fit',
-    'bg-dark',
-    'text-contrast',
-    'text-center'
+    'top-2',
+    'left-2',
+    'bg-contrast/80',
+    'backdrop-blur-lg',
+    'py-1',
+    'font-ofelia',
+    'px-2',
+    'text-md',
+    'rounded-md',
+    'border-dark/20',
+    'border',
+    'shadow-lg',
+    'text-dark/80',
+    'text-bold'
   );
   biddingContainer.classList.add(
-    'lg:col-span-1',
+    'lg:col-span-2',
+    'md:col-span-1',
     'md:bg-accent/30',
     'md:p-5',
     'md:rounded-lg',
     'h-fit'
   );
-  listingContainer.classList.add('lg:col-span-1');
+  listingContainer.classList.add('lg:col-span-3', 'md:col-span-1', 'relative');
 
   renderMakeBid(data, makeBidContainer);
 
-  const filteredBids = bids.reverse().slice(0, 3);
-  filteredBids.forEach((bid) => {
+  bids.sort((a, b) => b.amount - a.amount);
+  const shortenedBids = bids.slice(0, 3);
+  shortenedBids.forEach((bid) => {
     const { amount, bidderName, created } = bid;
     const bidContainer = document.createElement('div');
     const bidValue = document.createElement('p');
@@ -155,7 +176,13 @@ export function listingTemplate(data) {
 
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
 
-    bidMade.innerHTML = `${days}d ${hours}h ${minutes}m ago`;
+    if (!days && !hours) {
+      bidMade.innerHTML = `${minutes}m ago`;
+    } else if (!days) {
+      bidMade.innerHTML = `${hours}h ${minutes}m ago`;
+    } else {
+      bidMade.innerHTML = `${days}d ${hours}h ${minutes}m ago`;
+    }
 
     bidName.classList.add('w-full');
     bidMade.classList.add('text-center', 'w-full');
@@ -165,16 +192,19 @@ export function listingTemplate(data) {
       'flex',
       'justify-between',
       'items-center',
-      'p-3',
+      'px-5',
+      'py-2',
       'text-dark',
-      'border-dark/10',
-      'first:border',
+      'border-dark/20',
+      'border',
       'first:bg-contrast',
-      'md:rounded-lg',
+      'first:shadow-lg',
       'font-ofelia',
       'text-sm',
       'w-full',
-      'col-span-3'
+      'col-span-3',
+      'rounded-full',
+      'mb-2'
     );
 
     bidContainer.append(bidName, bidMade, bidValue);
@@ -183,10 +213,10 @@ export function listingTemplate(data) {
     return biddingList;
   });
 
-  setInterval(expirationTime, 1000, data, remainingTime, listing);
+  setInterval(expirationTime, 1000, data, remainingTime, listingContainer);
   profileContainer.append(profileAvatar, profileName);
   headerContainer.append(listingTitle, profileContainer);
-  listingContainer.append(image, headerContainer, body);
+  listingContainer.append(image, headerContainer, body, imageCounter);
   biddingContainer.append(makeBidContainer, biddingList);
   listing.append(listingContainer, biddingContainer);
 
@@ -196,8 +226,13 @@ export function listingTemplate(data) {
 export function renderMakeBid(data, parent) {
   const profile = load('profile');
   const { id, bids, seller } = data;
+  bids.sort((a, b) => b.amount - a.amount);
 
   if (profile) {
+    const bidwrapper = document.createElement('div');
+    const totalBids = document.createElement('p');
+    const totalCredits = document.createElement('p');
+    const dataContainer = document.createElement('div');
     const bidContainer = document.createElement('form');
     const bidButton = document.createElement('button');
     const input = document.createElement('input');
@@ -213,13 +248,47 @@ export function renderMakeBid(data, parent) {
       makeBid(post, id);
     });
 
+    bidwrapper.classList.add(
+      'bg-primary',
+      'p-2',
+      'text-white',
+      'md:rounded-lg'
+    );
+
+    totalBids.innerHTML = 'Total: ' + bids.length + ' bids';
+
+    totalBids.classList.add(
+      'bg-white/10',
+      'p-1',
+      'px-3',
+      'rounded-full',
+      'text-center',
+      'w-fit'
+    );
+    totalCredits.classList.add(
+      'bg-white/10',
+      'p-1',
+      'px-3',
+      'rounded-full',
+      'text-center',
+      'w-fit',
+      'ml-auto',
+      'mr-0'
+    );
+    totalCredits.innerHTML = `You have: ${profile.credits}`;
+    dataContainer.classList.add(
+      'grid',
+      'grid-cols-2',
+      'justify-between',
+      'text-sm',
+      'font-ofelia',
+      'mb-2'
+    );
+    bidwrapper.classList.add('w-full');
     bidButton.innerHTML = 'Make Bid';
     bidContainer.classList.add(
-      'bg-secondary',
-      'text-white',
       'w-full',
-      'p-2',
-      'md:rounded-lg',
+      'rounded-md',
       'grid',
       'grid-cols-3',
       'gap-2',
@@ -232,8 +301,8 @@ export function renderMakeBid(data, parent) {
       'text-dark',
       'w-full',
       'h-full',
-      'p-2',
-      'rounded-sm',
+      'px-3',
+      'rounded-md',
       'col-span-2'
     );
     input.type = 'number';
@@ -250,8 +319,8 @@ export function renderMakeBid(data, parent) {
     }
 
     if (bids.length >= 1) {
-      input.value = bids.at(-1).amount + 1;
-      input.min = bids.at(-1).amount + 1;
+      input.value = bids.at(0).amount + 1;
+      input.min = bids.at(0).amount + 1;
     } else {
       input.value = 1;
       input.min = 1;
@@ -260,18 +329,24 @@ export function renderMakeBid(data, parent) {
     input.max = profile.credits;
     input.setAttribute('required', true);
     bidButton.classList.add(
-      'p-2',
+      'p-1',
       'border-white',
+      'border-2',
       'text-sm',
-      'bg-white',
-      'text-secondary',
+      'bg-dark/80',
+      'text-white',
       'font-bold',
-      'w-full'
+      'w-full',
+      'rounded-md',
+      'hover:bg-primary',
+      'hover:text-white'
     );
     bidButton.type = 'submit';
 
+    dataContainer.append(totalBids, totalCredits);
     bidContainer.append(input, bidButton);
-    parent.append(bidContainer);
+    bidwrapper.append(dataContainer, bidContainer);
+    parent.append(bidwrapper);
   } else {
     const promoContainer = document.createElement('div');
     const loginAnchor = document.createElement('button');
@@ -334,6 +409,28 @@ export function renderMakeBid(data, parent) {
       'flex',
       'justify-center'
     );
+
+    const inputEmail = document.querySelector('#emailLogin');
+    const loginModal = document.querySelector('#loginModal');
+    const overlay = document.querySelector('.overlay');
+    const registerModal = document.querySelector('#registerModal');
+    const inputName = document.querySelector('#nameRegister');
+
+    loginAnchor.addEventListener('click', () => {
+      loginModal.classList.add('active');
+      overlay.classList.add('active');
+      inputEmail.focus();
+
+      return loginModal;
+    });
+
+    registerAnchor.addEventListener('click', () => {
+      registerModal.classList.add('active');
+      overlay.classList.add('active');
+      inputName.focus();
+
+      return registerModal;
+    });
 
     parent.classList.remove('lg:justify-end');
 

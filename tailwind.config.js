@@ -8,14 +8,17 @@ module.exports = {
     },
     colors: {
       primary: '#515661',
-      contrast: '#C5BB9B',
+      contrast: '#c5bb9b',
       dark: '#2E2E2E',
       white: '#FCFFFE',
       secondary: '#515661',
       accent: '#A3A6AD',
+      expiring: '#4D614D',
+      popular: '#614853',
     },
     fontFamily: {
       lust: ['modesto-condensed', 'serif'],
+      numbers: ['modesto-condensed', 'sans-serif'],
       ofelia: ['ofelia-display', 'sans-serif'],
     },
     fontWeight: {

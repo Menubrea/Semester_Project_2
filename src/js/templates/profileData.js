@@ -143,8 +143,10 @@ export async function profileData() {
     profileName.innerHTML = profile.name;
     if (profile.avatar === '' || profile.avatar === null) {
       profilePicture.src = defaultProfile;
+      profilePicture.alt = 'default avatar';
     } else {
       profilePicture.src = profile.avatar;
+      profilePicture.alt = `${profile.name}'s avatar`;
     }
 
     profilePicture.setAttribute('onerror', `src="${defaultProfile}"`);

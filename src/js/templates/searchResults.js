@@ -1,3 +1,5 @@
+import { defaultProfile } from '../api/constants.js';
+
 export function searchTemplate(data) {
   const card = document.createElement('article');
   const anchor = document.createElement('a');
@@ -10,28 +12,39 @@ export function searchTemplate(data) {
 
   const { title, media, seller, id } = data;
 
-  if (title.length > 12) {
-    header.innerHTML = title.slice(0, 12).concat('...');
+  if (title.length > 15) {
+    header.innerHTML = title.slice(0, 15).concat('...').trim();
+  } else {
+    header.innerHTML = title;
+  }
+
+  if (userName.length > 15) {
+    header.innerHTML = title.slice(0, 15).concat('...').trim();
   } else {
     header.innerHTML = title;
   }
 
   if (media.length === 0) {
-    image.src = './media/images/package.jpg';
+    image.src = defaultProfile;
+    image.alt = 'stock image when no image is provided';
   } else {
     image.src = media[0];
+    image.alt = `Image for ${title}`;
   }
 
   if (seller.avatar === '') {
-    userAvatar.src = './media/images/package.jpg';
+    userAvatar.src = defaultProfile;
+    userAvatar.alt = 'stock profile when no profile is set';
   } else {
     userAvatar.src = seller.avatar;
+    userAvatar.alt = `${seller.name}'s avatar`;
   }
 
   userName.innerHTML = seller.name;
   userAvatar.src = seller.avatar;
   anchor.href = `./listing/?id=${id}`;
-
+  userAvatar.setAttribute('onerror', `src="${defaultProfile}"`);
+  image.setAttribute('onerror', `src="${defaultProfile}"`);
   anchor.classList.add('flex', 'gap-2');
   profileContainer.classList.add('flex', 'gap-2', 'items-center');
   image.classList.add('rounded-lg', 'w-16', 'h-12');

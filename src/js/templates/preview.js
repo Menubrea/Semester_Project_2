@@ -1,3 +1,4 @@
+import { popUp } from '../components/popUp.js';
 import { setExpiration } from '../components/setExpiration.js';
 
 export function createPreviewTemplate() {
@@ -8,8 +9,6 @@ export function createPreviewTemplate() {
   const modalOverlay = document.querySelector('.overlay');
   const closeButton = document.querySelector('[data-button="close-modal"]');
 
-  setExpiration();
-
   closeButton.addEventListener('click', () => {
     listingModal.classList.remove('active', 'md:grid');
     modalOverlay.classList.remove('active');
@@ -18,20 +17,39 @@ export function createPreviewTemplate() {
   const inputMediaContainer = document.querySelector('#inputMediaContainer');
   const addImageButton = document.querySelector('#addImage');
 
-  addImageButton.addEventListener('click', () =>
-    createMediaInput(inputMediaContainer)
-  );
+  addImageButton.addEventListener('click', () => {
+    const allMedia = document.querySelectorAll('.media');
+    if (allMedia.length < 7) {
+      createMediaInput(inputMediaContainer);
+    } else {
+      popUp('Maximum number of images is 8', listingModal);
+    }
+  });
+
+  setExpiration();
 
   const formTitle = document.querySelector('#form-title');
   const formMedia = document.querySelector('#form-media');
   const formDescription = document.querySelector('#form-description');
+  const titleCount = document.querySelector('#titleCount');
+  const descriptionCount = document.querySelector('#descriptionCount');
+
+  titleCount.innerHTML = `${formTitle.value.length} / ${formTitle.maxLength}`;
 
   formTitle.addEventListener('input', () => {
     previewtTitle.innerHTML = formTitle.value;
+    titleCount.innerHTML = `${formTitle.value.length} / ${formTitle.maxLength}`;
+
+    return formTitle;
   });
+
+  descriptionCount.innerHTML = `${formDescription.value.length} / ${formDescription.maxLength}`;
 
   formDescription.addEventListener('input', () => {
     previewDescription.innerHTML = formDescription.value;
+    descriptionCount.innerHTML = `${formDescription.value.length} / ${formDescription.maxLength}`;
+
+    return formDescription;
   });
 
   formMedia.addEventListener('input', () => {
@@ -61,6 +79,7 @@ export function createMediaInput(parent) {
   deleteButton.type = 'button';
 
   deleteButton.addEventListener('click', () => inputContainer.remove());
+
   form.addEventListener('submit', () => {
     if (inputElement.value === '') {
       inputContainer.remove();
@@ -75,7 +94,8 @@ export function createMediaInput(parent) {
     'w-full',
     'rounded-full',
     'mt-1',
-    'lg:mt-0'
+    'lg:mt-0',
+    'media'
   );
   inputElement.title = 'Must be a fully formed and publicly accessible URL';
   inputElement.placeholder = 'Add an image';
