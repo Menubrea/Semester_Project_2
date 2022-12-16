@@ -14,7 +14,7 @@
 nav > a,
 nav > button {
   position: relative;
-  padding: 4px 8px;
+  padding: 0.3rem 0.6rem;
   border-radius: 5px;
   border: 2px solid var(--clr-primary);
   overflow: hidden;
@@ -215,15 +215,6 @@ textarea:focus {
 .popUp {
   z-index: 1000;
 }
-
-/* @keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} */
 
 .lds-ellipsis {
   display: inline-block;

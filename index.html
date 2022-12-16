@@ -42,7 +42,7 @@
         class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg lg:mt-4 mt-2 px-3"
       >
         <a
-          href="./../"
+          href="./"
           class="logo font-lust text-2xl text-primary items-center flex w-fit"
         >
           <i
@@ -59,7 +59,7 @@
           </button>
           <a
             id="home"
-            href="./../"
+            href="./"
             class="font-ofelia text-primary text-sm flex items-center font-bold"
             ><i class="fa-solid fa-house md:mr-1 text-xs"></i
             ><span class="hidden md:block">Home</span></a
@@ -130,59 +130,57 @@
 
       <!-- listing Navigation -->
       <section class="relative" id="forAllListings">
-        <div
-          class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg px-2 flex items-center mt-16 rounded-md w-fit mb-2 md:mx-0 mx-auto"
-        >
-          <div class="flex gap-1 items-center w-fit">
-            <p class="text-sm w-fit mx-auto border-dark/50">browse -</p>
+        <div class="container w-full max-w-7xl mx-auto mb-2">
+          <!-- Header -->
+          <div
+            class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg px-2 flex items-center mt-12 rounded-md max-w-sm mb-2 mx-auto"
+          >
             <h2
-              class="font-lust text-xl text-extraBold text-dark/90 font-bold w-max mx-auto"
+              class="font-lust text-2xl text-dark/90 font-bold w-full mx-auto text-center"
             >
               All our auctions
             </h2>
           </div>
-        </div>
-        <div class="container w-full max-w-7xl mx-auto mb-2">
           <div
-            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex gap-16"
+            class="relative max-w-5xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg md:rounded-full"
           >
             <div class="relative z-20 w-full md:mb-0 mb-1">
-              <div id="searchContainer" class="p-1 bg-white/50 rounded-full">
+              <div id="searchContainer" class="p-2 md:rounded-l-full relative">
                 <input
                   id="searchBar"
-                  class="border border-contrast p-1 px-4 bg-white w-full text-base rounded-full"
-                  placeholder="Search by title"
+                  class="border-2 border-primary p-1 px-4 bg-white w-full text-base rounded-full"
+                  placeholder="Search Vender"
                   type="search"
                   name="search"
                 />
               </div>
               <div
                 id="searchResults"
-                class="absolute hidden p-2 bg-white/50 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full rounded-b-lg shadow-xl border-b-2 border-x-2 border-contrast max-h-80 overflow-x-hidden overflow-y-auto"
+                class="absolute hidden p-2 bg-white/80 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full shadow-xl max-h-72 overflow-x-hidden overflow-y-auto rounded-b-lg border-primary border-b-2"
               ></div>
             </div>
             <nav
               id="filterNav"
-              class="md:flex items-center justify-between w-full rounded-full bg-white/50 backdrop-blur-lg px-2 py-2"
+              class="md:flex items-center justify-between w-full rounded-r-full backdrop-blur-lg px-2 py-2 font-ofelia"
             >
               <div
                 class="button-group flex justify-between items-center gap-2 w-full"
               >
                 <button
                   id="allButton"
-                  class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white rounded-full"
+                  class="filterButton py-1 w-full text-primary font-bold bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
                 >
                   <i class="fa-solid fa-icons pr-2"></i>All
                 </button>
                 <button
                   id="trendingButton"
-                  class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full"
+                  class="filterButton py-1 w-full text-primary font-bold bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
                 >
                   <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
                 </button>
                 <button
                   id="expiringButton"
-                  class="filterButton py-1 w-full text-primary font-bold md:text-sm text-xs bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full"
+                  class="filterButton py-1 w-full text-primary font-bold bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
                 >
                   <i class="fa-regular fa-solid fa-clock pr-2"></i>Expiring
                 </button>
@@ -206,7 +204,7 @@
       <!-- Listing Modal -->
       <div
         id="listingModal"
-        class="modal bg-primary md:grid-cols-2 shadow-lg max-w-7xl relative overflow-x-hidden mt-2"
+        class="modal bg-primary md:grid-cols-2 shadow-lg max-w-7xl relative overflow-x-hidden"
       >
         <button
           data-button="close-modal"
@@ -218,7 +216,7 @@
           class="w-full lg:mt-0 lg:p-4 bg-white relative preview-card font-ofelia text-dark font-bold border-4 border-contrast"
           id="preview"
         >
-          <div class="pb-2 border-y-4 border-contrast md:border-none">
+          <div class="pb-2 md:border-none">
             <img
               class="object-fill mx-auto max-h-96 w-full border-b border-b-secondary"
               id="preview-img"
@@ -398,7 +396,7 @@
             <button
               type="button"
               id="register"
-              class="bg-dark/80 px-2 pb-1 text-white ml-1 cursor-pointer hover:bg-dark/50"
+              class="bg-dark/80 px-2 pb-1 text-white ml-1 cursor-pointer hover:bg-dark/50 w-full"
             >
               Register
             </button>
@@ -483,7 +481,7 @@
             <button
               type="button"
               id="loginFromForm"
-              class="bg-dark/80 px-2 pb-1 ml-1 cursor-pointer hover:bg-dark/50 text-white"
+              class="bg-dark/80 px-2 pb-1 ml-1 cursor-pointer hover:bg-dark/50 text-white w-full"
             >
               Log In
             </button>

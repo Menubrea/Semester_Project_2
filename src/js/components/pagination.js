@@ -1,7 +1,7 @@
 import { listingsTemplate } from '../templates/listings.js';
 
 export function setPagination(array) {
-  const paginationLimit = 12;
+  const paginationLimit = 18;
   const pageCount = Math.ceil(array.length / paginationLimit);
   const paginationNumbers = document.querySelector('#paginationNumbers');
   const container = document.querySelector('#listingsContainer');

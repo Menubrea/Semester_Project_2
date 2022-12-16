@@ -181,8 +181,8 @@ export function listingsTemplate(data) {
     bid.innerHTML = ` ${lastBid.amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
   }
 
-  if (title.length > 18) {
-    header.innerHTML = title.slice(0, 18).concat('..');
+  if (title.length > 21) {
+    header.innerHTML = title.slice(0, 21).concat('..');
   } else {
     header.innerHTML = title;
   }

@@ -87,7 +87,8 @@ export function promoListingTemplate(data) {
     'text-primary',
     'font-lust',
     'lg:text-4xl',
-    'text-3xl'
+    'text-3xl',
+    'break-words'
   );
   listingContent.classList.add(
     'relative',
@@ -127,47 +128,52 @@ export function promoListingTemplate(data) {
 
   let count = 0;
   setInterval(() => {
-    if (media.length === 1) return;
+    if (media.length === 1 || media.length === 0) return;
     count += 1;
     if (count === media.length) {
       count = 0;
     }
     listingImage.src = media[count];
-  }, 10000);
+  }, 8000);
 
   if (media.length === 0 || media === '' || media === null) {
     listingImage.src = defaultProfile;
+    listingImage.alt = 'Stock image as no image was provided';
   } else {
     listingImage.src = media[0];
+    listingImage.alt = `${description}`;
   }
 
   if (seller.avatar === '' || seller.avatar === null) {
     profileImage.src = defaultProfile;
+    profileImage.alt = 'default profile';
   } else {
     profileImage.src = seller.avatar;
+    profileImage.alt = seller.name + ' avatar';
   }
+
   listingImage.setAttribute('onerror', `src="${errorImage}"`);
   profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
 
-  if (description.length > 200 && description !== '') {
-    listingDescription.innerHTML = description
-      .slice(0, 200)
-      .concat('...')
-      .trim();
-  } else {
-    listingDescription.innerHTML = description;
+  if (description) {
+    if (description.length > 200 && description !== '') {
+      listingDescription.innerHTML = description
+        .slice(0, 200)
+        .concat('...')
+        .trim();
+    } else {
+      listingDescription.innerHTML = description;
+    }
   }
 
-  if (title.length > 45 && title !== '') {
-    title.innerHTML = title.slice(0, 45).concat('...').trim();
-  } else {
-    listingTitle.innerHTML = title;
+  if (title) {
+    if (title.length > 50 && title !== '') {
+      title.innerHTML = title.slice(0, 50).concat('...').trim();
+    } else {
+      listingTitle.innerHTML = title;
+    }
   }
 
-  listingTitle.innerHTML = title;
-
-  profileImage.src = seller.avatar;
-  profileImage.alt = seller.name + ' avatar';
   profileName.innerHTML = seller.name;
   anchor.href = `./listing/?id=${id}`;
 

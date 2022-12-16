@@ -23,14 +23,8 @@ export async function handleSearchControlInput(event) {
       listing.title.toLowerCase().startsWith(inputValue) &&
       inputValue.length > 0
     ) {
-      searchContainer.classList.remove('rounded-full');
-      searchContainer.classList.add(
-        'border-t-2',
-        'border-x-2',
-        'border-contrast',
-        'rounded-t-lg',
-        'shadow-xl'
-      );
+      searchContainer.classList.remove('md:rounded-l-full');
+      searchContainer.classList.add('shadow-xl', 'bg-primary');
       container.classList.remove('hidden');
       container.classList.add('grid');
 
@@ -50,14 +44,8 @@ export function clearSearchContainer() {
   const searchContainer = document.querySelector('#searchContainer');
   searchInput.value = '';
   container.innerHTML = '';
-  searchContainer.classList.add('rounded-full');
-  searchContainer.classList.remove(
-    'border-t-2',
-    'border-x-2',
-    'border-contrast',
-    'rounded-t-lg',
-    'shadow-xl'
-  );
+  searchContainer.classList.add('md:rounded-l-full');
+  searchContainer.classList.remove('shadow-xl', 'bg-primary');
 
   container.classList.add('hidden');
   container.classList.remove('grid');

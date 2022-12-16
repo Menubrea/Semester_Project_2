@@ -15,19 +15,31 @@ export function popUp(message, parent) {
     'bg-contrast',
     'flex',
     'items-center',
-    'justify-center'
+    'justify-center',
+    'px-10',
+    'rounded-t-lg'
   );
   container.classList.add(
     'fixed',
-    'top-0',
     'bg-white',
     'shadow-lg',
     'backdrop-blur-lg',
-    'w-full',
-    'inset-x-0',
-    'popUp'
+    'w-max',
+    'popUp',
+    'left-1/2',
+    '-translate-x-1/2',
+    'top-1/2',
+    '-translate-y-1/2',
+    'rounded-lg'
   );
-  messageContainer.classList.add('font-ofelia', 'p-2', 'text-md', 'text-dark');
+  messageContainer.classList.add(
+    'font-ofelia',
+    'p-2',
+    'text-md',
+    'text-dark',
+    'text-bold',
+    'px-10'
+  );
 
   function hidePopUp() {
     container.classList.remove('fixed');

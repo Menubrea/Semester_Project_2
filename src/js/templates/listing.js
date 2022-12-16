@@ -27,9 +27,9 @@ export function listingTemplate(data) {
 
   // For looping through images on click
   let count = 0;
-  imageCounter.innerHTML = `${count + 1} / ${media.length}`;
+
   image.addEventListener('click', () => {
-    if (media.length === 1) return;
+    if (media.length === 1 || media.length === 0) return;
     count += 1;
     if (count === media.length) {
       count = 0;
@@ -44,9 +44,11 @@ export function listingTemplate(data) {
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
     image.alt = 'Stock Image when no image is provided';
+    imageCounter.innerHTML = `${count + 1} / ${media.length + 1}`;
   } else {
     image.src = media[0];
     image.alt = `${description}`;
+    imageCounter.innerHTML = `${count + 1} / ${media.length}`;
   }
 
   if (
@@ -107,7 +109,7 @@ export function listingTemplate(data) {
   );
 
   profileName.classList.add('font-ofelia', 'text-dark/70');
-  body.classList.add('mx-3', 'mt-1', 'font-ofelia');
+  body.classList.add('mx-3', 'mt-1', 'font-ofelia', 'break-words');
   profileContainer.classList.add('flex', 'items-center', 'mr-3');
   makeBidContainer.classList.add(
     'flex',
@@ -121,7 +123,8 @@ export function listingTemplate(data) {
     'font-lust',
     'font-bold',
     'text-primary',
-    'text-4xl'
+    'text-4xl',
+    'break-words'
   );
   profileAvatar.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
   remainingTime.classList.add(
@@ -249,12 +252,7 @@ export function renderMakeBid(data, parent) {
       makeBid(post, id);
     });
 
-    bidwrapper.classList.add(
-      'bg-primary',
-      'p-2',
-      'text-white',
-      'md:rounded-lg'
-    );
+    bidwrapper.classList.add('bg-primary', 'p-2', 'text-white', 'rounded-lg');
 
     totalBids.innerHTML = 'Total: ' + bids.length + ' bids';
 
@@ -276,7 +274,7 @@ export function renderMakeBid(data, parent) {
       'ml-auto',
       'mr-0'
     );
-    totalCredits.innerHTML = `You have: ${profile.credits}`;
+    totalCredits.innerHTML = `You have: ${profile.credits} <i class="fa-solid  fa-coins text-white ml-1"></i>`;
     dataContainer.classList.add(
       'grid',
       'grid-cols-2',

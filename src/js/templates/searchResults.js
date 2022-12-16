@@ -18,10 +18,10 @@ export function searchTemplate(data) {
     header.innerHTML = title;
   }
 
-  if (userName.length > 15) {
-    header.innerHTML = title.slice(0, 15).concat('...').trim();
+  if (seller.name.length > 15) {
+    userName.innerHTML = seller.name.slice(0, 15).concat('...').trim();
   } else {
-    header.innerHTML = title;
+    userName.innerHTML = seller.name;
   }
 
   if (media.length === 0) {
@@ -40,11 +40,10 @@ export function searchTemplate(data) {
     userAvatar.alt = `${seller.name}'s avatar`;
   }
 
-  userName.innerHTML = seller.name;
-  userAvatar.src = seller.avatar;
   anchor.href = `./listing/?id=${id}`;
   userAvatar.setAttribute('onerror', `src="${defaultProfile}"`);
   image.setAttribute('onerror', `src="${defaultProfile}"`);
+
   anchor.classList.add('flex', 'gap-2');
   profileContainer.classList.add('flex', 'gap-2', 'items-center');
   image.classList.add('rounded-lg', 'w-16', 'h-12');
