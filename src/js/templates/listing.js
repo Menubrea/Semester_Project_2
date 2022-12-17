@@ -20,6 +20,7 @@ export function listingTemplate(data) {
   const biddingList = document.createElement('div');
   const metaTitle = document.querySelector('title');
   const metaDesc = document.querySelector('meta[name="description"]');
+  const metaKeys = document.querySelector('meta[name="keywords"]');
   const locationHere = document.querySelector('#locationHere');
   const imageCounter = document.createElement('div');
 
@@ -34,21 +35,30 @@ export function listingTemplate(data) {
     if (count === media.length) {
       count = 0;
     }
-    imageCounter.innerHTML = `${count + 1} / ${media.length}`;
+    imageCounter.innerHTML = `<div>Click image </div> ${count + 1} / ${
+      media.length
+    }`;
     return (image.src = media[count]);
   });
 
   metaTitle.innerHTML = `Vender | ${title}`;
-  metaDesc.content = description;
+  metaDesc.content = title + ' | ' + description;
+  metaKeys.content = `${title}, Vender, auction, buy, sell`;
 
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
     image.alt = 'Stock Image when no image is provided';
     imageCounter.innerHTML = `${count + 1} / ${media.length + 1}`;
-  } else {
+  } else if (media.length === 1) {
     image.src = media[0];
     image.alt = `${description}`;
     imageCounter.innerHTML = `${count + 1} / ${media.length}`;
+  } else {
+    image.src = media[0];
+    image.alt = `${description}`;
+    imageCounter.innerHTML = `<div class="w-max">Click image</div> ${
+      count + 1
+    } / ${media.length}`;
   }
 
   if (
@@ -74,7 +84,8 @@ export function listingTemplate(data) {
 
   listing.classList.add(
     'md:grid',
-    'p-4',
+    'md:p-4',
+    'p-2',
     'gap-4',
     'lg:grid-cols-5',
     'md:grid-cols-2',
@@ -93,10 +104,18 @@ export function listingTemplate(data) {
     'font-ofelia',
     'px-2',
     'py-1',
-    'rounded-lg'
+    'rounded-lg',
+    'text-center'
   );
 
-  headerContainer.classList.add('flex', 'justify-between', 'mt-1', 'ml-3');
+  headerContainer.classList.add(
+    'flex',
+    'justify-between',
+    'mt-1',
+    'mx-3',
+    'gap-2',
+    'items-start'
+  );
 
   image.classList.add(
     'object-cover',
@@ -110,7 +129,13 @@ export function listingTemplate(data) {
 
   profileName.classList.add('font-ofelia', 'text-dark/70');
   body.classList.add('mx-3', 'mt-1', 'font-ofelia', 'break-words');
-  profileContainer.classList.add('flex', 'items-center', 'mr-3');
+  profileContainer.classList.add(
+    'flex',
+    'items-center',
+    'w-fit',
+    'mt-2',
+    'mr-3'
+  );
   makeBidContainer.classList.add(
     'flex',
     'lg:justify-end',
@@ -124,7 +149,8 @@ export function listingTemplate(data) {
     'font-bold',
     'text-primary',
     'text-4xl',
-    'break-words'
+    'break-words',
+    'w-full'
   );
   profileAvatar.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
   remainingTime.classList.add(
@@ -152,7 +178,12 @@ export function listingTemplate(data) {
     'rounded-lg',
     'h-fit'
   );
-  listingContainer.classList.add('lg:col-span-3', 'md:col-span-1', 'relative');
+  listingContainer.classList.add(
+    'lg:col-span-3',
+    'md:col-span-1',
+    'relative',
+    'bg-white'
+  );
 
   renderMakeBid(data, makeBidContainer);
 
@@ -208,7 +239,8 @@ export function listingTemplate(data) {
       'w-full',
       'col-span-3',
       'rounded-full',
-      'mb-2'
+      'mb-2',
+      'bg-white'
     );
 
     bidContainer.append(bidName, bidMade, bidValue);
@@ -362,8 +394,8 @@ export function renderMakeBid(data, parent) {
       'text-white',
       'w-full',
       'py-7',
-      'px-2',
-      'lg:rounded-lg',
+      'px-4',
+      'rounded-lg',
       'relative',
       'mb-5'
     );

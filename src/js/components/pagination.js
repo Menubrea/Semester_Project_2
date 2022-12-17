@@ -5,6 +5,8 @@ export function setPagination(array) {
   const pageCount = Math.ceil(array.length / paginationLimit);
   const paginationNumbers = document.querySelector('#paginationNumbers');
   const container = document.querySelector('#listingsContainer');
+  const pageCountContainer = document.querySelector('#pageCount');
+  pageCountContainer.innerHTML = `Page 1 / ${pageCount}`;
   container.innerHTML = '';
 
   const appendPageNumber = (index, parent) => {
@@ -12,13 +14,14 @@ export function setPagination(array) {
     pageNumber.classList.add(
       'pagination-num',
       'p-2',
-      'bg-primary',
-      'text-white',
+      'bg-white',
+      'text-primary',
       'rounded-full',
       'w-10',
       'h-10',
-      'hover:bg-white',
-      'hover:text-primary',
+      'hover:bg-primary',
+      'hover:text-white',
+      'hover:border-white',
       'border-2',
       'border-primary',
       'flex',
@@ -69,6 +72,8 @@ export function setPagination(array) {
       button.addEventListener('click', () => {
         document.querySelector('header').scrollIntoView({ behavior: 'smooth' });
         container.innerHTML = '';
+        pageCountContainer.innerHTML = '';
+        pageCountContainer.innerHTML = `Page ${pageIndex} / ${pageCount}`;
         setCurrentPage(pageIndex);
       });
     }

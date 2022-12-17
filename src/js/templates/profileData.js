@@ -116,6 +116,8 @@ export async function profileData() {
       'font-bold'
     );
 
+    profileButton.setAttribute('id', 'profileButton');
+
     createUpdateForm(profile.name, fullProfile);
 
     profileButton.addEventListener('click', () => {

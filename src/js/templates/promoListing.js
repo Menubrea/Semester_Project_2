@@ -34,8 +34,10 @@ export function promoListingTemplate(data) {
 
   bidElement.classList.add(
     'absolute',
-    'top-8',
-    'left-8',
+    'md:top-8',
+    'top-4',
+    'md:left-8',
+    'left-4',
     'bg-contrast/80',
     'backdrop-blur-lg',
     'py-1',
@@ -75,7 +77,8 @@ export function promoListingTemplate(data) {
     'mt-2',
     'rounded-lg',
     'shadow-lg',
-    'p-4',
+    'md:p-4',
+    'p-2',
     'relative'
   );
 

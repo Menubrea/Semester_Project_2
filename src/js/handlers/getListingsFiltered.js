@@ -13,6 +13,7 @@ export async function setGetListingsFiltered() {
   const prevButton = document.querySelector('#prevButton');
   const nextButton = document.querySelector('#nextButton');
   const allButton = document.querySelector('#allButton');
+  const header = document.querySelector('#browseHeader');
   const listings = await getListings();
 
   const filteredPromo = listings.filter((listing, index) => {
@@ -49,24 +50,30 @@ export async function setGetListingsFiltered() {
 
   allButton.addEventListener('click', () => {
     container.innerHTML = '';
+    header.innerHTML = '';
     filterButtons.forEach((button) => button.classList.remove('active-button'));
     allButton.classList.add('active-button');
+    header.innerHTML = 'All our auctions';
     paginationNumbers.innerHTML = '';
     return setPagination(listings);
   });
 
   trendingButton.addEventListener('click', () => {
     container.innerHTML = '';
+    header.innerHTML = '';
     filterButtons.forEach((button) => button.classList.remove('active-button'));
     trendingButton.classList.add('active-button');
     paginationNumbers.innerHTML = '';
+    header.innerHTML = 'Popular auctions';
     return setPagination(filteredTrending);
   });
 
   expirationButton.addEventListener('click', () => {
     container.innerHTML = '';
+    header.innerHTML = '';
     filterButtons.forEach((button) => button.classList.remove('active-button'));
     expirationButton.classList.add('active-button');
+    header.innerHTML = 'Auctions ending soon';
     paginationNumbers.innerHTML = '';
     return setPagination(filteredExpiring);
   });

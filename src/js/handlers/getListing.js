@@ -27,10 +27,10 @@ export async function setGetListing() {
     }
   });
 
-  if (filteredListingsProfile.length !== 0) {
+  if (filteredListingsProfile.length !== 0 || listing.id !== listingID) {
     setPagination(filteredListingsProfile);
   } else {
-    const header = document.querySelector('#subHeader');
+    const header = document.querySelector('#browseHeader');
     header.innerHTML = '';
     header.innerHTML = 'Popular auctions';
     setPagination(filteredPopular);

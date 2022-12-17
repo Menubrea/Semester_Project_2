@@ -15,6 +15,7 @@
     ></script>
     <script src="./../src/js/index.js" type="module"></script>
     <meta name="description" content="" />
+    <meta name="keywords" content="" />
     <title>Vender | Listing |</title>
   </head>
   <body class="max-w-7xl container lg:px-4 px-2">
@@ -93,17 +94,15 @@
       <!-- Listings goes here -->
       <section id="listingsSection">
         <div
-          class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg px-2 flex items-center mt-8 rounded-md w-fit md:mx-0 mx-auto"
+          class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg flex items-center md:mt-4 mt-2 rounded-md max-w-md mb-2 mx-auto"
         >
-          <div class="flex gap-1 items-center w-fit">
-            <p class="text-sm w-fit mx-auto border-dark/50">browse -</p>
-            <h2
-              id="subHeader"
-              class="font-lust text-xl text-extraBold text-dark/90 font-bold w-max mx-auto"
-            >
-              Auctions from this user
-            </h2>
-          </div>
+          <h2
+            id="browseHeader"
+            class="font-lust text-2xl text-dark/90 font-bold w-full text-center"
+          >
+            This user auctions
+          </h2>
+          <div id="pageCount" class="w-full p-1 bg-white/20 text-center"></div>
         </div>
         <div
           class="grid xl:grid-cols-3 md:grid-cols-2 lg:gap-4 gap-2 mx-auto container max-w-7xl rounded-lg grid-rows-12 md:mt-4 mt-2"
