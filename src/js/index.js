@@ -7,6 +7,7 @@ import { setSearchListingsFormListener } from './handlers/searchListings.js';
 import { handleAuthModal } from './handlers/setAuthModal.js';
 import { createPreviewTemplate } from './templates/preview.js';
 import { profileData } from './templates/profileData.js';
+import { hostPath } from './api/constants.js';
 
 const path = location.pathname;
 
@@ -19,10 +20,7 @@ if (path === '/' || path === '/index.html') {
   handleAuthModal();
   setLoginFormListener();
   setRegisterFormListener();
-} else if (
-  path === '/Semester_Project_2/' ||
-  path === '/Semester_Project_2/index.html'
-) {
+} else if (path === hostPath || path === hostPath + 'index.html') {
   profileData();
   createPreviewTemplate();
   setCreateListings();
@@ -31,7 +29,7 @@ if (path === '/' || path === '/index.html') {
   setGetListingsFiltered();
   setLoginFormListener();
   setRegisterFormListener();
-} else if (path === '/listing/' || path === '/Semester_Project_2/listing/') {
+} else if (path === '/listing/' || path === hostPath + 'listing/') {
   createPreviewTemplate();
   setCreateListings();
   setGetListing();
