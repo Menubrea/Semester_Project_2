@@ -207,11 +207,14 @@ export function createUpdateForm(name, parent) {
 
   updateForm.append(updateInput, inputSubmit);
   parent.append(updateForm);
+
+  return updateForm;
 }
 
 export function handleListingModal(modal, overlay) {
   modal.classList.add('active', 'md:grid');
   overlay.classList.add('active');
+
   window.addEventListener('click', (e) => {
     if (e.target.matches('.overlay')) {
       modal.classList.remove('active', 'md:grid');
@@ -224,4 +227,6 @@ export function handleListingModal(modal, overlay) {
       overlay.classList.remove('active');
     }
   });
+
+  return modal;
 }
