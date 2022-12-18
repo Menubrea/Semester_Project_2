@@ -23,7 +23,6 @@ export async function setSearchListingsFormListener() {
     } else {
       return clearSearchContainer();
     }
-    console.log(event.target);
   });
 
   searchControl.addEventListener('input', (event) => {
