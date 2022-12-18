@@ -73,7 +73,8 @@ export function listingsTemplate(data) {
     'font-lust',
     'font-extraBold',
     'text-primary',
-    'text-2xl'
+    'md:text-2xl',
+    'text-xl'
   );
 
   remainingTime.classList.add(
@@ -186,26 +187,33 @@ export function listingsTemplate(data) {
     bid.innerHTML = ` ${lastBid.amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
   }
 
-  if (title.length > 21) {
-    header.innerHTML = title.slice(0, 21).concat('..');
+  if (title.length > 24) {
+    header.innerHTML = title.slice(0, 24).concat('..').trim();
   } else {
     header.innerHTML = title;
   }
 
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
+    image.alt = 'Stock image if no image is provided';
   } else {
     image.src = media[0];
+    image.alt = title;
   }
 
+  if (document.body.clientWidth < 360) {
+    header.innerHTML = title.slice(0, 15).concat('..').trim();
+  }
   if (
     seller.avatar === '' ||
     seller.avatar === null ||
     seller.avatar.length === 0
   ) {
     profileImage.src = defaultProfile;
+    profileImage.alt = `stock avatar if no avatar is provided`;
   } else {
     profileImage.src = seller.avatar;
+    profileImage.alt = `${seller.name}'s avatar`;
   }
 
   if (

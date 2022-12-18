@@ -117,10 +117,12 @@
       <div class="overlay backdrop-blur-lg bg-accent/90"></div>
       <!-- Listing Modal -->
       <div
+        aria-modal="true"
         id="listingModal"
         class="modal bg-primary md:grid-cols-2 shadow-lg max-w-7xl relative overflow-x-hidden"
       >
         <button
+          aria-label="Close"
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
         >
@@ -261,10 +263,12 @@
       </div>
       <!-- Login Modal -->
       <div
+        aria-modal="true"
         id="loginModal"
         class="modal modal-auth bg-primary p-2 md:p-4 relative"
       >
         <button
+          aria-label="close"
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
         >
@@ -330,6 +334,7 @@
         class="modal modal-auth bg-primary p-2 md:p-4 relative"
       >
         <button
+          aria-label="Close"
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
         >

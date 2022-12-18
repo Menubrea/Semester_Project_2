@@ -110,7 +110,7 @@
           class="flex justify-between items-center h-max w-full lg:mt-4 px-2 mt-2"
           id="buttonNav"
         >
-          <button id="prevButton" class="w-max">
+          <button id="prevButton" class="w-max" aria-label="previous-slide">
             <i
               class="fa-solid fa-circle-chevron-left text-2xl text-primary"
             ></i>
@@ -121,7 +121,7 @@
             id="count"
           ></div>
           <div class="h-0.5 bg-primary w-full rounded-full mx-2"></div>
-          <button id="nextButton" class="w-max">
+          <button id="nextButton" class="w-max" aria-label="previous-slide">
             <i
               class="fa-solid fa-circle-chevron-right text-2xl text-primary"
             ></i>
@@ -208,10 +208,12 @@
       <div class="overlay backdrop-blur-lg bg-accent/90"></div>
       <!-- Listing Modal -->
       <div
+        aria-modal="true"
         id="listingModal"
         class="modal bg-primary md:grid-cols-2 shadow-lg max-w-7xl relative overflow-x-hidden"
       >
         <button
+          aria-label="Close"
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
         >
@@ -352,10 +354,12 @@
       </div>
       <!-- Login Modal -->
       <div
+        aria-modal="true"
         id="loginModal"
         class="modal modal-auth bg-primary p-2 md:p-4 relative"
       >
         <button
+          aria-label="Close"
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
         >
@@ -373,6 +377,7 @@
           </p>
           <div class="py-2 mt-4">
             <input
+              aria-label="Enter Email"
               id="emailLogin"
               class="p-2 pl-4 w-full rounded-full"
               type="email"
@@ -385,6 +390,7 @@
           </div>
           <div class="py-2">
             <input
+              aria-label="Enter Password"
               class="p-2 pl-4 w-full rounded-full"
               type="password"
               name="password"
@@ -417,10 +423,12 @@
       </div>
       <!-- Register Modals -->
       <div
+        aria-modal="true"
         id="registerModal"
         class="modal modal-auth bg-primary p-2 md:p-4 relative"
       >
         <button
+          aria-label="Close"
           data-button="close-modal"
           class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
         >
@@ -437,6 +445,7 @@
           </p>
           <div class="py-2 mt-4">
             <input
+              aria-label="Enter Name"
               id="nameRegister"
               class="p-2 pl-4 w-full rounded-full"
               type="text"
@@ -450,6 +459,7 @@
           </div>
           <div class="py-2">
             <input
+              aria-label="Enter Email"
               class="p-2 pl-4 w-full rounded-full"
               type="email"
               name="email"
@@ -461,6 +471,7 @@
           </div>
           <div class="py-2">
             <input
+              aria-label="Enter Password"
               class="p-2 pl-4 w-full rounded-full"
               type="password"
               name="password"
@@ -472,6 +483,7 @@
           </div>
           <div class="py-2">
             <input
+              aria-label="Enter Avatar/Profile Picture"
               class="p-2 pl-4 w-full rounded-full"
               type="url"
               placeholder="Avatar"

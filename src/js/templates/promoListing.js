@@ -31,6 +31,8 @@ export function promoListingTemplate(data) {
   bids.sort((a, b) => b.amount - a.amount);
   const latestBid = bids.at(0);
 
+  console.log(document.body.clientWidth);
+
   if (bids.length === 0) {
     bidElement.innerHTML = `<i class="fa-solid fa-certificate mr-1"></i></i>New`;
   } else {
@@ -94,8 +96,8 @@ export function promoListingTemplate(data) {
   listingTitle.classList.add(
     'text-primary',
     'font-lust',
-    'lg:text-4xl',
-    'text-3xl',
+    'md:text-4xl',
+    'text-2xl',
     'break-words'
   );
   listingContent.classList.add(
@@ -164,22 +166,28 @@ export function promoListingTemplate(data) {
   profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
 
   if (description) {
-    if (description.length > 200 && description !== '') {
-      listingDescription.innerHTML = description
-        .slice(0, 200)
-        .concat('...')
-        .trim();
-    } else {
-      listingDescription.innerHTML = description;
-    }
+    listingDescription.innerHTML = description;
   }
 
   if (title) {
     if (title.length > 50 && title !== '') {
-      title.innerHTML = title.slice(0, 50).concat('...').trim();
+      listingTitle.innerHTML = title.slice(0, 50).concat('..').trim();
     } else {
       listingTitle.innerHTML = title;
     }
+  }
+
+  if (document.body.clientWidth < 380) {
+    listingDescription.innerHTML = description
+      .slice(0, 100)
+      .concat('..')
+      .trim();
+    listingTitle.innerHTML = title.slice(0, 40).concat('..').trim();
+  } else if (document.body.clientWidth < 540) {
+    listingDescription.innerHTML = description
+      .slice(0, 180)
+      .concat('..')
+      .trim();
   }
 
   profileName.innerHTML = seller.name;

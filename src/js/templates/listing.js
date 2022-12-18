@@ -153,7 +153,8 @@ export function listingTemplate(data) {
     'font-lust',
     'font-bold',
     'text-primary',
-    'text-4xl',
+    'md:text-4xl',
+    'text-2xl',
     'break-words',
     'w-full'
   );
@@ -183,12 +184,7 @@ export function listingTemplate(data) {
     'rounded-lg',
     'h-fit'
   );
-  listingContainer.classList.add(
-    'lg:col-span-3',
-    'md:col-span-1',
-    'relative',
-    'bg-white'
-  );
+  listingContainer.classList.add('lg:col-span-3', 'md:col-span-1', 'relative');
 
   renderMakeBid(data, makeBidContainer);
 
@@ -264,10 +260,10 @@ export function listingTemplate(data) {
   return listing;
 }
 /**
- *
+ * Function that creates a bid container if the user is logged in and not the owner of auction, else provides option to log in/register
  * @param {object} data takes in data from the returned listings object
  * @param {element} parent What element to append to
- * @returns Renders html
+ * @returns Renders html based on the data input provided
  */
 export function renderMakeBid(data, parent) {
   const profile = load('profile');
