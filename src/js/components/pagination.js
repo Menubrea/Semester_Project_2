@@ -1,5 +1,9 @@
 import { listingsTemplate } from '../templates/listings.js';
 
+// Used as reference guide
+// https://webdesign.tutsplus.com/tutorials/pagination-with-vanilla-javascript--cms-41896
+
+
 /**
  * A function to create pagination for an array of objects with buttons and interaction
  * @param {array} array An array of objects, in this case listings.
