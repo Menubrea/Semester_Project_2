@@ -19,6 +19,7 @@
     <title>Vender | Home</title>
   </head>
   <body class="max-w-7xl container lg:px-4 px-2">
+    <!-- Loader -->
     <div
       id="loader"
       class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
@@ -37,6 +38,7 @@
         </div>
       </div>
     </div>
+    <!-- Header -->
     <header class="relative z-40 shadow-lg">
       <div
         id="headerContainer"
@@ -74,12 +76,14 @@
           </button>
         </nav>
       </div>
+      <!-- Profile -->
       <div
         id="dataContainer"
         class="md:w-max w-full bg-white pt-2 pb-2 my-2 lg:my-4 z-20 rounded-lg hidden absolute right-0 border-4 border-secondary"
       ></div>
     </header>
     <main class="min-h-screen max-w-7xl">
+      <!-- Hero -->
       <div
         class="hero grid lg:gap-10 items-center lg:p-0 bg-white rounded-lg md:my-4 my-2 shadow-lg overflow-hidden max-w-7xl mx-auto"
       >
@@ -130,9 +134,9 @@
       </div>
 
       <!-- listing Navigation -->
-      <section class="relative" id="forAllListings">
+      <div class="relative" id="forAllListings">
         <div class="container w-full max-w-7xl mx-auto mb-2">
-          <!-- Header -->
+          <!-- h2 -->
           <div
             class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg flex items-center mt-12 rounded-md max-w-md mb-2 mx-auto"
           >
@@ -146,6 +150,7 @@
               1 / 6
             </div>
           </div>
+          <!-- Search -->
           <div
             class="relative max-w-5xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg md:rounded-full"
           >
@@ -159,14 +164,24 @@
                   name="search"
                 />
               </div>
-              <div
-                id="searchResults"
-                class="absolute hidden p-2 bg-white/80 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full shadow-xl max-h-72 overflow-x-hidden overflow-y-auto rounded-b-lg border-primary border-x-2 border-b-2"
-              ></div>
+              <!-- Search Result Container -->
+              <div class="absolute w-full">
+                <div
+                  id="searchResults"
+                  class="hidden p-2 bg-white/80 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full shadow-xl max-h-72 overflow-x-hidden overflow-y-auto border-primary border-x-2 border-b-2"
+                ></div>
+                <button
+                  id="searchClose"
+                  class="w-full hidden px-2 rounded-b-full mx-auto bg-primary text-white font-ofelia"
+                >
+                  Close
+                </button>
+              </div>
             </div>
+            <!-- Filter buttons -->
             <nav
               id="filterNav"
-              class="md:flex items-center justify-between w-full rounded-r-full backdrop-blur-lg px-2 py-2 font-ofelia"
+              class="md:flex items-center justify-between w-full rounded-r-full backdrop-blur-lg px-2 md:py-2 pb-2 font-ofelia"
             >
               <div
                 class="button-group flex justify-between items-center gap-2 w-full"
@@ -191,10 +206,9 @@
                 </button>
               </div>
             </nav>
-            <!-- Search Result Container -->
           </div>
         </div>
-      </section>
+      </div>
       <!-- Listings -->
       <section
         class="grid xl:grid-cols-3 md:grid-cols-2 lg:gap-4 gap-2 mx-auto container max-w-7xl rounded-lg grid-rows-12"
@@ -219,6 +233,7 @@
         >
           <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
         </button>
+        <!-- Preview -->
         <div
           class="w-full lg:mt-0 lg:p-4 bg-white relative preview-card font-ofelia text-dark font-bold border-4 border-contrast"
           id="preview"
@@ -243,6 +258,7 @@
             </div>
           </div>
         </div>
+        <!-- Create Listing Form -->
         <form id="createListing" class="p-8">
           <input type="text" name="tags" hidden />
           <div class="lg:grid grid-cols-2 gap-2">
@@ -300,7 +316,7 @@
                 required
               />
               <div class="font-ofelia text-xs text-end text-white">
-                Horisontal high quality images work best for this app
+                Landscape imagery is preferred.
               </div>
 
               <button

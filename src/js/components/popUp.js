@@ -23,8 +23,7 @@ export function popUp(message, parent) {
     'flex',
     'items-center',
     'justify-center',
-    'px-10',
-    'rounded-t-lg'
+    'px-10'
   );
   container.classList.add(
     'fixed',
@@ -37,7 +36,9 @@ export function popUp(message, parent) {
     '-translate-x-1/2',
     'top-1/2',
     '-translate-y-1/2',
-    'rounded-lg'
+    'max-w-lg',
+    'border-2',
+    'border-contrast'
   );
   messageContainer.classList.add(
     'font-ofelia',

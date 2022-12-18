@@ -13,6 +13,12 @@ export async function setSearchListingsFormListener() {
       return clearSearchContainer();
     }
   });
+
+  const closeButton = document.querySelector('#searchClose');
+
+  closeButton.addEventListener('click', () => {
+    return clearSearchContainer();
+  });
 }
 
 /**
@@ -23,6 +29,7 @@ export async function setSearchListingsFormListener() {
 export async function handleSearchControlInput(event) {
   const container = document.querySelector('#searchResults');
   const searchContainer = document.querySelector('#searchContainer');
+  const closeButton = document.querySelector('#searchClose');
   const listings = await getListings();
   const inputValue = event.target.value.toLowerCase();
 
@@ -33,6 +40,7 @@ export async function handleSearchControlInput(event) {
     ) {
       searchContainer.classList.remove('md:rounded-l-full');
       searchContainer.classList.add('shadow-xl', 'bg-primary');
+      closeButton.classList.remove('hidden');
       container.classList.remove('hidden');
       container.classList.add('grid');
 
@@ -50,8 +58,10 @@ export function clearSearchContainer() {
   const container = document.querySelector('#searchResults');
   const searchInput = document.querySelector('#searchBar');
   const searchContainer = document.querySelector('#searchContainer');
+  const closeButton = document.querySelector('#searchClose');
   searchInput.value = '';
   container.innerHTML = '';
+  closeButton.classList.add('hidden');
   searchContainer.classList.add('md:rounded-l-full');
   searchContainer.classList.remove('shadow-xl', 'bg-primary');
 

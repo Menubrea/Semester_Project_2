@@ -23,23 +23,26 @@ export async function profileData() {
     const createListing = document.createElement('button');
     const login = document.querySelector('#login');
     const profileButton = document.createElement('button');
-    const logoutButton = document.createElement('a');
+    const logoutButton = document.createElement('button');
     const totalCredit = document.createElement('p');
     const profileName = document.createElement('p');
     const profilePicture = document.createElement('img');
     const fullProfile = document.createElement('div');
+    const firstInput = document.querySelector('#form-title');
 
     createListingButton.classList.remove('hidden');
 
     createListing.innerHTML = 'Create Listing';
 
-    createListing.addEventListener('click', () =>
-      handleListingModal(modal, overlay)
-    );
+    createListing.addEventListener('click', () => {
+      firstInput.focus();
+      return handleListingModal(modal, overlay);
+    });
 
-    createListingButton.addEventListener('click', () =>
-      handleListingModal(modal, overlay)
-    );
+    createListingButton.addEventListener('click', () => {
+      firstInput.focus();
+      return handleListingModal(modal, overlay);
+    });
 
     logoutButton.addEventListener('click', () => logout());
 
@@ -77,7 +80,8 @@ export async function profileData() {
       'py-2',
       'text-center',
       'hover:bg-secondary',
-      'hover:text-white'
+      'hover:text-white',
+      'w-full'
     );
 
     fullProfile.classList.add(
