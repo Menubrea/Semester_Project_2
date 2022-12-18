@@ -152,27 +152,43 @@
           </div>
           <!-- Search -->
           <div
-            class="relative max-w-5xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg md:rounded-full"
+            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg md:rounded-full"
           >
             <div class="relative z-20 w-full md:mb-0 mb-1">
-              <div id="searchContainer" class="p-2 md:rounded-l-full relative">
+              <div
+                id="searchContainer"
+                class="p-2 md:rounded-l-full relative flex gap-1 items-center"
+              >
                 <input
                   id="searchBar"
                   class="border-2 border-primary p-1 px-4 bg-white w-full text-base rounded-full"
-                  placeholder="Search Vender"
+                  placeholder="Press enter or click button to search"
                   type="search"
                   name="search"
                 />
+                <button
+                  id="searchButton"
+                  aria-label="search"
+                  class="rounded-full bg-primary px-2 py-1 hover:opacity-80 border-2 border-white"
+                >
+                  <i class="fa-solid fa-magnifying-glass text-white"></i>
+                </button>
               </div>
               <!-- Search Result Container -->
               <div class="absolute w-full">
+                <div
+                  id="searchText"
+                  class="hidden w-full px-2 font-ofelia p-2 text-primary text-bold text-xl border-x-2 border-primary bg-white text-center"
+                >
+                  test
+                </div>
                 <div
                   id="searchResults"
                   class="hidden p-2 bg-white/80 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full shadow-xl max-h-72 overflow-x-hidden overflow-y-auto border-primary border-x-2 border-b-2"
                 ></div>
                 <button
                   id="searchClose"
-                  class="w-full hidden px-2 rounded-b-full mx-auto bg-primary text-white font-ofelia"
+                  class="w-full hidden px-2 rounded-b-full mx-auto bg-primary text-white font-ofelia hover:bg-dark"
                 >
                   Close
                 </button>

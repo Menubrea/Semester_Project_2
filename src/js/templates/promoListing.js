@@ -31,8 +31,6 @@ export function promoListingTemplate(data) {
   bids.sort((a, b) => b.amount - a.amount);
   const latestBid = bids.at(0);
 
-  console.log(document.body.clientWidth);
-
   if (bids.length === 0) {
     bidElement.innerHTML = `<i class="fa-solid fa-certificate mr-1"></i></i>New`;
   } else {
