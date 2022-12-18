@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/js/templates/searchResults.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/js/templates/searchResults.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { defaultProfile } from '../api/constants.js';
+
+/**
+ * Function for rendering the result of search queries.
+ * @param {object} data takes in the data from the returned listings object
+ * @returns renders html within the search container upon search event
+ */
+export function searchTemplate(data) {
+  const card = document.createElement('article');
+  const anchor = document.createElement('a');
+  const body = document.createElement('div');
+  const profileContainer = document.createElement('div');
+  const header = document.createElement('p');
+  const userName = document.createElement('p');
+  const userAvatar = document.createElement('img');
+  const image = document.createElement('img');
+
+  const { title, media, seller, id } = data;
+
+  if (title.length > 15) {
+    header.innerHTML = title.slice(0, 15).concat('...').trim();
+  } else {
+    header.innerHTML = title;
+  }
+
+  if (seller.name.length > 15) {
+    userName.innerHTML = seller.name.slice(0, 15).concat('...').trim();
+  } else {
+    userName.innerHTML = seller.name;
+  }
+
+  if (media.length === 0) {
+    image.src = defaultProfile;
+    image.alt = 'stock image when no image is provided';
+  } else {
+    image.src = media[0];
+    image.alt = `Image for ${title}`;
+  }
+
+  if (seller.avatar === '') {
+    userAvatar.src = defaultProfile;
+    userAvatar.alt = 'stock profile when no profile is set';
+  } else {
+    userAvatar.src = seller.avatar;
+    userAvatar.alt = `${seller.name}'s avatar`;
+  }
+
+  anchor.href = `./listing/?id=${id}`;
+  userAvatar.setAttribute('onerror', `src="${defaultProfile}"`);
+  image.setAttribute('onerror', `src="${defaultProfile}"`);
+
+  anchor.classList.add('flex', 'gap-2');
+  profileContainer.classList.add('flex', 'gap-2', 'items-center');
+  image.classList.add('rounded-lg', 'w-16', 'h-12');
+  header.classList.add('font-ofelia', 'text-primary', 'font-bold');
+  userAvatar.classList.add('w-4', 'h-4', 'rounded-full');
+  card.classList.add(
+    'bg-dark/10',
+    'backdrop-blur-lg',
+    'p-2',
+    'rounded-lg',
+    'h-16',
+    'hover:bg-white/70'
+  );
+  userName.classList.add('text-dark/70', 'font-ofelia');
+
+  profileContainer.append(userAvatar, userName);
+  body.append(header, profileContainer);
+  anchor.append(image, body);
+  card.append(anchor);
+
+  return card;
+}
+
+export function renderSearchTemplates(dataList, parent) {
+  parent.append(...dataList.map(searchTemplate));
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#authFetch">authFetch</a></li><li><a href="global.html#clearLoader">clearLoader</a></li><li><a href="global.html#createListing">createListing</a></li><li><a href="global.html#createMediaInput">createMediaInput</a></li><li><a href="global.html#createPreviewTemplate">createPreviewTemplate</a></li><li><a href="global.html#cycleListings">cycleListings</a></li><li><a href="global.html#displayErrorMessage">displayErrorMessage</a></li><li><a href="global.html#expirationTime">expirationTime</a></li><li><a href="global.html#getListing">getListing</a></li><li><a href="global.html#getListings">getListings</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getProfileListings">getProfileListings</a></li><li><a href="global.html#handleAuthModal">handleAuthModal</a></li><li><a href="global.html#handleLoginModal">handleLoginModal</a></li><li><a href="global.html#handleRegisterModal">handleRegisterModal</a></li><li><a href="global.html#handleSearchControlInput">handleSearchControlInput</a></li><li><a href="global.html#listingTemplate">listingTemplate</a></li><li><a href="global.html#listingsTemplate">listingsTemplate</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#makeBid">makeBid</a></li><li><a href="global.html#mouseOverCountdown">mouseOverCountdown</a></li><li><a href="global.html#popUp">popUp</a></li><li><a href="global.html#profileData">profileData</a></li><li><a href="global.html#promoListingTemplate">promoListingTemplate</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#renderMakeBid">renderMakeBid</a></li><li><a href="global.html#searchTemplate">searchTemplate</a></li><li><a href="global.html#setCreateListings">setCreateListings</a></li><li><a href="global.html#setExpiration">setExpiration</a></li><li><a href="global.html#setGetListing">setGetListing</a></li><li><a href="global.html#setGetListingsFiltered">setGetListingsFiltered</a></li><li><a href="global.html#setLoginFormListener">setLoginFormListener</a></li><li><a href="global.html#setLogout">setLogout</a></li><li><a href="global.html#setPagination">setPagination</a></li><li><a href="global.html#setRegisterFormListener">setRegisterFormListener</a></li><li><a href="global.html#setSearchListingsFormListener">setSearchListingsFormListener</a></li><li><a href="global.html#updateMedia">updateMedia</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sat Dec 17 2022 21:44:02 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
