@@ -138,7 +138,7 @@
         <div class="container w-full max-w-7xl mx-auto mb-2">
           <!-- h2 -->
           <div
-            class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg flex items-center mt-12 rounded-md max-w-md mb-2 mx-auto"
+            class="font-ofelia bg-white/50 border border-dark/20 backdrop-blur-lg flex items-center mt-12 rounded-md max-w-md mb-2 mx-auto"
           >
             <h2
               id="browseHeader"
@@ -146,15 +146,18 @@
             >
               All our auctions
             </h2>
-            <div id="pageCount" class="w-full p-1 bg-white/20 text-center">
+            <div
+              id="pageCount"
+              class="w-full p-1 bg-white/80 text-center rounded-r-lg"
+            >
               1 / 6
             </div>
           </div>
           <!-- Search -->
           <div
-            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg md:rounded-full"
+            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg"
           >
-            <div class="relative z-20 w-full md:mb-0 mb-1">
+            <div class="relative z-20 w-full md:mb-0 mb-1 rounded-l-lg">
               <div
                 id="searchContainer"
                 class="p-2 md:rounded-l-full relative flex gap-1 items-center"
@@ -162,14 +165,14 @@
                 <input
                   id="searchBar"
                   class="border-2 border-primary p-1 px-4 bg-white w-full text-base rounded-full"
-                  placeholder="Press enter or click button to search"
+                  placeholder="Search Vender"
                   type="search"
                   name="search"
                 />
                 <button
                   id="searchButton"
                   aria-label="search"
-                  class="rounded-full bg-primary px-2 py-1 hover:opacity-80 border-2 border-white"
+                  class="rounded-full bg-primary px-2 py-1 hover:bg-dark border-2 border-white"
                 >
                   <i class="fa-solid fa-magnifying-glass text-white"></i>
                 </button>
@@ -184,11 +187,11 @@
                 </div>
                 <div
                   id="searchResults"
-                  class="hidden p-2 bg-white/80 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full shadow-xl max-h-72 overflow-x-hidden overflow-y-auto border-primary border-x-2 border-b-2"
+                  class="hidden p-2 bg-white/80 backdrop-blur-lg lg:grid-cols-2 md:grid-cols-1 gap-2 z-40 w-full shadow-xl max-h-72 overflow-x-hidden overflow-y-auto border-primary border-x-2"
                 ></div>
                 <button
                   id="searchClose"
-                  class="w-full hidden px-2 rounded-b-full mx-auto bg-primary text-white font-ofelia hover:bg-dark"
+                  class="w-full hidden px-2 py-1 rounded-b-full mx-auto bg-primary text-white font-ofelia hover:bg-dark"
                 >
                   Close
                 </button>
