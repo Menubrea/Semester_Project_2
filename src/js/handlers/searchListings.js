@@ -16,7 +16,7 @@ export async function setSearchListingsFormListener() {
   });
 
   document.addEventListener('click', (event) => {
-    if (event.target.closest('i')) {
+    if (event.target.closest('button')) {
       return;
     } else if (event.target === searchControl) {
       return;
