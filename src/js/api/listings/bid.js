@@ -8,7 +8,12 @@ import { getProfile } from '../profile/read.js';
 const action = '/listings/';
 const method = 'POST';
 const container = document.querySelector('main');
-
+/**
+ * Function for making a bid to a listing
+ * @param {object} data Takes the amount key from the data object
+ * @param {key} id key
+ * @returns Makes a bid to the server with the provided id and the provided amount.
+ */
 export async function makeBid(data, id) {
   try {
     const { name } = load('profile');

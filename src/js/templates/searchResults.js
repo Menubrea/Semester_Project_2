@@ -1,5 +1,10 @@
 import { defaultProfile } from '../api/constants.js';
 
+/**
+ * Function for rendering the result of search queries.
+ * @param {object} data takes in the data from the returned listings object
+ * @returns renders html within the search container upon search event
+ */
 export function searchTemplate(data) {
   const card = document.createElement('article');
   const anchor = document.createElement('a');

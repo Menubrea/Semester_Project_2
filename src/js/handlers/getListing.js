@@ -3,6 +3,10 @@ import { renderListingTemplate } from '../templates/listing.js';
 import { getListings } from '../api/listings/read.js';
 import { setPagination } from '../components/pagination.js';
 
+/**
+ * Function for handling listing
+ */
+
 export async function setGetListing() {
   const listing = await getListing();
   const container = document.querySelector('#listingContainer');

@@ -2,6 +2,14 @@ import { renderPromoListingTemplate } from '../templates/promoListing.js';
 
 const countContainer = document.querySelector('#count');
 
+/**
+ * Function for cycling/carousel for array of objects
+ * @param {element} previous Count-- on click event
+ * @param {element} next Count ++ on click event
+ * @param {array} array An array of objects
+ * @param {element} container which container to hold the item
+ */
+
 export function cycleListings(previous, next, array, container) {
   let count = 0;
 

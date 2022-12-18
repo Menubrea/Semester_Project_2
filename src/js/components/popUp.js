@@ -1,3 +1,10 @@
+/**
+ * A function to display a popup message when called
+ * @param {string} message The message you want to be displayed
+ * @param {element} parent The parent element you want the message to be contained to.
+ * @returns Expect to see a popup with the content of message.
+ */
+
 export function popUp(message, parent) {
   const container = document.createElement('div');
   const messageContainer = document.createElement('p');

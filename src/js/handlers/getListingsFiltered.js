@@ -3,6 +3,9 @@ import { cycleListings } from '../components/cycleListings.js';
 import { renderPromoListingTemplate } from '../templates/promoListing.js';
 import { setPagination } from './../components/pagination.js';
 
+/**
+ * Function for handling filtered listings
+ */
 export async function setGetListingsFiltered() {
   const container = document.querySelector('#listingsContainer');
   const firstEntryContainer = document.querySelector('#firstEntryContainer');
@@ -73,7 +76,7 @@ export async function setGetListingsFiltered() {
     header.innerHTML = '';
     filterButtons.forEach((button) => button.classList.remove('active-button'));
     expirationButton.classList.add('active-button');
-    header.innerHTML = 'Auctions ending soon';
+    header.innerHTML = 'Ending soon';
     paginationNumbers.innerHTML = '';
     return setPagination(filteredExpiring);
   });

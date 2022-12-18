@@ -6,6 +6,11 @@ const action = '/listings/';
 const method = 'POST';
 const container = document.querySelector('#listingModal');
 
+/**
+ * Function for creating a new listing on server
+ * @param {object} data takes in the key values stored in the data object
+ * @returns If successful, it creates a new listing on the server with the key / values of data.
+ */
 export async function createListing(data) {
   const listingURL = `${API_AUCTION_URL}${action}`;
 

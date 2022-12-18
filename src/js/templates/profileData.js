@@ -3,6 +3,10 @@ import { defaultProfile, hostPath } from '../api/constants.js';
 import { updateMedia } from '../api/profile/updateMedia.js';
 import { load } from '../handlers/storage/load.js';
 
+/**
+ * Function for handling profileData with logged in or logged out stats
+ * @returns Returns html depending on status
+ */
 export async function profileData() {
   const container = document.querySelector('#topNav');
   const modal = document.querySelector('#listingModal');

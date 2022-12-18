@@ -1,5 +1,9 @@
 import { listingsTemplate } from '../templates/listings.js';
 
+/**
+ * A function to create pagination for an array of objects with buttons and interaction
+ * @param {array} array An array of objects, in this case listings.
+ */
 export function setPagination(array) {
   const paginationLimit = 18;
   const pageCount = Math.ceil(array.length / paginationLimit);

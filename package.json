@@ -1,7 +1,7 @@
 {
   "name": "semester-project-2",
   "version": "0.1.0",
-  "description": "Semestr Project at Noroff for Truls Haakenstad",
+  "description": "Semester Project at Noroff for Truls Haakenstad",
   "main": "index.js",
   "scripts": {
     "build": "npx tailwindcss -i ./src/css/input.css -o ./dist/output.css",
@@ -14,7 +14,8 @@
     "test-e2e": "cypress open",
     "test-e2e-cli": "cypress run",
     "prepare": "husky install",
-    "format": "prettier -w *"
+    "format": "prettier -w",
+    "docs": "jsdoc -c ./conf.json -r"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "eslint-plugin-jest": "^27.1.5",
     "husky": "^8.0.2",
     "jest": "^29.3.1",
+    "jsdoc": "^4.0.0",
     "lint-staged": "^13.0.3",
     "live-server": "^1.2.2",
     "prettier": "^2.7.1",

@@ -1,6 +1,11 @@
 import { errorImage, defaultProfile } from '../api/constants.js';
 import { mouseOverCountdown } from '../components/eventCountDown.js';
 
+/**
+ * Function for creating promo card for listings
+ * @param {object} data Takes in data from the returned listing object
+ * @returns Renders html with data from the listing object
+ */
 export function promoListingTemplate(data) {
   const { title, description, seller, media, bids, id } = data;
   const card = document.createElement('article');

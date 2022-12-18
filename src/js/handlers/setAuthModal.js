@@ -2,11 +2,16 @@ import { hostPath } from '../api/constants.js';
 
 const closeButtons = document.querySelectorAll('[data-button="close-modal"]');
 
+/**
+ * Function for handling authmodals
+ */
 export function handleAuthModal() {
   handleLoginModal();
   handleRegisterModal();
 }
-
+/**
+ * Function for handling Login Modal
+ */
 export function handleLoginModal() {
   const loginButton = document.querySelector('#login');
   const inputEmail = document.querySelector('#emailLogin');
@@ -50,6 +55,9 @@ export function handleLoginModal() {
   );
 }
 
+/**
+ * Function for handling registerModal
+ */
 export function handleRegisterModal() {
   const registerButton = document.querySelector('.register');
   const registerFromLogin = document.querySelector('#register');

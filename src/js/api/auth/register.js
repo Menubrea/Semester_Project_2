@@ -5,7 +5,11 @@ import { login } from './login.js';
 const action = '/auth/register';
 const method = 'POST';
 const container = document.querySelector('#registerForm');
-
+/**
+ * Function for registering a new user.
+ * @param {object} profile Takes in the form values from registerForm
+ * @returns registers a new user to the API
+ */
 export async function register(profile) {
   const registerURL = API_AUCTION_URL + action;
   const body = JSON.stringify(profile);
@@ -36,6 +40,6 @@ export async function register(profile) {
     }
   } catch (err) {
     console.log(err);
-    return popUp('An unknown error occured, please try again', container);
+    return popUp('An unknown error occured, please try again later', container);
   }
 }

@@ -1,5 +1,9 @@
 const errorContainer = document.querySelector('#errorContainer');
 const loaderContainer = document.querySelector('#loaderContainer');
+/**
+ * Function for displaying information to the user
+ * @returns div with error message
+ */
 
 export function displayErrorMessage() {
   loaderContainer.classList.add('hidden');

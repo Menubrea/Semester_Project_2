@@ -5,8 +5,11 @@ import { API_AUCTION_URL } from '../constants.js';
 const action = '/listings/';
 const details =
   '?_seller=true&_bids=true&_active=true&sort=created&sortOrder=desc';
-const container = document.querySelector('#forAllListings');
 
+/**
+ * Function for getting all listings
+ * @returns returns an array of objects with the specifications details parameter
+ */
 export async function getListings() {
   const listingsURL = `${API_AUCTION_URL}${action}${details}`;
   try {

@@ -1,6 +1,9 @@
 import { getListings } from '../api/listings/read.js';
 import { renderSearchTemplates } from '../templates/searchResults.js';
 
+/**
+ * Handler for Search event
+ */
 export async function setSearchListingsFormListener() {
   const searchControl = document.querySelector('#searchBar');
   searchControl.addEventListener('input', handleSearchControlInput);
@@ -12,6 +15,11 @@ export async function setSearchListingsFormListener() {
   });
 }
 
+/**
+ *
+ * @param {this} event On interacting with the input
+ * @returns Returns an array of items matching event.target.value
+ */
 export async function handleSearchControlInput(event) {
   const container = document.querySelector('#searchResults');
   const searchContainer = document.querySelector('#searchContainer');

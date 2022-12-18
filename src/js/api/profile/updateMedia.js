@@ -8,6 +8,12 @@ const action = '/profiles/';
 const method = 'PUT';
 const container = document.querySelector('body');
 
+/**
+ * Function for updating Avatar for registered user
+ * @param {object} data takes the media key which takes in an url value.
+ * @param {key} name takes in the value for key provided
+ * @returns If successful, updates the {name: value} avatar.
+ */
 export async function updateMedia(data, name) {
   const mediaURL = `${API_AUCTION_URL}${action}${name}/media `;
 

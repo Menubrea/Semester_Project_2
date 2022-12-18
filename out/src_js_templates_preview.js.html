@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/js/templates/preview.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/js/templates/preview.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { popUp } from '../components/popUp.js';
+import { setExpiration } from '../components/setExpiration.js';
+
+/**
+ * Function for handling preview and ux of create listing form
+ */
+export function createPreviewTemplate() {
+  const previewtTitle = document.querySelector('#preview-title');
+  const previewImg = document.querySelector('#preview-img');
+  const previewDescription = document.querySelector('#preview-description');
+  const listingModal = document.querySelector('#listingModal');
+  const modalOverlay = document.querySelector('.overlay');
+  const closeButton = document.querySelector('[data-button="close-modal"]');
+
+  closeButton.addEventListener('click', () => {
+    listingModal.classList.remove('active', 'md:grid');
+    modalOverlay.classList.remove('active');
+  });
+
+  const inputMediaContainer = document.querySelector('#inputMediaContainer');
+  const addImageButton = document.querySelector('#addImage');
+
+  addImageButton.addEventListener('click', () => {
+    const allMedia = document.querySelectorAll('.media');
+    if (allMedia.length &lt; 7) {
+      createMediaInput(inputMediaContainer);
+    } else {
+      popUp('Maximum number of images is 8', listingModal);
+    }
+  });
+
+  setExpiration();
+
+  const formTitle = document.querySelector('#form-title');
+  const formMedia = document.querySelector('#form-media');
+  const formDescription = document.querySelector('#form-description');
+  const titleCount = document.querySelector('#titleCount');
+  const descriptionCount = document.querySelector('#descriptionCount');
+
+  titleCount.innerHTML = `${formTitle.value.length} / ${formTitle.maxLength}`;
+
+  formTitle.addEventListener('input', () => {
+    previewtTitle.innerHTML = formTitle.value;
+    titleCount.innerHTML = `${formTitle.value.length} / ${formTitle.maxLength}`;
+
+    return formTitle;
+  });
+
+  descriptionCount.innerHTML = `${formDescription.value.length} / ${formDescription.maxLength}`;
+
+  formDescription.addEventListener('input', () => {
+    previewDescription.innerHTML = formDescription.value;
+    descriptionCount.innerHTML = `${formDescription.value.length} / ${formDescription.maxLength}`;
+
+    return formDescription;
+  });
+
+  formMedia.addEventListener('input', () => {
+    previewImg.src = formMedia.value;
+  });
+
+  formMedia.addEventListener('paste', () => {
+    previewImg.src = formMedia.value;
+  });
+}
+
+/**
+ * Function for creating a new media input
+ * @param {element} parent What element to append the elements to
+ * @returns Returns an input with name media and url pattern
+ */
+export function createMediaInput(parent) {
+  const form = document.querySelector('#createListing');
+  const inputContainer = document.createElement('div');
+  const inputElement = document.createElement('input');
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML =
+    '&lt;i class="fa-solid fa-circle-xmark bg-white text-dark rounded-full text-lg">&lt;/i>';
+
+  inputContainer.classList.add('relative');
+  deleteButton.classList.add(
+    'absolute',
+    'top-1/2',
+    'right-2',
+    '-translate-y-1/2'
+  );
+  deleteButton.type = 'button';
+
+  deleteButton.addEventListener('click', () => inputContainer.remove());
+
+  form.addEventListener('submit', () => {
+    if (inputElement.value === '') {
+      inputContainer.remove();
+    }
+  });
+
+  inputElement.type = 'url';
+  inputElement.name = 'media';
+  inputElement.classList.add(
+    'p-2',
+    'pl-4',
+    'w-full',
+    'rounded-full',
+    'mt-1',
+    'lg:mt-0',
+    'media'
+  );
+  inputElement.title = 'Must be a fully formed and publicly accessible URL';
+  inputElement.placeholder = 'Add an image';
+
+  inputContainer.append(inputElement, deleteButton);
+  parent.append(inputContainer);
+
+  return inputElement;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#authFetch">authFetch</a></li><li><a href="global.html#clearLoader">clearLoader</a></li><li><a href="global.html#createListing">createListing</a></li><li><a href="global.html#createMediaInput">createMediaInput</a></li><li><a href="global.html#createPreviewTemplate">createPreviewTemplate</a></li><li><a href="global.html#cycleListings">cycleListings</a></li><li><a href="global.html#displayErrorMessage">displayErrorMessage</a></li><li><a href="global.html#expirationTime">expirationTime</a></li><li><a href="global.html#getListing">getListing</a></li><li><a href="global.html#getListings">getListings</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getProfileListings">getProfileListings</a></li><li><a href="global.html#handleAuthModal">handleAuthModal</a></li><li><a href="global.html#handleLoginModal">handleLoginModal</a></li><li><a href="global.html#handleRegisterModal">handleRegisterModal</a></li><li><a href="global.html#handleSearchControlInput">handleSearchControlInput</a></li><li><a href="global.html#listingTemplate">listingTemplate</a></li><li><a href="global.html#listingsTemplate">listingsTemplate</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#makeBid">makeBid</a></li><li><a href="global.html#mouseOverCountdown">mouseOverCountdown</a></li><li><a href="global.html#popUp">popUp</a></li><li><a href="global.html#profileData">profileData</a></li><li><a href="global.html#promoListingTemplate">promoListingTemplate</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#renderMakeBid">renderMakeBid</a></li><li><a href="global.html#searchTemplate">searchTemplate</a></li><li><a href="global.html#setCreateListings">setCreateListings</a></li><li><a href="global.html#setExpiration">setExpiration</a></li><li><a href="global.html#setGetListing">setGetListing</a></li><li><a href="global.html#setGetListingsFiltered">setGetListingsFiltered</a></li><li><a href="global.html#setLoginFormListener">setLoginFormListener</a></li><li><a href="global.html#setLogout">setLogout</a></li><li><a href="global.html#setPagination">setPagination</a></li><li><a href="global.html#setRegisterFormListener">setRegisterFormListener</a></li><li><a href="global.html#setSearchListingsFormListener">setSearchListingsFormListener</a></li><li><a href="global.html#updateMedia">updateMedia</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sat Dec 17 2022 21:44:02 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

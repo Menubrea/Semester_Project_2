@@ -1,6 +1,9 @@
 import { createListing } from '../api/listings/create.js';
 import { setExpiration } from '../components/setExpiration.js';
 
+/**
+ * Function for createListing form handler
+ */
 export async function setCreateListings() {
   const form = document.querySelector('#createListing');
 

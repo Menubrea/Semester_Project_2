@@ -1,6 +1,11 @@
 import { defaultProfile, errorImage } from '../api/constants.js';
 import { mouseOverCountdown } from '../components/eventCountDown.js';
 
+/**
+ *
+ * @param {data} data the returned listing object from fetch request
+ * @returns renders the object data as html with styling
+ */
 export function listingsTemplate(data) {
   const card = document.createElement('article');
   const header = document.createElement('h3');

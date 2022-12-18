@@ -5,7 +5,10 @@ import { popUp } from '../../components/popUp.js';
 const action = '/auth/login';
 const method = 'POST';
 const container = document.querySelector('#loginForm');
-
+/**
+ * Function for logging in an existing user.
+ * @param {object} profile Takes in the values from loginForm.
+ */
 export async function login(profile) {
   const loginURL = API_AUCTION_URL + action;
   const body = JSON.stringify(profile);

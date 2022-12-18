@@ -1,5 +1,12 @@
 import { hostPath } from '../api/constants.js';
 
+/**
+ *
+ * @param {object} data object data
+ * @param {element} element the element that contains the data
+ * @param {element} parent the parent that holds the element
+ * @returns
+ */
 export function expirationTime(data, element, parent) {
   const { endsAt } = data;
 

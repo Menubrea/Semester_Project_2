@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/js/handlers/getListingsFiltered.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/js/handlers/getListingsFiltered.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { getListings } from '../api/listings/read.js';
+import { cycleListings } from '../components/cycleListings.js';
+import { renderPromoListingTemplate } from '../templates/promoListing.js';
+import { setPagination } from './../components/pagination.js';
+
+/**
+ * Function for handling filtered listings
+ */
+export async function setGetListingsFiltered() {
+  const container = document.querySelector('#listingsContainer');
+  const firstEntryContainer = document.querySelector('#firstEntryContainer');
+  const paginationNumbers = document.querySelector('#paginationNumbers');
+  const trendingButton = document.querySelector('#trendingButton');
+  const expirationButton = document.querySelector('#expiringButton');
+  const filterButtons = document.querySelectorAll('.filterButton');
+  const prevButton = document.querySelector('#prevButton');
+  const nextButton = document.querySelector('#nextButton');
+  const allButton = document.querySelector('#allButton');
+  const header = document.querySelector('#browseHeader');
+  const listings = await getListings();
+
+  const filteredPromo = listings.filter((listing, index) => {
+    if (index &lt;= 4) {
+      return listing;
+    }
+  });
+
+  const filteredAll = listings.filter((listing, index) => {
+    if (index > 4) {
+      return listing;
+    }
+  });
+
+  const filteredTrending = listings.filter((listing) => {
+    if (listing.bids.length >= 2) {
+      return listing;
+    }
+  });
+
+  const filteredExpiring = listings.filter((listing) => {
+    const { endsAt } = listing;
+    const expiration = new Date(endsAt).getTime();
+    const now = new Date().getTime();
+    const distance = expiration - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    if (days &lt;= 0) {
+      return listing;
+    }
+  });
+
+  setPagination(filteredAll);
+
+  allButton.addEventListener('click', () => {
+    container.innerHTML = '';
+    header.innerHTML = '';
+    filterButtons.forEach((button) => button.classList.remove('active-button'));
+    allButton.classList.add('active-button');
+    header.innerHTML = 'All our auctions';
+    paginationNumbers.innerHTML = '';
+    return setPagination(listings);
+  });
+
+  trendingButton.addEventListener('click', () => {
+    container.innerHTML = '';
+    header.innerHTML = '';
+    filterButtons.forEach((button) => button.classList.remove('active-button'));
+    trendingButton.classList.add('active-button');
+    paginationNumbers.innerHTML = '';
+    header.innerHTML = 'Popular auctions';
+    return setPagination(filteredTrending);
+  });
+
+  expirationButton.addEventListener('click', () => {
+    container.innerHTML = '';
+    header.innerHTML = '';
+    filterButtons.forEach((button) => button.classList.remove('active-button'));
+    expirationButton.classList.add('active-button');
+    header.innerHTML = 'Ending soon';
+    paginationNumbers.innerHTML = '';
+    return setPagination(filteredExpiring);
+  });
+
+  cycleListings(prevButton, nextButton, filteredPromo, firstEntryContainer);
+  renderPromoListingTemplate(filteredPromo[0], firstEntryContainer);
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#authFetch">authFetch</a></li><li><a href="global.html#clearLoader">clearLoader</a></li><li><a href="global.html#createListing">createListing</a></li><li><a href="global.html#createMediaInput">createMediaInput</a></li><li><a href="global.html#createPreviewTemplate">createPreviewTemplate</a></li><li><a href="global.html#cycleListings">cycleListings</a></li><li><a href="global.html#displayErrorMessage">displayErrorMessage</a></li><li><a href="global.html#expirationTime">expirationTime</a></li><li><a href="global.html#getListing">getListing</a></li><li><a href="global.html#getListings">getListings</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getProfileListings">getProfileListings</a></li><li><a href="global.html#handleAuthModal">handleAuthModal</a></li><li><a href="global.html#handleLoginModal">handleLoginModal</a></li><li><a href="global.html#handleRegisterModal">handleRegisterModal</a></li><li><a href="global.html#handleSearchControlInput">handleSearchControlInput</a></li><li><a href="global.html#listingTemplate">listingTemplate</a></li><li><a href="global.html#listingsTemplate">listingsTemplate</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#makeBid">makeBid</a></li><li><a href="global.html#mouseOverCountdown">mouseOverCountdown</a></li><li><a href="global.html#popUp">popUp</a></li><li><a href="global.html#profileData">profileData</a></li><li><a href="global.html#promoListingTemplate">promoListingTemplate</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#renderMakeBid">renderMakeBid</a></li><li><a href="global.html#searchTemplate">searchTemplate</a></li><li><a href="global.html#setCreateListings">setCreateListings</a></li><li><a href="global.html#setExpiration">setExpiration</a></li><li><a href="global.html#setGetListing">setGetListing</a></li><li><a href="global.html#setGetListingsFiltered">setGetListingsFiltered</a></li><li><a href="global.html#setLoginFormListener">setLoginFormListener</a></li><li><a href="global.html#setLogout">setLogout</a></li><li><a href="global.html#setPagination">setPagination</a></li><li><a href="global.html#setRegisterFormListener">setRegisterFormListener</a></li><li><a href="global.html#setSearchListingsFormListener">setSearchListingsFormListener</a></li><li><a href="global.html#updateMedia">updateMedia</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sat Dec 17 2022 21:44:02 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -3,6 +3,11 @@ import { expirationTime } from '../components/expirationTime.js';
 import { load } from '../handlers/storage/load.js';
 import { defaultProfile, errorImage } from '../api/constants.js';
 
+/**
+ *
+ * @param {object} data The returned object from listings
+ * @returns Renders the returned object to html
+ */
 export function listingTemplate(data) {
   const listing = document.createElement('article');
   const image = document.createElement('img');
@@ -258,7 +263,12 @@ export function listingTemplate(data) {
 
   return listing;
 }
-
+/**
+ *
+ * @param {object} data takes in data from the returned listings object
+ * @param {element} parent What element to append to
+ * @returns Renders html
+ */
 export function renderMakeBid(data, parent) {
   const profile = load('profile');
   const { id, bids, seller } = data;

@@ -1,6 +1,9 @@
 import { popUp } from '../components/popUp.js';
 import { setExpiration } from '../components/setExpiration.js';
 
+/**
+ * Function for handling preview and ux of create listing form
+ */
 export function createPreviewTemplate() {
   const previewtTitle = document.querySelector('#preview-title');
   const previewImg = document.querySelector('#preview-img');
@@ -61,6 +64,11 @@ export function createPreviewTemplate() {
   });
 }
 
+/**
+ * Function for creating a new media input
+ * @param {element} parent What element to append the elements to
+ * @returns Returns an input with name media and url pattern
+ */
 export function createMediaInput(parent) {
   const form = document.querySelector('#createListing');
   const inputContainer = document.createElement('div');
