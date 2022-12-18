@@ -21,6 +21,13 @@ When a new user joins the website, they are given 1000 credits to use on the sit
     A registered user may use credit to make a Bid on another user’s Listing
     An unregistered user may search through Listings
 
+#### For the future
+
+    Create a dedicated profile page for logged in user.
+    Create a dedicated profile page for other profiles, users can interact with.
+    With better tag/category support from the API, provide dedicated listings/filters.
+    Add animations for certain interactions.
+
 ## Installation
 Clone repositiory
 
