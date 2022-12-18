@@ -19,6 +19,7 @@
     <title>Vender | Listing |</title>
   </head>
   <body class="max-w-7xl container lg:px-4 px-2">
+    <!-- Loader -->
     <div
       id="loader"
       class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
@@ -37,6 +38,7 @@
         </div>
       </div>
     </div>
+    <!-- Header -->
     <header class="relative z-40 shadow-lg">
       <div
         id="headerContainer"
@@ -74,6 +76,7 @@
           </button>
         </nav>
       </div>
+      <!-- Profile -->
       <div
         id="dataContainer"
         class="md:w-max w-full bg-white pt-2 pb-2 my-2 lg:my-4 z-20 rounded-lg hidden absolute right-0 border-4 border-secondary"
@@ -152,6 +155,7 @@
             </div>
           </div>
         </div>
+        <!-- Create Listing Form -->
         <form id="createListing" class="p-8">
           <input type="text" name="tags" hidden />
           <div class="lg:grid grid-cols-2 gap-2">
@@ -308,13 +312,13 @@
             />
           </div>
           <div
-            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg flex"
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg flex w-fit"
           >
             Don't have an account?
             <button
               type="button"
               id="register"
-              class="bg-dark/80 px-2 pb-1 text-white ml-1 cursor-pointer hover:bg-dark/50 w-full"
+              class="bg-dark/80 px-2 pb-1 text-white ml-1 cursor-pointer hover:bg-dark/50 w-fit"
             >
               Register
             </button>
