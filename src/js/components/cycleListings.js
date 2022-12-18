@@ -19,6 +19,7 @@ export function cycleListings(previous, next, array, container) {
 
   countContainer.innerHTML = `${count + 1} / ${array.length}`;
 
+  // Event for previous-slide button
   previous.addEventListener('click', () => {
     if (count > 0) {
       count--;
@@ -36,6 +37,7 @@ export function cycleListings(previous, next, array, container) {
     return renderPromoListingTemplate(array[count], container);
   });
 
+  // event for next slide button
   next.addEventListener('click', () => {
     if (array.length - 1 === count) return;
 

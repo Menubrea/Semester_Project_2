@@ -11,10 +11,16 @@ const action = '/profiles/';
 export async function getProfile(name) {
   const profileURL = `${API_AUCTION_URL}${action}${name}`;
 
-  const response = await authFetch(profileURL);
+  try {
+    const response = await authFetch(profileURL);
 
-  if (response.ok) {
-    const result = await response.json();
-    return result;
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    console.log(err);
   }
 }

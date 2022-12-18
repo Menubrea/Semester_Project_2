@@ -1,3 +1,4 @@
+import { displayErrorMessage } from '../../components/errorMessage.js';
 import { authFetch } from '../authFetch.js';
 import { API_AUCTION_URL } from '../constants.js';
 
@@ -13,8 +14,15 @@ export async function getProfileListings(name) {
 
   const response = await authFetch(profileURL);
 
-  if (response.ok) {
-    const result = await response.json();
-    return result;
+  try {
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    displayErrorMessage();
+    console.log(err);
   }
 }

@@ -35,19 +35,12 @@ export function displayErrorMessage() {
           Vender
         </p>
         <p class="font-ofelia p-2 bg-contrast/20 max-w-sm rounded-md mb-5"> Uh, oh! Something went wrong. Sometimes it may be resolved by waiting a minute before trying again. Reload page when you're ready to explore! </p>`;
+
   button.addEventListener('click', () => location.reload());
   button.innerHTML = 'Reload';
 
   error.append(errorMessage, button);
   errorContainer.append(error);
 
-  countDownReload();
-
   return error;
-}
-
-export function countDownReload() {
-  return setTimeout(() => {
-    location.reload;
-  }, 60000);
 }

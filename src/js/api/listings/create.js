@@ -45,7 +45,10 @@ export async function createListing(data) {
         }, 500);
         return listing;
       case 400:
-        popUp('All media urls need to be filled out.', container);
+        popUp(
+          'Not all inputs where provided correctly. Make sure no fields are left blank.',
+          container
+        );
         break;
       default: {
         throw new Error('An unknown error occured');

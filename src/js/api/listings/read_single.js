@@ -15,14 +15,18 @@ export async function getListing() {
   const listingUrl = `${API_AUCTION_URL}${action}${listingID}${details}`;
   const response = await fetch(listingUrl);
 
-  if (response.ok) {
-    const listing = await response.json();
-    window.onload = setTimeout(() => {
-      clearLoader();
-    }, 200);
-    return listing;
-  } else {
-    displayErrorMessage();
-    throw new Error();
+  try {
+    if (response.ok) {
+      const listing = await response.json();
+      window.onload = setTimeout(() => {
+        clearLoader();
+      }, 200);
+      return listing;
+    } else {
+      displayErrorMessage();
+      throw new Error();
+    }
+  } catch (err) {
+    console.log(err);
   }
 }
