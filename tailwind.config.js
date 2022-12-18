@@ -1,23 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ['./index.html', './src/**/*.js', './**/*.html'],
+  content: ['./index.html', './src/**/*.js', './**/*.html', './src/**/*.css'],
   theme: {
     container: {
       center: true,
     },
     colors: {
-      primary: '#943A0A',
-      dark: '#363636',
-      white: '#fefcfc',
-      lightGrey: '#FAFAFA',
-      darkGrey: '#EBEBEB',
-      secondary: '#144A67',
-      accent: '#debeb2',
+      primary: '#515661',
+      contrast: '#c5bb9b',
+      dark: '#2E2E2E',
+      white: '#FCFFFE',
+      secondary: '#515661',
+      accent: '#A3A6AD',
+      expiring: '#4D614D',
+      popular: '#614853',
     },
     fontFamily: {
-      lust: ['Lust Script', 'sans-serif'],
-      ofelia: ['Ofelia Display', 'sans-serif'],
+      lust: ['modesto-condensed', 'serif'],
+      ofelia: ['quicksand', 'sans-serif'],
     },
     fontWeight: {
       extraLight: 200,

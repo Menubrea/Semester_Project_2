@@ -1,143 +1,242 @@
 import { logout } from '../api/auth/logout.js';
+import { defaultProfile, hostPath } from '../api/constants.js';
+import { updateMedia } from '../api/profile/updateMedia.js';
 import { load } from '../handlers/storage/load.js';
 
-export function profileData() {
+/**
+ * Function for handling profileData with logged in or logged out stats
+ * @returns Returns html depending on status
+ */
+export async function profileData() {
   const container = document.querySelector('#topNav');
   const modal = document.querySelector('#listingModal');
   const overlay = document.querySelector('.overlay');
+  const dataContainer = document.querySelector('#dataContainer');
   const profile = load('profile');
   const path = location.pathname;
 
   if (profile) {
     const hero = document.querySelector('.hero');
-    const filterNav = document.querySelector('#filterNav');
-    const { credits, name, avatar } = profile;
-    const dataContainer = document.querySelector('#profileData');
-    const profileData = document.createElement('div');
+    const createListingButton = document.querySelector(
+      '#createListingNavButton'
+    );
     const createListing = document.createElement('button');
-
-    const logoutButton = document.createElement('a');
+    const login = document.querySelector('#login');
+    const profileButton = document.createElement('button');
+    const logoutButton = document.createElement('button');
     const totalCredit = document.createElement('p');
     const profileName = document.createElement('p');
     const profilePicture = document.createElement('img');
-    const profileContainer = document.createElement('div');
+    const fullProfile = document.createElement('div');
+    const firstInput = document.querySelector('#form-title');
+
+    createListingButton.classList.remove('hidden');
 
     createListing.innerHTML = 'Create Listing';
-    createListing.addEventListener('click', (e) => {
-      modal.classList.add('active', 'md:grid');
-      overlay.classList.add('active');
-      window.addEventListener('click', (e) => {
-        if (e.target.matches('.overlay')) {
-          modal.classList.remove('active', 'md:grid');
-          overlay.classList.remove('active');
-        }
-      });
-      window.addEventListener('load', () => {
-        if (modal) {
-          modal.classList.remove('active', 'md:grid');
-          overlay.classList.remove('active');
-        }
-      });
+
+    createListing.addEventListener('click', () => {
+      firstInput.focus();
+      return handleListingModal(modal, overlay);
+    });
+
+    createListingButton.addEventListener('click', () => {
+      firstInput.focus();
+      return handleListingModal(modal, overlay);
     });
 
     logoutButton.addEventListener('click', () => logout());
 
-    // Remove hero section if profile is present
-    if (path === '/' || path === '/index.html') {
-      filterNav.classList.add('md:top-11');
-      filterNav.classList.remove('border-t');
+    if (
+      path === '/' ||
+      path === '/index.html' ||
+      path === hostPath ||
+      path === hostPath + 'index.html'
+    ) {
       hero.classList.add('hidden');
       hero.classList.remove('grid');
     }
+
     createListing.classList.add(
-      'py-1',
-      'px-2',
-      'text-xs',
-      'font-josefin',
-      'text-primary',
-      'mr-4'
-    );
-    logoutButton.classList.add(
-      'items-center',
-      'flex',
-      'font-josefin',
       'text-md',
-      'justify-center',
-      'border-l',
-      'pl-5',
-      'border-white/50',
-      'cursor-pointer'
+      'font-ofelia',
+      'font-bold',
+      'text-primary',
+      'py-2',
+      'block',
+      'w-full',
+      'mt-2',
+      'mx-auto',
+      'hover:bg-secondary',
+      'hover:text-white'
     );
 
-    profileContainer.classList.add(
-      'flex',
-      'items-center',
-      'border-l',
-      'border-dark/30'
+    logoutButton.classList.add(
+      'font-ofelia',
+      'text-md',
+      'cursor-pointer',
+      'text-primary',
+      'font-bold',
+      'block',
+      'py-2',
+      'text-center',
+      'hover:bg-secondary',
+      'hover:text-white',
+      'w-full'
     );
 
-    dataContainer.classList.add(
-      'flex',
-      'justify-end',
-      'border-t',
-      'border-b',
-      'border-dark/20',
-      'py-2'
+    fullProfile.classList.add(
+      'border-b-4',
+      'border-primary',
+      'p-2',
+      'relative',
+      'px-10'
     );
-
-    profileData.classList.add('flex');
 
     profileName.classList.add(
-      'flex',
-      'items-center',
       'text-primary',
-      'font-josefin',
-      'justify-end'
+      'font-ofelia',
+      'text-center',
+      'font-bold'
     );
 
     totalCredit.classList.add(
-      'flex',
-      'font-josefin',
+      'font-ofelia',
       'font-bold',
-      'items-center',
-      'text-secondary',
-      'px-3'
+      'text-sm',
+      'text-primary',
+      'text-center',
+      'w-fit',
+      'mx-auto',
+      'border-2',
+      'p-2',
+      'my-1'
     );
 
-    profilePicture.classList.add('w-6', 'h-6', 'mr-3', 'rounded-full', 'ml-3');
+    login.classList.add('hidden');
 
-    totalCredit.innerHTML = credits + ',-';
-    profileName.innerHTML = name;
-    profilePicture.src = avatar;
-
-    logoutButton.innerHTML = `Logout <i class="ml-2 fa-solid fa-arrow-right-from-bracket font-josefin"></i>`;
-
-    profileContainer.append(profilePicture, profileName);
-    profileData.append(profileContainer, totalCredit);
-    dataContainer.append(createListing, profileData);
-    container.append(logoutButton);
-
-    return container;
-  } else {
-    const loginAnchor = document.createElement('a');
-
-    loginAnchor.classList.add(
+    profilePicture.classList.add('w-24', 'h-24', 'mx-auto', 'rounded-lg');
+    profileButton.classList.add(
+      'font-ofelia',
+      'text-primary',
+      'text-sm',
       'flex',
       'items-center',
-      'font-josefin',
-      'text-primary',
-      'text-md'
+      'font-bold'
     );
 
-    if (path === '/' || path === '/index.html') {
-      loginAnchor.href = './auth/login/';
-    } else if (path === '/listing/') {
-      loginAnchor.href = './../auth/login/';
+    profileButton.setAttribute('id', 'profileButton');
+
+    createUpdateForm(profile.name, fullProfile);
+
+    profileButton.addEventListener('click', () => {
+      if (dataContainer.classList.contains('hidden')) {
+        dataContainer.classList.remove('hidden');
+        profileButton.classList.add('active-button');
+        return dataContainer;
+      } else {
+        dataContainer.classList.add('hidden');
+        profileButton.classList.remove('active-button');
+      }
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target !== profileButton && !e.target.closest('#dataContainer')) {
+        dataContainer.classList.add('hidden');
+        profileButton.classList.remove('active-button');
+      }
+    });
+
+    totalCredit.innerHTML =
+      'You have ' +
+      profile.credits +
+      '<i class="fa-solid  fa-coins text-primary ml-1"></i>';
+    profileName.innerHTML = profile.name;
+    if (profile.avatar === '' || profile.avatar === null) {
+      profilePicture.src = defaultProfile;
+      profilePicture.alt = 'default avatar';
+    } else {
+      profilePicture.src = profile.avatar;
+      profilePicture.alt = `${profile.name}'s avatar`;
     }
 
-    loginAnchor.innerHTML =
-      ' <i class="fa-solid fa-user mr-2 font-josefin"></i>Login';
-    container.append(loginAnchor);
+    profilePicture.setAttribute('onerror', `src="${defaultProfile}"`);
+    profileButton.innerHTML = `<i class="fa-solid fa-user text-xs text-center w-full mr-1"></i> ${profile.name}`;
+    logoutButton.innerHTML = `Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>`;
+
+    fullProfile.append(profilePicture, profileName, totalCredit);
+    dataContainer.append(fullProfile, createListing, logoutButton);
+
+    container.append(profileButton);
+
     return container;
   }
+}
+
+export function createUpdateForm(name, parent) {
+  const updateForm = document.createElement('form');
+  const updateInput = document.createElement('input');
+  const inputSubmit = document.createElement('button');
+
+  updateForm.classList.add('flex', 'w-max', 'mb-4', 'mx-auto');
+  inputSubmit.innerHTML = 'Update';
+  inputSubmit.type = 'submit';
+  inputSubmit.classList.add(
+    'bg-secondary',
+    'px-2',
+    'rounded-r-lg',
+    'font-ofelia',
+    'text-white',
+    'font-bold',
+    'text-sm',
+    'hover:opacity-80'
+  );
+
+  updateInput.type = 'url';
+  updateInput.name = 'avatar';
+  updateInput.placeholder = 'Update Avatar';
+  updateInput.setAttribute('required', true);
+  updateInput.classList.add(
+    'w-full',
+    'border-2',
+    'border-secondary',
+    'p-1',
+    'pl-2',
+    'rounded-l-lg',
+    'text-base'
+  );
+
+  updateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const media = Object.fromEntries(formData.entries());
+
+    updateMedia(media, name);
+  });
+
+  updateForm.append(updateInput, inputSubmit);
+  parent.append(updateForm);
+
+  return updateForm;
+}
+
+export function handleListingModal(modal, overlay) {
+  modal.classList.add('active', 'md:grid');
+  overlay.classList.add('active');
+
+  window.addEventListener('click', (e) => {
+    if (e.target.matches('.overlay')) {
+      modal.classList.remove('active', 'md:grid');
+      overlay.classList.remove('active');
+    }
+  });
+  window.addEventListener('load', () => {
+    if (modal) {
+      modal.classList.remove('active', 'md:grid');
+      overlay.classList.remove('active');
+    }
+  });
+
+  return modal;
 }

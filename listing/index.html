@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="background">
+<html
+  lang="en"
+  class="bg-gradient-to-br from-white via-accent/80 to-white min-h-screen"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,127 +14,429 @@
       crossorigin="anonymous"
     ></script>
     <script src="./../src/js/index.js" type="module"></script>
-    <title>Vender | Home</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Vender | Listing |</title>
   </head>
-  <body class="max-w-7xl container background-shadow bg-white min-h-screen">
-    <header class="bg-white flex items-center px-5 py-2 justify-between">
-      <a href="./../" class="logo font-lust text-xl text-primary items-center">
-        Vender
-      </a>
-      <nav id="topNav" class="flex gap-5">
-        <a
-          id="home"
-          href="./../"
-          class="flex items-center font-ofelia text-primary text-md"
-          href="#"
-          ><i class="fa-solid fa-house mr-2"></i>Home</a
-        >
-      </nav>
-    </header>
-    <main class="bg-lightGrey">
-      <!-- ProfileData goes here -->
-      <div id="profileData"></div>
-      <section>
-        <!-- Listing goes here -->
-        <div id="listingContainer"></div>
-      </section>
-      <section>
-        <div id="listingsContainer"></div>
-      </section>
-      <div class="overlay backdrop-blur-lg bg-dark/80"></div>
-      <div
-        id="listingModal"
-        class="modal bg-white/80 md:p-10 p-5 md:grid-cols-2 gap-10"
-      >
-        <form action="post" class="font-ofelia" id="createListing">
-          <p class="font-lust text-primary text-3xl text-center mb-2">
-            Create Auction
+  <body class="max-w-7xl container lg:px-4 px-2">
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
+    >
+      <div id="errorContainer">
+        <div class="flex items-center justify-center" id="loaderContainer">
+          <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p class="font-lust text-primary text-3xl ml-3">
+            Vender is loading...
           </p>
+        </div>
+      </div>
+    </div>
+    <!-- Header -->
+    <header class="relative z-40 shadow-lg">
+      <div
+        id="headerContainer"
+        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg lg:mt-4 mt-2 px-3"
+      >
+        <a
+          href="./../"
+          class="logo font-lust text-2xl text-primary items-center flex w-fit"
+        >
+          <i
+            class="fa-brands fa-nfc-symbol text-white bg-primary text-sm p-2 mr-1 rounded-lg"
+          ></i>
+          Vender
+        </a>
+        <nav id="topNav" class="flex gap-1">
+          <button
+            id="createListingNavButton"
+            class="font-ofelia text-primary text-sm items-center font-bold hidden"
+          >
+            <i class="fa-solid fa-circle-plus text-xs"></i>
+          </button>
+          <a
+            id="home"
+            href="./../"
+            class="font-ofelia text-primary text-sm flex items-center font-bold"
+            ><i class="fa-solid fa-house md:mr-1 text-xs"></i
+            ><span class="hidden md:block">Home</span></a
+          >
+          <button
+            id="login"
+            class="font-ofelia text-primary text-md flex items-center text-sm font-bold"
+          >
+            <i class="fa-solid fa-user text-xs text-center w-full md:mr-1"></i
+            ><span class="hidden md:block">Login</span>
+          </button>
+        </nav>
+      </div>
+      <!-- Profile -->
+      <div
+        id="dataContainer"
+        class="md:w-max w-full bg-white pt-2 pb-2 my-2 lg:my-4 z-20 rounded-lg hidden absolute right-0 border-4 border-secondary"
+      ></div>
+    </header>
+    <main>
+      <div id="breadCrumbsNav" class="ml-4 mt-2 font-ofelia text-sm">
+        <a href="./../">Home |</a>
+        <a id="locationHere" href=""></a>
+      </div>
+      <div>
+        <!-- Listing goes here -->
+        <div
+          id="listingContainer"
+          class="rounded-lg lg:mb-4 mt-2 my-2 md:pb-0 pb-2 overflow-hidden shadow-lg"
+        ></div>
+      </div>
+      <!-- Listings goes here -->
+      <section id="listingsSection">
+        <div
+          class="font-ofelia bg-contrast/50 border border-dark/20 backdrop-blur-lg flex items-center md:mt-4 mt-2 rounded-md max-w-md mb-2 mx-auto"
+        >
+          <h2
+            id="browseHeader"
+            class="font-lust text-2xl text-dark/90 font-bold w-full text-center"
+          >
+            This user auctions
+          </h2>
+          <div id="pageCount" class="w-full p-1 bg-white/20 text-center"></div>
+        </div>
+        <div
+          class="grid xl:grid-cols-3 md:grid-cols-2 lg:gap-4 gap-2 mx-auto container max-w-7xl rounded-lg grid-rows-12 md:mt-4 mt-2"
+          id="listingsContainer"
+        ></div>
+        <!-- Pagination -->
+        <div
+          id="paginationNumbers"
+          class="flex gap-1 p-2 w-full mt-6 justify-center"
+        ></div>
+      </section>
+      <div class="overlay backdrop-blur-lg bg-accent/90"></div>
+      <!-- Listing Modal -->
+      <div
+        aria-modal="true"
+        id="listingModal"
+        class="modal bg-primary md:grid-cols-2 shadow-lg max-w-7xl relative overflow-x-hidden"
+      >
+        <button
+          aria-label="Close"
+          data-button="close-modal"
+          class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
+        >
+          <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
+        </button>
+        <div
+          class="w-full lg:mt-0 lg:p-4 bg-white relative preview-card font-ofelia text-dark font-bold border-4 border-contrast"
+          id="preview"
+        >
+          <div class="pb-2">
+            <img
+              class="object-fill mx-auto max-h-96 w-full border-b border-b-secondary"
+              id="preview-img"
+              src="https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvay0yNi1hLTEyNzc4LW9sajE5NjctMS1iZWNyZWF0aXZlXzEuanBn.jpg"
+              alt="preview-image"
+            />
+            <div class="mt-2 lg:mx-2 mx-4">
+              <p
+                class="font-lust text-primary text-2xl lg:text-3xl font-bold"
+                id="preview-title"
+              >
+                A thoughtful title will generate interest!
+              </p>
+              <p class="font-ofelia text-dark text-md" id="preview-description">
+                Be creative and detailed in your description.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Create Listing Form -->
+        <form id="createListing" class="p-8">
+          <input type="text" name="tags" hidden />
           <div class="lg:grid grid-cols-2 gap-2">
             <div class="mt-2">
-              <label for="title">Provide a title</label>
+              <label
+                class="font-ofelia text-white text-sm text-center w-full"
+                for="form-title"
+                >Provide a title &#42;</label
+              >
               <input
-                class="p-2 w-full rounded-sm"
+                class="p-2 pl-4 w-full rounded-full"
                 id="form-title"
                 type="text"
                 name="title"
                 required
                 placeholder="Title"
-                title="This field is required"
+                title="Please provide a title"
+                maxlength="50"
               />
+              <div
+                id="titleCount"
+                class="w-full text-xs text-end text-white"
+              ></div>
             </div>
-
             <div class="mt-2">
-              <label for="tags">Add tags</label>
-              <input
-                class="p-2 w-full rounded-sm"
-                type="text"
-                name="tags"
-                placeholder="Tags"
-              />
+              <label
+                class="font-ofelia text-white text-sm text-center mx-auto"
+                for="expiration"
+                >Set an expiration date &#42;</label
+              >
+              <select
+                class="p-2 pl-4 w-full rounded-full font-ofelia"
+                title="Please select a duration for your auction"
+                name="endsAt"
+                id="expiration"
+              >
+                <option id="inOneHour">Express: 1 hour</option>
+                <option id="inOneDay">Regular: 24 hours</option>
+                <option id="inOneWeek">Long: 7 days</option>
+              </select>
             </div>
           </div>
-          <div class="lg:grid grid-cols-2 gap-2">
-            <div class="mt-2">
-              <label for="media">Image</label>
+          <div class="mt-4 w-full">
+            <div>
+              <label class="font-ofelia text-white text-sm" for="form-media"
+                >Provide an image &#42;</label
+              >
               <input
-                class="p-2 w-full rounded-sm"
-                id="form-media"
                 type="url"
                 name="media"
-                title="Must be a fully formed URL to a valid image publicly accessible"
-              />
-            </div>
-            <div class="mt-2">
-              <label for="endsAt">Expiration</label>
-              <input
-                class="p-2 w-full rounded-sm"
-                type="datetime-local"
-                name="endsAt"
-                title="This input is required"
+                id="form-media"
+                title="Must be a fully formed and publicly accessible URL"
+                placeholder="Main image"
+                class="p-2 pl-4 w-full rounded-full"
                 required
               />
+              <div class="font-ofelia text-xs text-end text-white">
+                Horisontal high quality images work best for this app
+              </div>
+
+              <button
+                class="bg-primary text-white p-2 text-sm font-ofelia font-bold w-max flex justify-center items-center hover:bg-primary/80 mx-auto mt-2 rounded-lg border-4 border-contrast"
+                type="button"
+                id="addImage"
+              >
+                <i class="fa-solid fa-circle-plus text-white text-sm mr-1"></i>
+                Add Image
+              </button>
+              <div class="w-full">
+                <p
+                  class="w-full text-sm text-white font-ofelia text-center mt-1"
+                >
+                  Additional images will not be displayed in the preview.
+                </p>
+              </div>
             </div>
+
+            <div
+              id="inputMediaContainer"
+              class="lg:grid grid-cols-2 gap-2 mt-2"
+            ></div>
           </div>
           <div class="mt-2">
+            <label for="form-description" class="font-ofelia text-white text-sm"
+              >Describe your item &#42;</label
+            >
             <textarea
-              class="p-2 w-full rounded-sm"
+              class="p-2 w-full rounded-lg"
               id="form-description"
               name="description"
               rows="5"
+              required
+              maxlength="280"
             ></textarea>
+            <div
+              id="descriptionCount"
+              class="w-full text-xs text-end text-white"
+            ></div>
+          </div>
+          <div class="flex justify-center items-center">
+            <button
+              class="py-1 px-2 bg-primary mt-2 text-center font-ofelia font-bold text-white text-xl w-full rounded-lg border-contrast border-4 shadow-lg hover:text-primary hover:bg-white"
+              type="submit"
+            >
+              Create Listing
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- Login Modal -->
+      <div
+        aria-modal="true"
+        id="loginModal"
+        class="modal modal-auth bg-primary p-2 md:p-4 relative"
+      >
+        <button
+          aria-label="close"
+          data-button="close-modal"
+          class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
+        >
+          <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
+        </button>
+        <!-- loginForm -->
+        <form
+          id="loginForm"
+          class="max-w-xl mx-auto p-8 rounded-lg backdrop-blur-3xl shadow-lg bg-white/20 w-fit"
+        >
+          <p
+            class="font-lust text-primary text-2xl bg-white py-2 px-5 rounded-lg shadow-md w-fit mx-auto"
+          >
+            Log in to Vender
+          </p>
+          <div class="py-2 mt-4">
+            <input
+              id="emailLogin"
+              class="p-2 pl-4 w-full rounded-full"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              pattern="^[\w\-.]+@stud.?noroff.no$"
+              title="Must be a valid @stud.noroff email"
+            />
+          </div>
+          <div class="py-2">
+            <input
+              class="p-2 pl-4 w-full rounded-full"
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              minlength="8"
+              title="Password must be minimum 8 characters long"
+            />
+          </div>
+          <div
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg flex w-fit"
+          >
+            Don't have an account?
+            <button
+              type="button"
+              id="register"
+              class="bg-dark/80 px-2 pb-1 text-white ml-1 cursor-pointer hover:bg-dark/50 w-fit"
+            >
+              Register
+            </button>
           </div>
           <button
-            class="py-1 px-2 bg-white mt-2 text-center float-right font-ofelia font-bold text-primary text-xl"
+            id="loginButton"
             type="submit"
+            class="font-ofelia font-bold px-4 py-1 text-white text-xl rounded-lg bg-primary w-full border-4 border-contrast mt-5 shadow-xl hover:bg-white hover:text-primary"
           >
-            Create Listing
+            Log in
           </button>
         </form>
-        <div class="w-full mt-16 lg:mt-0" id="preview">
-          <div class="preview-card">
-            <img
-              class="md:rounded-lg md:shadow-md object-fill mx-auto"
-              id="preview-img"
+      </div>
+      <!-- RegisterModal -->
+      <div
+        id="registerModal"
+        class="modal modal-auth bg-primary p-2 md:p-4 relative"
+      >
+        <button
+          aria-label="Close"
+          data-button="close-modal"
+          class="absolute top-0 right-0 w-10 h-10 text-white hover:opacity-70 cursor-pointer bg-dark p-2 rounded-bl-lg flex items-center justify-center z-50"
+        >
+          <i class="fa-solid fa-circle-xmark p-1 z-50 text-2xl"></i>
+        </button>
+        <form
+          id="registerForm"
+          class="max-w-xl mx-auto p-8 rounded-lg h-max m-4 backdrop-blur-3xl shadow-lg bg-white/20 w-fit"
+        >
+          <p
+            class="font-lust text-primary text-2xl bg-white py-2 px-5 rounded-lg shadow-md w-fit mx-auto"
+          >
+            Sign up to Vender
+          </p>
+          <div class="py-2 mt-4">
+            <input
+              id="nameRegister"
+              class="p-2 pl-4 w-full rounded-full"
+              type="text"
+              name="name"
+              placeholder="Name"
+              required
+              maxlength="20"
+              pattern="^[\w]+$"
+              title="Can only contain underscore _ and max length of 20"
             />
-            <div class="mt-5 mx-5">
-              <p
-                class="font-lust text-primary text-3xl text-center"
-                id="preview-title"
-              ></p>
-              <p class="mt-2 font-ofelia" id="preview-description"></p>
-            </div>
           </div>
-        </div>
+          <div class="py-2">
+            <input
+              class="p-2 pl-4 w-full rounded-full"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              pattern="^[\w\-.]+@stud.?noroff.no$"
+              title="Must be a valid @stud.noroff email"
+            />
+          </div>
+          <div class="py-2">
+            <input
+              class="p-2 pl-4 w-full rounded-full"
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              minlength="8"
+              title="Password must be minimum 8 characters long"
+            />
+          </div>
+          <div class="py-2">
+            <input
+              class="p-2 pl-4 w-full rounded-full"
+              type="url"
+              placeholder="Avatar"
+              name="avatar"
+              title="Add a avatar for your profile, if none selected default will be provided. You can change this later"
+            />
+          </div>
+          <div
+            class="font-ofelia text-dark my-2 bg-white/40 p-2 rounded-lg flex w-full"
+          >
+            Already have an account?
+            <button
+              type="button"
+              id="loginFromForm"
+              class="bg-dark/80 px-2 pb-1 ml-1 cursor-pointer hover:bg-dark/50 text-white w-fit"
+            >
+              Log In
+            </button>
+          </div>
+          <button
+            id="registerButton"
+            type="submit"
+            class="font-ofelia font-bold px-4 py-1 text-white text-xl rounded-lg bg-primary w-full border-4 border-contrast mt-5 shadow-xl hover:bg-white hover:text-dark hover:border-4"
+          >
+            Sign Up
+          </button>
+        </form>
       </div>
     </main>
-    <footer class="bg-white items-end flex justify-between mx-5">
-      <a href="./../../" class="logo font-lust text-xl text-primary py-3 px-3">
+    <footer
+      class="md:flex flex-row items-center md:justify-between justify-center bg-white py-2 backdrop-blur-2xl rounded-lg md:my-4 my-2 px-3 shadow-lg w-full"
+    >
+      <a
+        href="#"
+        class="logo font-lust text-2xl text-primary items-center flex w-fit md:mx-0 mx-auto"
+      >
+        <i
+          class="fa-brands fa-nfc-symbol text-white bg-primary text-sm p-2 mr-1 rounded-lg"
+        ></i>
         Vender
       </a>
-      <a href="#" class="logo font-lust text-xl text-primary py-3 px-3">
-        Back to Top
-      </a>
+      <div class="font-ofelia md:mx-0 mx-auto w-fit md:mt-0 mt-2">
+        <p>
+          All Rights Reserved | Menubrea
+          <i class="fa-regular fa-copyright"></i>
+        </p>
+      </div>
     </footer>
   </body>
 </html>

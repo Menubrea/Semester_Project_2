@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/js/templates/promoListing.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/js/templates/promoListing.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { errorImage, defaultProfile } from '../api/constants.js';
+import { mouseOverCountdown } from '../components/eventCountDown.js';
+
+/**
+ * Function for creating promo card for listings
+ * @param {object} data Takes in data from the returned listing object
+ * @returns Renders html with data from the listing object
+ */
+export function promoListingTemplate(data) {
+  const { title, description, seller, media, bids, id } = data;
+  const card = document.createElement('article');
+  const imageContainer = document.createElement('div');
+  const listingImage = document.createElement('img');
+  const listingTitle = document.createElement('h1');
+  const listingDescription = document.createElement('p');
+  const listingContent = document.createElement('div');
+  const profileContainer = document.createElement('div');
+  const profileImage = document.createElement('img');
+  const profileName = document.createElement('p');
+  const anchor = document.createElement('a');
+  const bidElement = document.createElement('p');
+  const remainingTime = document.createElement('p');
+
+  profileContainer.append(profileImage, profileName);
+  imageContainer.append(listingImage);
+  listingContent.append(listingTitle, profileContainer, listingDescription);
+
+  anchor.append(imageContainer, listingContent);
+  card.append(anchor, bidElement);
+
+  bids.sort((a, b) => b.amount - a.amount);
+  const latestBid = bids.at(0);
+
+  if (bids.length === 0) {
+    bidElement.innerHTML = `&lt;i class="fa-solid fa-certificate mr-1">&lt;/i>&lt;/i>New`;
+  } else {
+    bidElement.innerHTML = `Current bid: ${latestBid.amount} &lt;i class="fa-solid  fa-coins text-dark text-md ml-1">&lt;/i>`;
+  }
+
+  bidElement.classList.add(
+    'absolute',
+    'md:top-8',
+    'top-4',
+    'md:left-8',
+    'left-4',
+    'bg-contrast/80',
+    'backdrop-blur-lg',
+    'py-1',
+    'font-ofelia',
+    'px-2',
+    'text-sm',
+    'rounded-md',
+    'border-dark/20',
+    'border',
+    'shadow-lg',
+    'text-dark/80'
+  );
+
+  remainingTime.classList.add(
+    'absolute',
+    'font-ofelia',
+    'text-white',
+    'bg-primary/80',
+    'backdrop-blur-lg',
+    'p-1',
+    'px-4',
+    'w-max',
+    'bottom-4',
+    'right-4',
+    'rounded-md',
+    'border-dark/20',
+    'border',
+    'shadow-lg',
+    'countDownOpacity'
+  );
+
+  card.classList.add(
+    'card',
+    'card-promo',
+    'bg-white',
+    'lg:mt-4',
+    'mt-2',
+    'rounded-lg',
+    'shadow-lg',
+    'md:p-4',
+    'p-2',
+    'relative'
+  );
+
+  anchor.classList.add('md:grid', 'md:grid-cols-3', 'gap-4');
+  listingImage.classList.add('w-full', 'h-80', 'object-cover', 'rounded-lg');
+
+  imageContainer.classList.add('col-span-2', 'relative');
+  listingTitle.classList.add(
+    'text-primary',
+    'font-lust',
+    'lg:text-4xl',
+    'text-3xl',
+    'break-words'
+  );
+  listingContent.classList.add(
+    'relative',
+    'lg:p-4',
+    'p-2',
+    'pb-8',
+    'h-40',
+    'md:h-full'
+  );
+  listingDescription.classList.add(
+    'font-ofelia',
+    'lg:text-lg',
+    'text-dark',
+    'md:text-md',
+    'lg:mt-2',
+    'break-words'
+  );
+  profileContainer.classList.add(
+    'flex',
+    'items-center',
+    'w-full',
+    'justify-end',
+    'absolute',
+    'bottom-0',
+    'right-0',
+    'gap-1'
+  );
+  profileImage.classList.add('lg:w-6', 'lg:h-6', 'w-4', 'h-4', 'rounded-full');
+  profileName.classList.add(
+    'font-ofelia',
+    'text-dark',
+    'md:text-md',
+    'text-sm'
+  );
+
+  mouseOverCountdown(card, remainingTime, data, imageContainer);
+
+  let count = 0;
+  setInterval(() => {
+    if (media.length === 1 || media.length === 0) return;
+    count += 1;
+    if (count === media.length) {
+      count = 0;
+    }
+    listingImage.src = media[count];
+  }, 8000);
+
+  if (media.length === 0 || media === '' || media === null) {
+    listingImage.src = defaultProfile;
+    listingImage.alt = 'Stock image as no image was provided';
+  } else {
+    listingImage.src = media[0];
+    listingImage.alt = `${description}`;
+  }
+
+  if (seller.avatar === '' || seller.avatar === null) {
+    profileImage.src = defaultProfile;
+    profileImage.alt = 'default profile';
+  } else {
+    profileImage.src = seller.avatar;
+    profileImage.alt = seller.name + ' avatar';
+  }
+
+  listingImage.setAttribute('onerror', `src="${errorImage}"`);
+  profileImage.setAttribute('onerror', `src="${defaultProfile}"`);
+
+  if (description) {
+    if (description.length > 200 &amp;&amp; description !== '') {
+      listingDescription.innerHTML = description
+        .slice(0, 200)
+        .concat('...')
+        .trim();
+    } else {
+      listingDescription.innerHTML = description;
+    }
+  }
+
+  if (title) {
+    if (title.length > 50 &amp;&amp; title !== '') {
+      title.innerHTML = title.slice(0, 50).concat('...').trim();
+    } else {
+      listingTitle.innerHTML = title;
+    }
+  }
+
+  profileName.innerHTML = seller.name;
+  anchor.href = `./listing/?id=${id}`;
+
+  return card;
+}
+
+export function renderPromoListingTemplate(data, parent) {
+  return parent.append(promoListingTemplate(data));
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#authFetch">authFetch</a></li><li><a href="global.html#clearLoader">clearLoader</a></li><li><a href="global.html#createListing">createListing</a></li><li><a href="global.html#createMediaInput">createMediaInput</a></li><li><a href="global.html#createPreviewTemplate">createPreviewTemplate</a></li><li><a href="global.html#cycleListings">cycleListings</a></li><li><a href="global.html#displayErrorMessage">displayErrorMessage</a></li><li><a href="global.html#expirationTime">expirationTime</a></li><li><a href="global.html#getListing">getListing</a></li><li><a href="global.html#getListings">getListings</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getProfileListings">getProfileListings</a></li><li><a href="global.html#handleAuthModal">handleAuthModal</a></li><li><a href="global.html#handleLoginModal">handleLoginModal</a></li><li><a href="global.html#handleRegisterModal">handleRegisterModal</a></li><li><a href="global.html#handleSearchControlInput">handleSearchControlInput</a></li><li><a href="global.html#listingTemplate">listingTemplate</a></li><li><a href="global.html#listingsTemplate">listingsTemplate</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#makeBid">makeBid</a></li><li><a href="global.html#mouseOverCountdown">mouseOverCountdown</a></li><li><a href="global.html#popUp">popUp</a></li><li><a href="global.html#profileData">profileData</a></li><li><a href="global.html#promoListingTemplate">promoListingTemplate</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#renderMakeBid">renderMakeBid</a></li><li><a href="global.html#searchTemplate">searchTemplate</a></li><li><a href="global.html#setCreateListings">setCreateListings</a></li><li><a href="global.html#setExpiration">setExpiration</a></li><li><a href="global.html#setGetListing">setGetListing</a></li><li><a href="global.html#setGetListingsFiltered">setGetListingsFiltered</a></li><li><a href="global.html#setLoginFormListener">setLoginFormListener</a></li><li><a href="global.html#setLogout">setLogout</a></li><li><a href="global.html#setPagination">setPagination</a></li><li><a href="global.html#setRegisterFormListener">setRegisterFormListener</a></li><li><a href="global.html#setSearchListingsFormListener">setSearchListingsFormListener</a></li><li><a href="global.html#updateMedia">updateMedia</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sat Dec 17 2022 21:44:02 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

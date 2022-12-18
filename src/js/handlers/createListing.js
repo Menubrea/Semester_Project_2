@@ -1,5 +1,9 @@
 import { createListing } from '../api/listings/create.js';
+import { setExpiration } from '../components/setExpiration.js';
 
+/**
+ * Function for createListing form handler
+ */
 export async function setCreateListings() {
   const form = document.querySelector('#createListing');
 
@@ -9,12 +13,11 @@ export async function setCreateListings() {
     const listingForm = e.target;
     const formData = new FormData(listingForm);
     const listing = Object.fromEntries(formData.entries());
-    const media = formData.getAll('media');
-
     listing.media = [listing.media];
-    listing.media.push(media);
-    Object.assign(listing.media, media);
+    const media = formData.getAll('media');
+    setExpiration();
 
+    Object.assign(listing.media, media);
     createListing(listing);
   });
 }
