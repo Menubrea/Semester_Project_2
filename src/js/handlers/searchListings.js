@@ -9,9 +9,11 @@ export async function setSearchListingsFormListener() {
   const searchButton = document.querySelector('#searchButton');
 
   searchControl.addEventListener('search', () => {
+    searchControl.scrollIntoView({ behavior: 'smooth' });
     return handleSearchControlInput(searchControl);
   });
   searchButton.addEventListener('click', () => {
+    searchControl.scrollIntoView({ behavior: 'smooth' });
     return handleSearchControlInput(searchControl);
   });
 
