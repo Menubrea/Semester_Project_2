@@ -120,8 +120,7 @@ export async function profileData() {
       'text-primary',
       'text-sm',
       'flex',
-      'items-center',
-      'font-bold'
+      'items-center'
     );
 
     profileButton.setAttribute('id', 'profileButton');
