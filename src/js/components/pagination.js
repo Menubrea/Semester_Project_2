@@ -74,7 +74,7 @@ export function setPagination(array) {
     const pageIndex = Number(button.getAttribute('page-index'));
     if (pageIndex) {
       button.addEventListener('click', () => {
-        document.querySelector('header').scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('#browseHeader').scrollIntoView();
         container.innerHTML = '';
         pageCountContainer.innerHTML = '';
         pageCountContainer.innerHTML = `Page ${pageIndex} / ${pageCount}`;
