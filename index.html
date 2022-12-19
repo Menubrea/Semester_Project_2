@@ -138,24 +138,21 @@
         <div class="container w-full max-w-7xl mx-auto mb-2">
           <!-- h2 -->
           <div
-            class="font-ofelia bg-white/50 border border-dark/20 backdrop-blur-lg flex items-center mt-12 rounded-md max-w-md mb-2 mx-auto"
+            class="font-ofelia flex items-center mt-12 max-w-md mx-auto headerContainer rounded-t-lg"
           >
             <h2
               id="browseHeader"
-              class="font-lust text-2xl text-dark/90 font-bold w-full text-center"
+              class="font-lust text-2xl text-dark bg-white/50 font-bold w-full text-center border-r-2 border-primary"
             >
-              All our auctions
+              All auctions
             </h2>
-            <div
-              id="pageCount"
-              class="w-full p-1 bg-white/80 text-center rounded-r-lg"
-            >
+            <div id="pageCount" class="w-full p-1 bg-white/50 text-center">
               1 / 6
             </div>
           </div>
           <!-- Search -->
           <div
-            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex bg-white/50 rounded-lg"
+            class="relative max-w-7xl w-full items-center justify-between mx-auto md:flex bg-white/50 md:rounded-lg"
           >
             <div class="relative z-20 w-full md:mb-0 mb-1 rounded-l-lg">
               <div
@@ -209,19 +206,25 @@
                   id="allButton"
                   class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
                 >
-                  <i class="fa-solid fa-icons pr-2"></i>All
+                  <span class="md:inline hidden"
+                    ><i class="fa-solid fa-icons pr-2"></i></span
+                  >All
                 </button>
                 <button
                   id="trendingButton"
                   class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
                 >
-                  <i class="fa-solid fa-fire-flame-curved pr-2"></i>Trending
+                  <span class="md:inline hidden"
+                    ><i class="fa-solid fa-fire-flame-curved pr-2"></i></span
+                  >Trending
                 </button>
                 <button
                   id="expiringButton"
                   class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
                 >
-                  <i class="fa-regular fa-solid fa-clock pr-2"></i>Expiring
+                  <span class="md:inline hidden"
+                    ><i class="fa-regular fa-solid fa-clock pr-2"></i></span
+                  >Expiring
                 </button>
               </div>
             </nav>

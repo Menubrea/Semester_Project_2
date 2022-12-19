@@ -56,7 +56,7 @@ export async function setGetListingsFiltered() {
     header.innerHTML = '';
     filterButtons.forEach((button) => button.classList.remove('active-button'));
     allButton.classList.add('active-button');
-    header.innerHTML = 'All our auctions';
+    header.innerHTML = 'All auctions';
     paginationNumbers.innerHTML = '';
     return setPagination(listings);
   });
@@ -67,7 +67,7 @@ export async function setGetListingsFiltered() {
     filterButtons.forEach((button) => button.classList.remove('active-button'));
     trendingButton.classList.add('active-button');
     paginationNumbers.innerHTML = '';
-    header.innerHTML = 'Popular auctions';
+    header.innerHTML = 'Popular';
     return setPagination(filteredTrending);
   });
 

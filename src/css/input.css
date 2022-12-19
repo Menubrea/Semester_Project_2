@@ -189,6 +189,28 @@ textarea:focus {
   z-index: 1000;
 }
 
+.headerContainer {
+  position: relative;
+}
+
+.headerContainer:before,
+.headerContainer:after {
+  --size: 1em;
+  content: '';
+  width: 0;
+  height: 0;
+  border: var(--size) solid rgba(255, 255, 255, 0.5);
+  border-top: 1em solid transparent;
+}
+
+.headerContainer:before {
+  border-left: 1em solid transparent;
+}
+
+.headerContainer:after {
+  border-right: 1em solid transparent;
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;
