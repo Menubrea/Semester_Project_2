@@ -117,12 +117,16 @@ export function promoListingTemplate(data) {
   profileContainer.classList.add(
     'flex',
     'items-center',
-    'w-full',
     'justify-end',
     'absolute',
     'bottom-0',
     'right-0',
-    'gap-1'
+    'gap-1',
+    'bg-white',
+    'p-1',
+    'px-2',
+    'rounded-full',
+    'w-fit'
   );
   profileImage.classList.add('lg:w-6', 'lg:h-6', 'w-4', 'h-4', 'rounded-full');
   profileName.classList.add(

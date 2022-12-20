@@ -10,6 +10,7 @@ export function listingsTemplate(data) {
   const card = document.createElement('article');
   const header = document.createElement('h3');
   const image = document.createElement('img');
+  const imageContainer = document.createElement('div');
   const profileImage = document.createElement('img');
   const profileName = document.createElement('p');
   const profileContainer = document.createElement('div');
@@ -23,10 +24,11 @@ export function listingsTemplate(data) {
 
   // Appending
   infoContainer.append(bid);
-  mouseOverCountdown(card, remainingTime, data, anchor);
-  headerContainer.append(header, profileContainer);
+  imageContainer.append(image, profileContainer);
+  mouseOverCountdown(card, remainingTime, data, imageContainer);
+  headerContainer.append(header);
   profileContainer.append(profileImage, profileName);
-  anchor.append(image, headerContainer);
+  anchor.append(imageContainer, headerContainer);
   card.append(anchor, infoContainer);
 
   const { title, media, seller, bids, endsAt, id } = data;
@@ -37,22 +39,16 @@ export function listingsTemplate(data) {
   // Conditional logic for handling media
 
   // Classes
-  headerContainer.classList.add(
-    'flex',
-    'items-center',
-    'gap-3',
-    'justify-between',
-    'mx-2'
-  );
+  imageContainer.classList.add('relative');
+  headerContainer.classList.add('mx-2', 'mb-1');
   card.classList.add(
     'relative',
     'w-full',
-    'rounded-lg',
     'card',
     'px-2',
     'pt-2',
     'h-min',
-    'bg-white'
+    'rounded-lg'
   );
   image.classList.add(
     'w-full',
@@ -61,38 +57,50 @@ export function listingsTemplate(data) {
     'card-image',
     'rounded-lg'
   );
-  profileImage.classList.add('w-4', 'h-4', 'mr-2', 'rounded-full');
+  profileImage.classList.add('w-3', 'h-3', 'mr-1', 'rounded-full');
   profileName.classList.add(
     'font-ofelia',
-    'text-white',
-    'text-md',
+    'text-dark',
+    'text-sm',
     'items-center'
   );
-  profileContainer.classList.add('flex', 'items-center');
+  profileContainer.classList.add(
+    'flex',
+    'items-center',
+    'w-fit',
+    'float-right',
+    'bg-white/50',
+    'p-1',
+    'px-3',
+    'rounded-t-md',
+    'backdrop-blur-lg',
+    'absolute',
+    'bottom-0',
+    'right-2'
+  );
   header.classList.add(
     'font-lust',
     'font-extraBold',
-    'text-primary',
+    'text-dark',
     'md:text-2xl',
-    'text-xl'
+    'text-xl',
+    'leading-relaxed'
   );
 
   remainingTime.classList.add(
-    'text-md',
+    'text-sm',
     'text-white',
     'font-ofelia',
     'countDownOpacity',
     'absolute',
-    'left-1/2',
-    '-translate-x-1/2',
-    'top-1/2',
-    '-translate-y-1/2',
-    'bg-primary/80',
+    'bottom-0',
+    'left-2',
+    'bg-primary',
     'backdrop-blur-lg',
     'px-4',
     'py-1',
     'w-max',
-    'rounded-md',
+    'rounded-t-md',
     'border-dark/20',
     'border',
     'shadow-lg'
@@ -187,23 +195,21 @@ export function listingsTemplate(data) {
     bid.innerHTML = ` ${lastBid.amount} <i class="fa-solid  fa-coins text-dark ml-1"></i>`;
   }
 
-  if (title.length > 24) {
-    header.innerHTML = title.slice(0, 24).concat('..').trim();
+  if (title.length > 50) {
+    header.innerHTML = title.slice(0, 50).concat('..').trim();
   } else {
     header.innerHTML = title;
   }
 
   if (media.length === 0 || media === '' || media === null) {
     image.src = defaultProfile;
+    image.classList.add('grayscale');
     image.alt = 'Stock image if no image is provided';
   } else {
     image.src = media[0];
     image.alt = title;
   }
 
-  if (document.body.clientWidth < 360) {
-    header.innerHTML = title.slice(0, 15).concat('..').trim();
-  }
   if (
     seller.avatar === '' ||
     seller.avatar === null ||

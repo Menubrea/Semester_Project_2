@@ -39,6 +39,7 @@ nav > button {
   overflow: hidden;
 }
 
+.card:before,
 .card:after,
 .card-promo:after,
 .card-promo:before,
@@ -66,10 +67,19 @@ nav > button {
   border-right: 3em solid transparent;
 }
 
+.card:before {
+  top: 0;
+  left: 0;
+  border-left: 4rem solid var(--clr-primary);
+  border-top: 7rem solid var(--clr-primary);
+  border-right: 4rem solid transparent;
+  border-bottom: 7rem solid transparent;
+}
 .card:after {
-  border: 6rem solid var(--clr-primary);
-  border-left: 6rem solid transparent;
-  border-top: 6rem solid transparent;
+  border-left: 4rem solid transparent;
+  border-top: 7rem solid transparent;
+  border-right: 4rem solid var(--clr-contrast);
+  border-bottom: 7rem solid var(--clr-contrast);
 }
 
 .card-promo:after,
@@ -117,7 +127,8 @@ nav > button:hover {
 
 .card:hover {
   cursor: pointer;
-  outline: 0.5px solid rgba(0, 0, 0, 0.5);
+  transform: scale(1.01);
+  /* outline: 0.5px solid rgba(0, 0, 0, 0.5); */
 }
 
 .countDownOpacity {
@@ -189,7 +200,7 @@ textarea:focus {
   z-index: 1000;
 }
 
-.headerContainer {
+/* .headerContainer {
   position: relative;
 }
 
@@ -209,7 +220,7 @@ textarea:focus {
 
 .headerContainer:after {
   border-right: 1em solid transparent;
-}
+} */
 
 .lds-ellipsis {
   display: inline-block;

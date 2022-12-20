@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-gradient-to-br from-white via-accent/80 to-white">
+<html lang="en" class="bg-gradient-to-br from-white via-accent/25 to-white">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -135,20 +135,18 @@
 
       <!-- listing Navigation -->
       <div class="relative" id="forAllListings">
-        <div class="container w-full max-w-7xl mx-auto mb-2">
+        <div class="container w-full max-w-5xl mx-auto mb-2">
           <!-- h2 -->
           <div
-            class="font-ofelia flex items-center mt-12 max-w-md mx-auto headerContainer rounded-t-lg"
+            class="font-ofelia flex items-center mt-12 max-w-md mx-auto bg-dark/10 rounded-t-lg"
           >
             <h2
               id="browseHeader"
-              class="font-lust text-2xl text-dark bg-white/50 font-bold w-full text-center border-r-2 border-primary"
+              class="font-lust text-2xl text-dark font-bold w-full text-center"
             >
               All auctions
             </h2>
-            <div id="pageCount" class="w-full p-1 bg-white/50 text-center">
-              1 / 6
-            </div>
+            <div id="pageCount" class="w-full p-1 text-center">1 / 6</div>
           </div>
           <!-- Search -->
           <div
@@ -161,7 +159,7 @@
               >
                 <input
                   id="searchBar"
-                  class="border-2 border-primary p-1 px-4 bg-white w-full text-base rounded-full"
+                  class="border-2 border-primary py-0.5 px-4 bg-white w-full text-base rounded-full"
                   placeholder="Search Vender"
                   type="search"
                   name="search"
@@ -204,7 +202,7 @@
               >
                 <button
                   id="allButton"
-                  class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
+                  class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 active-button hover:bg-primary hover:text-white rounded-full text-sm"
                 >
                   <span class="md:inline hidden"
                     ><i class="fa-solid fa-icons pr-2"></i></span
@@ -212,7 +210,7 @@
                 </button>
                 <button
                   id="trendingButton"
-                  class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
+                  class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm"
                 >
                   <span class="md:inline hidden"
                     ><i class="fa-solid fa-fire-flame-curved pr-2"></i></span
@@ -220,7 +218,7 @@
                 </button>
                 <button
                   id="expiringButton"
-                  class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm md:text-base"
+                  class="filterButton py-1 w-full text-primary bg-white border-secondary border-2 hover:bg-primary hover:text-white rounded-full text-sm"
                 >
                   <span class="md:inline hidden"
                     ><i class="fa-regular fa-solid fa-clock pr-2"></i></span
