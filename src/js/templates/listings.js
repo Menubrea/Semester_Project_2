@@ -40,7 +40,16 @@ export function listingsTemplate(data) {
 
   // Classes
   imageContainer.classList.add('relative');
-  headerContainer.classList.add('mx-2', 'mb-1');
+  headerContainer.classList.add(
+    'mb-2',
+    'text-center',
+    'bg-white',
+    'rounded-b-lg',
+    'border-b',
+    'border-x',
+    'border-dark/20',
+    'backdrop-blur-lg'
+  );
   card.classList.add(
     'relative',
     'w-full',
@@ -48,14 +57,17 @@ export function listingsTemplate(data) {
     'px-2',
     'pt-2',
     'h-min',
-    'rounded-lg'
+    'rounded-lg',
+    'bg-white',
+    'backdrop-blur-lg',
+    'border'
   );
   image.classList.add(
     'w-full',
     'h-64',
     'object-cover',
     'card-image',
-    'rounded-lg'
+    'rounded-t-lg'
   );
   profileImage.classList.add('w-3', 'h-3', 'mr-1', 'rounded-full');
   profileName.classList.add(
@@ -69,22 +81,22 @@ export function listingsTemplate(data) {
     'items-center',
     'w-fit',
     'float-right',
-    'bg-white/50',
+    'bg-white',
     'p-1',
     'px-3',
     'rounded-t-md',
-    'backdrop-blur-lg',
     'absolute',
     'bottom-0',
-    'right-2'
+    'right-2',
+    'border-b',
+    'border-dark/10'
   );
   header.classList.add(
     'font-lust',
     'font-extraBold',
     'text-dark',
     'md:text-2xl',
-    'text-xl',
-    'leading-relaxed'
+    'text-xl'
   );
 
   remainingTime.classList.add(
@@ -106,56 +118,51 @@ export function listingsTemplate(data) {
     'shadow-lg'
   );
   bid.classList.add(
-    'bg-contrast/90',
-    'backdrop-blur-lg',
+    'bg-contrast',
     'px-4',
     'py-1',
     'font-ofelia',
     'text-sm',
-    'rounded-md',
     'border-dark/20',
     'border',
-    'shadow-lg',
-    'text-dark/80'
+    'text-dark',
+    'rounded-tl-md'
   );
 
   expiringIcon.classList.add(
     'font-ofelia',
     'text-sm',
-    'rounded-md',
-    'bg-expiring/90',
-    'backdrop-blur-lg',
+    'bg-expiring',
     'px-3',
     'py-1',
     'border-dark/20',
     'border',
-    'shadow-lg',
-    'text-white/80',
+    'text-white',
     'w-fit'
   );
 
   popularIcon.classList.add(
     'font-ofelia',
     'text-sm',
-    'rounded-md',
-    'bg-popular/90',
-    'backdrop-blur-lg',
+    'bg-popular',
     'px-3',
     'py-1',
     'border-dark/20',
     'border',
-    'shadow-lg',
-    'text-white/80',
+    'text-white',
     'w-fit'
   );
 
   infoContainer.classList.add(
     'absolute',
-    'top-4',
-    'left-4',
+    'top-2',
+    'left-2',
     'w-fit',
     'flex',
-    'gap-1'
+    'gap-1',
+    'pr-1',
+    'pb-1',
+    'bg-white'
   );
 
   // Source and innerHTML

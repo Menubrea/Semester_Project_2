@@ -67,19 +67,20 @@ nav > button {
   border-right: 3em solid transparent;
 }
 
-.card:before {
+/* .card:before {
   top: 0;
   left: 0;
-  border-left: 4rem solid var(--clr-primary);
-  border-top: 7rem solid var(--clr-primary);
-  border-right: 4rem solid transparent;
-  border-bottom: 7rem solid transparent;
-}
+  border-left: 14rem solid var(--clr-contrast);
+  border-top: 14rem solid var(--clr-contrast);
+  border-right: 14rem solid transparent;
+  border-bottom: 14rem solid transparent;
+} */
+
 .card:after {
-  border-left: 4rem solid transparent;
-  border-top: 7rem solid transparent;
-  border-right: 4rem solid var(--clr-contrast);
-  border-bottom: 7rem solid var(--clr-contrast);
+  border-left: 10rem solid transparent;
+  border-top: 5rem solid transparent;
+  border-right: 10rem solid var(--clr-primary);
+  border-bottom: 5rem solid var(--clr-primary);
 }
 
 .card-promo:after,
@@ -221,6 +222,19 @@ textarea:focus {
 .headerContainer:after {
   border-right: 1em solid transparent;
 } */
+
+.seconds {
+  animation: animateSeconds 1s infinite;
+}
+
+@keyframes animateSeconds {
+  0% {
+    transform: rotateX(0);
+  }
+  100% {
+    transform: rotateX(1turn);
+  }
+}
 
 .lds-ellipsis {
   display: inline-block;

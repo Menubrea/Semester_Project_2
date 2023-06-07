@@ -79,9 +79,8 @@ export function promoListingTemplate(data) {
     'card-promo',
     'bg-white',
     'lg:mt-4',
-    'mt-2',
     'rounded-lg',
-    'shadow-lg',
+    'shadow-md',
     'md:p-4',
     'p-2',
     'relative'
@@ -94,25 +93,18 @@ export function promoListingTemplate(data) {
   listingTitle.classList.add(
     'text-primary',
     'font-lust',
-    'md:text-4xl',
+    'md:text-3xl',
     'text-2xl',
     'break-words'
   );
-  listingContent.classList.add(
-    'relative',
-    'lg:p-4',
-    'p-2',
-    'pb-8',
-    'h-40',
-    'md:h-full'
-  );
+  listingContent.classList.add('relative', 'px-2', 'pb-8', 'h-40', 'md:h-full');
   listingDescription.classList.add(
     'font-ofelia',
-    'lg:text-lg',
+    'lg:text-md',
     'text-dark',
     'md:text-md',
-    'lg:mt-2',
-    'break-words'
+    'break-words',
+    'mt-1'
   );
   profileContainer.classList.add(
     'flex',
