@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  class="bg-gradient-to-br from-white via-accent/80 to-white min-h-screen"
->
+<html lang="en" class="min-h-screen">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="./../dist/output.css" />
+
     <link rel="stylesheet" href="https://use.typekit.net/jgd2lxh.css" />
     <script
       src="https://kit.fontawesome.com/6b9295215b.js"
@@ -22,7 +21,7 @@
     <!-- Loader -->
     <div
       id="loader"
-      class="inset-0 fixed bg-gradient-to-br from-accent to-white z-30 flex flex-row items-center justify-center"
+      class="inset-0 fixed bg-gradient-to-br from-accent to-white z-50 flex flex-row items-center justify-center"
     >
       <div id="errorContainer">
         <div class="flex items-center justify-center" id="loaderContainer">
@@ -39,10 +38,10 @@
       </div>
     </div>
     <!-- Header -->
-    <header class="relative z-40 shadow-lg">
+    <header class="relative z-40">
       <div
         id="headerContainer"
-        class="flex items-center justify-between bg-white py-2 backdrop-blur-2xl rounded-lg lg:mt-4 mt-2 px-3"
+        class="flex items-center justify-between bg-white py-2 px-3"
       >
         <a
           href="./../"
@@ -53,23 +52,23 @@
           ></i>
           Vender
         </a>
-        <nav id="topNav" class="flex gap-1">
+        <nav id="topNav" class="flex gap-1 font-bold">
           <button
             id="createListingNavButton"
-            class="font-ofelia text-primary text-sm items-center font-bold hidden"
+            class="font-ofelia text-primary text-sm items-center hidden"
           >
             <i class="fa-solid fa-circle-plus text-xs"></i>
           </button>
           <a
             id="home"
             href="./../"
-            class="font-ofelia text-primary text-sm flex items-center font-bold"
+            class="font-ofelia text-primary text-sm flex items-center"
             ><i class="fa-solid fa-house md:mr-1 text-xs"></i
             ><span class="hidden md:block">Home</span></a
           >
           <button
             id="login"
-            class="font-ofelia text-primary text-md flex items-center text-sm font-bold"
+            class="font-ofelia text-primary text-md flex items-center text-sm"
           >
             <i class="fa-solid fa-user text-xs text-center w-full md:mr-1"></i
             ><span class="hidden md:block">Login</span>
@@ -91,7 +90,7 @@
         <!-- Listing goes here -->
         <div
           id="listingContainer"
-          class="rounded-lg lg:mb-4 mt-2 my-2 md:pb-0 pb-2 overflow-hidden shadow-lg"
+          class="rounded-lg lg:mb-4 mt-2 my-2 md:pb-0 pb-2 overflow-hidden shadow-md"
         ></div>
       </div>
       <!-- Listings goes here -->

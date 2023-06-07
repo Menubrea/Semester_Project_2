@@ -9,9 +9,11 @@ export async function setSearchListingsFormListener() {
   const searchButton = document.querySelector('#searchButton');
 
   searchControl.addEventListener('search', () => {
+    searchControl.scrollIntoView({ behavior: 'smooth' });
     return handleSearchControlInput(searchControl);
   });
   searchButton.addEventListener('click', () => {
+    searchControl.scrollIntoView({ behavior: 'smooth' });
     return handleSearchControlInput(searchControl);
   });
 
@@ -59,16 +61,16 @@ export async function handleSearchControlInput(input) {
     container.classList.add('grid');
     searchText.classList.remove('hidden');
     searchText.innerHTML = '';
-    searchText.innerHTML = `No results for: ${inputValue}`;
+    searchText.innerHTML = `<div class="bg-primary/10 text-dark w-full p-2">No result for: <span class="bg-contrast/30 w-max text-dark ml-1 px-2">${inputValue}</span></div>`;
   }
 
-  const results = listings.filter((listing) => {
+  const results = listings.filter((listing, index) => {
     if (
       listing.title.toLowerCase().startsWith(inputValue) &&
       inputValue.length > 0
     ) {
       searchText.innerHTML = '';
-      searchText.innerHTML = `Search results for: ${inputValue}`;
+      searchText.innerHTML = `<div class="bg-primary/10 text-dark w-full p-2">Search results for: <span class="bg-contrast/30 w-max text-dark ml-1 px-2">${inputValue}</span></div>`;
 
       return true;
     }

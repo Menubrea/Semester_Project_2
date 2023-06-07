@@ -21,6 +21,7 @@ export default function router() {
     handleAuthModal();
     setLoginFormListener();
     setRegisterFormListener();
+    console.warn = () => {};
   } else if (path === hostPath || path === hostPath + 'index.html') {
     profileData();
     createPreviewTemplate();

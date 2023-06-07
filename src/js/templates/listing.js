@@ -117,7 +117,6 @@ export function listingTemplate(data) {
     'flex',
     'justify-between',
     'mt-1',
-    'mx-3',
     'gap-2',
     'items-start'
   );
@@ -133,7 +132,7 @@ export function listingTemplate(data) {
   );
 
   profileName.classList.add('font-ofelia', 'text-dark/70');
-  body.classList.add('mx-3', 'mt-1', 'font-ofelia', 'break-words');
+  body.classList.add('mt-1', 'font-ofelia', 'break-words', 'text-md');
   profileContainer.classList.add(
     'flex',
     'items-center',
@@ -153,8 +152,8 @@ export function listingTemplate(data) {
     'font-lust',
     'font-bold',
     'text-primary',
-    'md:text-4xl',
-    'text-2xl',
+    'md:text-2xl',
+    'text-xl',
     'break-words',
     'w-full'
   );
